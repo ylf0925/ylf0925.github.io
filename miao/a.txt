@@ -1,3 +1,4 @@
 it works!
 1.clone miao repository to another folder (git 2) and push
-2.change git2 folder line3 to DESKTOP GIT2
+<<<<<<< HEAD
+2.code merge
