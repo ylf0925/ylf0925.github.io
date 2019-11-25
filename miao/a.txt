@@ -1,4 +1,4 @@
 it works!
 1.clone miao repository to another folder (git 2) and push
-<<<<<<< HEAD
 2.code merge
+3.conflict occurs!
