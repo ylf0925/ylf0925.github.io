@@ -7,23 +7,29 @@
   <style>
     /* YOUR STYLE GOES HERE */
     /* 不得改变页面的任何html结构 */
-    p.a:hover {
+    body>p:first-child {
       color: red;
     }
 
-    p.a:active:focus {
+    .a[tabindex]:focus {
+      color: blue;
+    }
+
+    .a[tabindex]:hover {
+      color: red;
+    }
+
+    .a[tabindex]:active {
       color: green;
     }
 
-    p.a:focus {
-      color: blue
-    }
 
-    span {
+
+    .a.c>span {
       color: red;
     }
 
-    span>span {
+    span>span:first-child {
       color: green;
     }
 
@@ -43,11 +49,11 @@
       color: orange
     }
 
-    a[href*="mailto"i] {
+    a[href*="mailto:"i] {
       color: blue
     }
 
-    a[href^="tel"] {
+    a[href^="tel"i] {
       color: yellow
     }
 
@@ -71,11 +77,16 @@
       color: blue
     }
 
+    .prime>ul :first-child,
     .prime>ul :nth-child(2n+4),
     .prime>ul :nth-child(3n+6),
-    .prime>ul :nth-child(5n+10),
-    .prime>ul :nth-child(7n+14) {
-      color: aquamarine;
+    .prime>ul :nth-child(5n+25),
+    .prime>ul :nth-child(7n+49) {
+      color: blue;
+    }
+
+    .prime li:not(:first-child):not(:nth-child(2n+4)):not(:nth-child(3n+6)):not(:nth-child(5n+25)):not(:nth-child(7n+49)) {
+      color: red;
     }
   </style>
 </head>
