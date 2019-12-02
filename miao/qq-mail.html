@@ -8,57 +8,47 @@
   <title>Document</title>
   <style>
     * {
-      margin: 0px;
-      padding: 0px;
-
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
     body {
-      overflow: hidden;
+      margin: 0px;
     }
 
-    nav {
-      display: block;
-      border: 2px solid black;
-      background-color: blueviolet;
+    header {
+      display: inline-block;
+      width: 100%;
       height: 100px;
+      background-color: blue;
     }
 
-    div.wrapper {
-      display: block;
-      border-top: none;
-      height: auto;
-
-    }
-
-    div.sidebar {
-      display: block;
+    aside {
+      width: 200px;
+      display: inline-block;
       background-color: yellow;
-      width: 150px;
-      height: 650px;
-      border: 2px solid black;
-      border-top: none;
+    }
 
+    .main_wrapper {
+      margin-left: -200px;
+      display: inline-block;
+      width: 100%;
     }
 
     main {
-      display: block;
-      margin-top: -652px;
-      margin-left: 154px;
-      ;
-      height: 650px;
-      background-color: red;
-      border-right: 2px solid black;
+      display: inline-block;
+      margin-left: 200px;
     }
   </style>
 </head>
 
 <body>
-  <nav></nav>
-  <div class="wrapper">
-    <div class="sidebar"></div>
-    <main></main>
-  </div>
+  <section>
+    <header>a</header>
+    <aside>b</aside>
+    <div class="main_wrapper">
+      <main>c</main>
+    </div>
+  </section>
 </body>
 
 </html>
