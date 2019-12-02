@@ -1,54 +1,55 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Document</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>qqmail</title>
   <style>
     * {
       background-color: rgba(0, 0, 0, 0.1);
     }
 
+    html,
     body {
-      margin: 0px;
+      margin: 0;
+      height: 100%;
+    }
+
+    div {
+      font-size: 0px;
+      height: 100%;
     }
 
     header {
-      display: inline-block;
-      width: 100%;
       height: 100px;
       background-color: blue;
     }
 
-    aside {
-      width: 200px;
+    aside,
+    main {
       display: inline-block;
-      background-color: yellow;
+      height: calc(100% - 100px);
     }
 
-    .main_wrapper {
-      margin-left: -200px;
-      display: inline-block;
-      width: 100%;
+    aside {
+      width: 200px;
+      background-color: red;
     }
 
     main {
-      display: inline-block;
-      margin-left: 200px;
+      width: calc(100% - 200px);
+      background-color: yellow;
     }
   </style>
 </head>
 
 <body>
-  <section>
+  <div>
     <header>a</header>
     <aside>b</aside>
-    <div class="main_wrapper">
-      <main>c</main>
-    </div>
-  </section>
+    <main>c</main>
+  </div>
 </body>
 
 </html>

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>elong-nav</title>
+  <style>
+    .wrap {
+      background-color: #2064c8;
+      color: white;
+    }
+
+    nav {
+      width: 600px;
+      margin: auto;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0px;
+      font-size: 0px;
+    }
+
+    li {
+      position: relative;
+      display: inline-block;
+      font-size: 12px;
+      padding: 10px;
+      border: 1px solid #3774ce;
+    }
+
+    li:last-child {
+      border: 1px solid #3774ce;
+    }
+
+    li[data-tip]::before {
+      content: attr(data-tip);
+      position: absolute;
+      background-color: #FF8E00;
+      font-size: 10px;
+      left: 35px;
+      bottom: 30px;
+      z-index: 10;
+      white-space: nowrap;
+      padding: 2px;
+    }
+
+    li[data-tip]::after {
+      content: attr(data-tip);
+      z-index: 1;
+      position: absolute;
+      border: 2px solid #FF8E00;
+      border-color: #FF8E00 transparent transparent #FF8E00;
+      bottom: 26px;
+    }
+  </style>
+</head>
+
+<body>
+  <div class='wrap'>
+    <nav>
+      <ul>
+        <li data-tip="低价促">首页</li>
+        <li>海外酒店</li>
+        <li>火车票</li>
+        <li data-tip="新升级">汽车票</li>
+        <li>
+      </ul>
+    </nav>
+  </div>
+</body>
+
+</html>
