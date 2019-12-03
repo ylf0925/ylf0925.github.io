@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>ios-checkbox1</title>
+  <title>ios-checkbox2</title>
   <style>
     input {
       display: none;
@@ -21,12 +21,14 @@
       xpadding: 6px;
       /* 为什没有下面这行就不行呢？？ */
       transition: .5s;
+
     }
 
     input:checked+#lb {
+      /* 下面这行可以删掉 */
       background-color: #30f349;
       border-color: #30f349;
-      border-width: 70px;
+      box-shadow: 0 0 0px 75px #30f349 inset;
     }
 
     input+#lb::before {
@@ -51,8 +53,8 @@
       height: 133px;
       border-radius: 115px;
       position: absolute;
-      top: -59px;
-      left: 54px;
+      xtop: -59px;
+      left: 120px;
 
     }
   </style>
