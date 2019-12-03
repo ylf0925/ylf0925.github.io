@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>qqmail</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+    }
+
+    html,
+    body {
+      margin: 0;
+      height: 100%;
+    }
+
+    div {
+      font-size: 0px;
+      height: 100%;
+    }
+
+    header {
+      height: 100px;
+      background-color: blue;
+    }
+
+    aside,
+    main {
+      display: inline-block;
+      height: calc(100% - 100px);
+    }
+
+    aside {
+      width: 200px;
+      background-color: red;
+    }
+
+    main {
+      width: calc(100% - 200px);
+      background-color: yellow;
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <header>a</header>
+    <aside>b</aside>
+    <main>c</main>
+  </div>
+</body>
+
+</html>
