@@ -4,11 +4,11 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>ios-checkbox</title>
+  <title>ios-checkbox2</title>
   <style>
     * {
       xbackground-color: rgba(0, 0, 0, 0.1);
-
+      margin: 0px;
     }
 
     input {
@@ -22,16 +22,22 @@
       border: 4px solid #CBCBCB;
       box-sizing: border-box;
       border-radius: 115px;
-      padding: 6px;
-      transition: .4s
+      position: relative;
+      xpadding: 6px;
+      /* 为什没有下面这行就不行呢？？ */
+      transition: .5s;
+
     }
 
     input:checked+#lb {
+      /* 下面这行可以删掉 */
       background-color: #30f349;
       border-color: #30f349;
+      box-shadow: 0 0 0px 75px #30f349 inset;
     }
 
     input+#lb::before {
+      position: absolute;
       content: "";
       box-shadow: 0 0 8px gray;
       display: inline-block;
@@ -39,22 +45,114 @@
       height: 133px;
       border-radius: 115px;
       background-color: white;
-      transition: .3s;
+      transition: .50s;
+      top: 6px;
+      left: 6px;
     }
 
     input:checked+#lb::before {
-      margin-left: 115px;
+      box-shadow: 0 0 8px gray;
+      content: "";
+      display: inline-block;
+      width: 133px;
+      height: 133px;
+      border-radius: 115px;
+      position: absolute;
+      xtop: -59px;
+      left: 120px;
+    }
+
+    .seperator {
+      height: 100px;
+    }
+
+    .warpper {
+      xposition: relative;
+    }
+
+    .d1,
+    .d2,
+    .d3 {
+      line-height: 80px;
+    }
+
+    #l1::before {
+      display: inline-block;
+      content: '';
+      height: 20px;
+      width: 20px;
+      border: 2px solid;
+      border-radius: 200px;
+      vertical-align: middle;
+    }
+
+    input#r1:checked+label#l1::before {
+      display: inline-block;
+      content: '';
+      height: 8px;
+      width: 8px;
+      border: 2px solid;
+      border-radius: 200px;
+      vertical-align: middle;
+    }
+
+    /* 以下为Radio代码 */
+
+    .r1~label {
+      display: block;
+      height: 40px;
+      width: 40px;
+      border: 2px solid black;
+      border-radius: 99px;
+      margin-bottom: 10px;
+      position: relative;
+      transition: .3s;
+    }
+
+    input.r1+label::before {
+      content: '';
+      height: 0px;
+      width: 0px;
+      transition: .3s;
+    }
+
+    input.r1:checked+label {
+      border-color: #30f349;
+      transition: .3s;
+
+    }
+
+    input.r1:checked+label::before {
+      content: '';
+      display: inline-block;
+      height: 30px;
+      width: 30px;
+      border: 2px solid #30f349;
+      border-radius: 99px;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      margin: auto;
+      border-color: #30f349;
+      background-color: #30f349;
     }
   </style>
 </head>
 
-
 <body>
   <input type="checkbox" name="q" id="icon">
   <label for="icon" id="lb"></label>
-  <div class="d1"><input type="radio" id="r1"><label for="r1">Radio Button</label></div>
-  <div class="d2"><input type="radio" id="r2"><label for="r2">Radio Button</label></div>
-  <div class="d3"><input type="radio" id="r3"><label for="r3">Radio Button</label></div>
+
+  <div class="seperator"></div>
+
+  <input class="r1" type="radio" id="i1" name="rb">
+  <label for="i1"></label>
+  <input class="r1" type="radio" id="i2" name="rb">
+  <label for="i2"></label>
+  <input class="r1" type="radio" id="i3" name="rb">
+  <label for="i3"></label>
 </body>
 
 </html>

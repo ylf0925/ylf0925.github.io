@@ -4,8 +4,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width">
-  <title>ios-checkbox2</title>
+  <title>ios-checkbox</title>
   <style>
+    * {
+      xbackground-color: rgba(0, 0, 0, 0.1);
+
+    }
+
     input {
       display: none;
     }
@@ -17,22 +22,16 @@
       border: 4px solid #CBCBCB;
       box-sizing: border-box;
       border-radius: 115px;
-      position: relative;
-      xpadding: 6px;
-      /* 为什没有下面这行就不行呢？？ */
-      transition: .5s;
-
+      padding: 6px;
+      transition: .4s
     }
 
     input:checked+#lb {
-      /* 下面这行可以删掉 */
       background-color: #30f349;
       border-color: #30f349;
-      box-shadow: 0 0 0px 75px #30f349 inset;
     }
 
     input+#lb::before {
-      position: absolute;
       content: "";
       box-shadow: 0 0 8px gray;
       display: inline-block;
@@ -40,29 +39,22 @@
       height: 133px;
       border-radius: 115px;
       background-color: white;
-      transition: .50s;
-      top: 6px;
-      left: 6px;
+      transition: .3s;
     }
 
     input:checked+#lb::before {
-      box-shadow: 0 0 8px gray;
-      content: "";
-      display: inline-block;
-      width: 133px;
-      height: 133px;
-      border-radius: 115px;
-      position: absolute;
-      xtop: -59px;
-      left: 120px;
-
+      margin-left: 115px;
     }
   </style>
 </head>
 
+
 <body>
   <input type="checkbox" name="q" id="icon">
   <label for="icon" id="lb"></label>
+  <div class="d1"><input type="radio" id="r1"><label for="r1">Radio Button</label></div>
+  <div class="d2"><input type="radio" id="r2"><label for="r2">Radio Button</label></div>
+  <div class="d3"><input type="radio" id="r3"><label for="r3">Radio Button</label></div>
 </body>
 
 </html>
