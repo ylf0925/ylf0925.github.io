@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>BS-table</title>
+  <style>
+    .table {
+      width: 100%;
+      text-align: left;
+      border-collapse: collapse;
+    }
+
+    .table tr {
+      border-top: 1px solid #DEE2E6;
+    }
+
+    .table thead tr {
+      border-bottom: 2px solid #DEE2E6;
+    }
+
+    .table td,
+    .table th {
+      padding: 16px;
+    }
+
+
+
+    /* TABLE DARK */
+    .table-dark {
+      background-color: #343a40;
+    }
+
+    .table-dark tr,
+    .table-dark thead tr {
+      border-color: #454d55;
+    }
+
+    .table-dark th,
+    .table-dark td {
+      color: #ffffff;
+    }
+
+    /* TABLE HEAD OPTIONS */
+
+
+    /* THEAD DARK */
+    .thead-dark tr {
+      background-color: #343a40;
+    }
+
+    /* THEAD LIGHT */
+    .thead-light tr {
+      background-color: #e9ecef;
+    }
+
+    /* Striped rows */
+    .table-striped tbody tr:nth-child(odd) {
+      background-color: #f2f2f2;
+    }
+
+    .table-dark.table-striped tbody tr:nth-child(odd) {
+      background-color: #3e444a;
+    }
+
+    /* BORDERD TABLE */
+    /* LIGHT */
+    .table-bordered td,
+    .table-bordered th {
+      border: 1px solid #DEE2E6;
+    }
+
+    /* DARK */
+    .table-dark.table-bordered td,
+    .table-dark.table-bordered th {
+      border: 1px solid #454d55;
+    }
+
+    /* BORDERDLESS TABLE */
+    .table-borderless tr,
+    .table-borderless thead tr {
+      border: 0px;
+    }
+
+    /* HOVERABLE LSIT */
+    /* LIGHT */
+    .table-hover tbody tr:hover {
+      background-color: #ececec;
+    }
+
+    /* DARK */
+    .table-dark.table-hover tbody tr:hover {
+      background-color: #43494e;
+    }
+
+    /* TABLE SMALL */
+    .table.table-sm td,
+    .table.table-sm th {
+      border-collapse: collapse;
+      padding: 5px;
+      text-align: left;
+    }
+
+    /* TABLE PRIMARY */
+    .table-primary {
+      background-color: #b9dbfe;
+    }
+
+    .table-dark .table-primary {
+      background-color: #157ffb;
+    }
+
+    .table-dark.table-hover .table-primary:hover {
+      background-color: #da3849;
+    }
+
+    /* TABLE SECONDARY */
+    .table-secondary {
+      background-color: #d6d8db;
+    }
+
+    .table-dark .table-secondary {
+      background-color: #30a64a;
+    }
+
+    .table-dark.table-hover .table-secondary:hover {
+      background-color: #fec02f;
+    }
+  </style>
+</head>
+
+<body>
+  <table class="table xtable-striped table-dark xtable-bordered xtable-borderless table-hover xtable-sm">
+    <thead class="xthead-dark xthead-light">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">Handle</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr class=table-primary>
+        <th scope="row">1</th>
+        <td>Mark</td>
+        <td>Otto</td>
+        <td>@mdo</td>
+      </tr>
+      <tr class=table-secondary>
+        <th scope="row">2</th>
+        <td>Jacob</td>
+        <td>Thornton</td>
+        <td>@fat</td>
+      </tr>
+      <tr>
+        <th scope="row">3</th>
+        <td>Larry</td>
+        <td>the Bird</td>
+        <td>@twitter</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>
