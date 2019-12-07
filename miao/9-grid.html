@@ -7,83 +7,74 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
-    /* table */
-    table {
-      border-collapse: collapse;
-      cursor: pointer;
+    /* FLOAT */
+    .float {
+      width: 430px;
+      height: 430px;
+      position: absolute;
+      top: 100px;
+      xleft: 100px;
+    }
+
+    p {
       position: relative;
+      height: 100px;
+      width: 100px;
+      border: 20px solid blue;
+      float: left;
+      margin: -10px;
+      text-align: center;
+      line-height: 100px;
+      cursor: pointer;
+    }
+
+    p:hover {
+      border-color: red;
+      z-index: 99999999;
+    }
+
+    /* TABLE */
+    table {
+      position: absolute;
+      left: 0px;
+      top: 500px;
+      border-collapse: collapse;
     }
 
     td {
-      position: relative;
-      border: 10px solid blue;
       height: 100px;
       width: 100px;
+      border: 20px solid blue;
       text-align: center;
-      padding: 0px;
-
     }
 
     td:hover {
+      z-index: 999;
       border-color: red;
-      z-index: 100;
+
     }
 
-    /* list */
-    ul {
-      list-style: none;
-      margin: 0px;
-      padding: 0px;
+    /* INLINE */
+    .InlineWarpper {
+      position: absolute;
+      top: 1000px;
+      width: 430px;
+      height: 430px;
       font-size: 0px;
     }
 
-    li {
-      xdisplay: block;
-      height: 100px;
-      width: 100px;
-      border: 10px solid blue;
-      text-align: center;
-      margin: 0px;
-      line-height: 100px;
+    .InlineWarpper * {
       font-size: 16px;
     }
 
-    li:hover {
-      border-color: red;
-    }
-
-    li:nth-child(n+2):nth-child(-n+9) {
-      margin-top: -10px;
-
-    }
-
-    li:nth-child(n+4) {
-      margin-left: 110px;
-    }
-
-    li:nth-child(n+7) {
-      margin-left: 220px;
-    }
-
-    #l4 {
-      margin-top: -340px;
-    }
-
-    #l7 {
-      margin-top: -340px;
-    }
-
-    /* inline */
-    .warp {
-      width: 340px;
-    }
-
     span {
+      display: inline-block;
       height: 100px;
       width: 100px;
-      display: inline-block;
-      border: 10px solid blue;
+      margin: -10px;
+      line-height: 100px;
       text-align: center;
+      border: 20px solid blue;
     }
 
     span:hover {
@@ -93,6 +84,18 @@
 </head>
 
 <body>
+  <html>
+  <div class="float">
+    <p>1</p>
+    <p>2</p>
+    <p>3</p>
+    <p>4</p>
+    <p>5</p>
+    <p>6</p>
+    <p>7</p>
+    <p>8</p>
+    <p>9</p>
+  </div>
   <div class="table">
     <table>
       <tr>
@@ -112,37 +115,16 @@
       </tr>
     </table>
   </div>
-  <br>
-
-  <div class="li">
-    <ul>
-      <li>1</li>
-      <li>2</li>
-      <li>3</li>
-      <li id="l4">4</li>
-      <li>5</li>
-      <li>6</li>
-      <li id="l7">7</li>
-      <li>8</li>
-      <li>9</li>
-    </ul>
-  </div>
-  <br>
-  <div class="warp">
-    <div class="inline">
-      <span>1</span>
-      <span>2</span>
-      <span>3</span>
-      <span>4</span>
-      <span>5</span>
-      <span>6</span>
-      <span>7</span>
-      <span>8</span>
-      <span>9</span>
-    </div>
-  </div>
-  <div class="float">
-
+  <div class="InlineWarpper">
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
   </div>
 
 </body>
