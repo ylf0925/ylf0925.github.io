@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS-silder2</title>
+  <style>
+    body {
+      margin: 0px;
+    }
+
+    img {
+      display: inline-block;
+      height: 230px;
+      width: 633px;
+    }
+
+    section {
+      width: 2532px;
+      font-size: 0px;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      transition: .5s;
+
+    }
+
+    div {
+      position: relative;
+      border: 1px solid;
+      border-color: transparent;
+      margin: auto;
+      overflow: hidden;
+      height: 230px;
+      width: 633px;
+    }
+
+    input {
+      position: relative;
+      top: calc(100% - 40px);
+      left: 40%;
+      z-index: 6;
+    }
+
+    #checker1:checked~section {
+      left: 0%;
+    }
+
+    #checker2:checked~section {
+      left: -100%;
+    }
+
+    #checker3:checked~section {
+      left: -200%;
+    }
+
+    #checker4:checked~section {
+      left: -300%;
+    }
+
+    /* ARROWS */
+    #AL,
+    #AR {
+      position: absolute;
+      width: 50px;
+      height: 50px;
+      z-index: 6;
+    }
+
+    #AR {
+      top: 50px;
+      right: 0px;
+    }
+
+    #AL {
+      top: 50px;
+      left: 0px;
+    }
+
+    /* .arrows {
+      position: absolute;
+    } */
+  </style>
+</head>
+
+<body>
+  <div>
+    <input type="radio" name="silder" id="checker1" checked>
+    <input type="radio" name="silder" id="checker2">
+    <input type="radio" name="silder" id="checker3">
+    <input type="radio" name="silder" id="checker4">
+    <!-- <div class="arrows"> -->
+    <label class="swip_next"><img id="AL" src="images/AL.jpg" alt=""></label>
+    <label class="swip_pre" for="checker2"><img id="AR" src="images/AR.jpg" alt=""></label>
+    <!-- </div> -->
+    <section>
+      <img id="i1" src="images/1.jpeg" alt="i1"><img id="i2" src="images/2.jpg" alt="i2"><img id="i3" src="images/3.jpg"
+        alt="i3"><img id="i4" src="images/4.jpg" alt="i4">
+    </section>
+    <!-- <div class=arrow_positioner>
+      <label for="checker2" class="silder1_right">
+        <img id="arrow_left" src="images/arrow.jpg" alt="">
+      </label>
+    </div> -->
+  </div>
+
+
+
+</body>
+
+</html>

@@ -16,15 +16,15 @@
       width: 400px;
       border: 2px solid;
       position: relative;
-      text-align: center;
       background-color: mediumpurple;
     }
 
     .d1 {
-      display: inline-block;
+      xdisplay: inline-block;
       line-height: 150px;
-      height: 150px;
-      width: 150px;
+      text-align: center;
+      height: 200px;
+      width: 200px;
       position: absolute;
       top: 0px;
       bottom: 0px;
@@ -36,18 +36,20 @@
 
     .outbox2 {
       height: 400px;
-      width: 300px;
+      width: 400px;
       background-color: red;
       border: 2px solid;
       box-sizing: border-box;
       line-height: 400px;
       font-size: 0px;
       text-align: center;
+
     }
 
     .d2 {
+      border: 2px solid;
       height: 200px;
-      width: 100px;
+      width: 200px;
       display: inline-block;
       background-color: lime;
       vertical-align: middle;
@@ -57,36 +59,40 @@
 
     .outbox3 {
       height: 400px;
-      width: 400px;
+      width: 800px;
       border: 2px solid;
       display: table-cell;
       vertical-align: middle;
       background-color: violet;
+
     }
 
     .d3 {
       width: 50%;
+      height: 50%;
       margin: auto;
       background-color: aqua;
       text-align: center;
+      line-height: 200px;
+      white-space: nowrap;
     }
   </style>
 </head>
 
 <body>
   <div class="outbox1">
-    <span class="d1">绝对居中1</span>
+    <span class="d1">positioned绝对居中1</span>
   </div>
   <br>
 
   <div class="outbox2">
-    <span class="d2">绝对居中2</span>
+    <span class="d2">inline绝对居中2</span>
   </div>
   <br>
 
   <div class="outbox3">
     <div class="d3">
-      绝对居中3(must smaller than parent element!!!)
+      table绝对居中3，子元素必须被比元素小
     </div>
   </div>
 
