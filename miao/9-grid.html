@@ -7,13 +7,20 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <style>
+    /* PAGE INITIALIZATION */
+    * {
+      padding: 0px;
+      margin: 0px;
+    }
+
     /* FLOAT */
     .float {
       width: 430px;
-      height: 430px;
+      xheight: 430px;
       position: absolute;
       top: 100px;
-      xleft: 100px;
+      left: 10px;
+      /* REGAIN 10px MARGIN */
     }
 
     p {
@@ -37,8 +44,9 @@
     table {
       position: absolute;
       left: 0px;
-      top: 500px;
+      top: 600px;
       border-collapse: collapse;
+      cursor: pointer;
     }
 
     td {
@@ -49,7 +57,7 @@
     }
 
     td:hover {
-      z-index: 999;
+      z-index: 888;
       border-color: red;
 
     }
@@ -57,7 +65,8 @@
     /* INLINE */
     .InlineWarpper {
       position: absolute;
-      top: 1000px;
+      top: 1100px;
+      left: 10px;
       width: 430px;
       height: 430px;
       font-size: 0px;
