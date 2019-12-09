@@ -21,7 +21,7 @@
 
     .d1 {
       xdisplay: inline-block;
-      line-height: 150px;
+      line-height: 200px;
       text-align: center;
       height: 200px;
       width: 200px;
@@ -76,6 +76,28 @@
       line-height: 200px;
       white-space: nowrap;
     }
+
+    .outbox4 {
+      text-align: center;
+      height: 400px;
+      width: 400px;
+      border: 2px solid;
+      background-color: blue;
+      font-size: 0px;
+    }
+
+    .outbox4::before {
+      content: '';
+      height: 100%;
+      display: inline-block;
+      vertical-align: middle;
+    }
+
+    .d4 {
+      display: inline-block;
+      font-size: 16px;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -95,7 +117,10 @@
       table绝对居中3，子元素必须被比元素小
     </div>
   </div>
+  <br>
 
+  <div class="outbox4">xx<span class="d4">绝对居中4</span>
+  </div>
 </body>
 
 </html>

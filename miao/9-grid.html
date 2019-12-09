@@ -14,52 +14,58 @@
     }
 
     /* FLOAT */
-    .float {
-      width: 430px;
-      xheight: 430px;
-      position: absolute;
-      top: 100px;
-      left: 10px;
-      /* REGAIN 10px MARGIN */
+    ul {
+      list-style: none;
+      padding: 0px;
+      xborder: 1px solid red;
+      overflow: hidden;
+      width: 180px;
+      padding-bottom: 5px;
     }
 
-    p {
-      position: relative;
-      height: 100px;
-      width: 100px;
-      border: 20px solid blue;
-      float: left;
-      margin: -10px;
+    li {
+      line-height: 50px;
       text-align: center;
-      line-height: 100px;
-      cursor: pointer;
+      float: left;
+      height: 50px;
+      width: 50px;
+      border: 5px solid blue;
+      margin-right: -5px;
+      margin-bottom: -5px;
+      position: relative;
     }
 
-    p:hover {
-      border-color: red;
-      z-index: 99999999;
+    li:hover {
+      border: 5px solid red;
+      z-index: 5;
     }
 
     /* TABLE */
     table {
       position: absolute;
+      border-spacing: 0px;
       left: 0px;
-      top: 600px;
+      top: 500px;
       border-collapse: collapse;
       cursor: pointer;
     }
 
+    tr {
+      border: 5px solid blue;
+    }
+
+    col {
+      border: 5px solid blue;
+    }
+
     td {
-      height: 100px;
-      width: 100px;
-      border: 20px solid blue;
+      height: 50px;
+      width: 50px;
       text-align: center;
     }
 
     td:hover {
-      z-index: 888;
-      border-color: red;
-
+      border: 5px solid red;
     }
 
     /* INLINE */
@@ -94,34 +100,40 @@
 
 <body>
   <html>
-  <div class="float">
-    <p>1</p>
-    <p>2</p>
-    <p>3</p>
-    <p>4</p>
-    <p>5</p>
-    <p>6</p>
-    <p>7</p>
-    <p>8</p>
-    <p>9</p>
-  </div>
+  <ul class="float">
+    <li>1</li>
+    <li>2</li>
+    <li>3</li>
+    <li>4</li>
+    <li>5</li>
+    <li>6</li>
+    <li>7</li>
+    <li>8</li>
+    <li>9</li>
+  </ul>
   <div class="table">
+
     <table>
-      <tr>
-        <td>1</td>
-        <td>2</td>
-        <td>3</td>
-      </tr>
-      <tr>
-        <td>4</td>
-        <td>5</td>
-        <td>6</td>
-      </tr>
-      <tr>
-        <td>7</td>
-        <td>8</td>
-        <td>9</td>
-      </tr>
+      <col>
+      <col>
+      <col>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td>2</td>
+          <td>3</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td>5</td>
+          <td>6</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td>8</td>
+          <td>9</td>
+        </tr>
+      </tbody>
     </table>
   </div>
   <div class="InlineWarpper">

@@ -191,7 +191,6 @@
     @import 
 
     
-    
 29. 什么叫做可访问性，html 中为此做了什么工作？
 
     - 可访问性，是每个人都更便捷的获取信息，包括开发者
@@ -734,6 +733,7 @@
     <input>:Flow content, listed, submittable, resettable, form-associated element, phrasing content. If the type is not hidden, then labelable element, palpable content.
     <area>:Flow content, phrasing content.
 
+    
     
 64. 解释 box-sizing 可以取哪些值，以及每个值的意义
     border-box ： 指定 宽高时以border-box为基准

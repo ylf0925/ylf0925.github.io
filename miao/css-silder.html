@@ -12,7 +12,6 @@
     }
 
     img {
-      display: inline-block;
       height: 230px;
       width: 633px;
     }
@@ -24,10 +23,10 @@
       top: 0px;
       left: 0px;
       transition: .5s;
-
     }
 
-    div {
+    .Wrapper {
+      /* DETERMINE SECTION‘S POSITIONING ANCESTOR */
       position: relative;
       border: 1px solid;
       border-color: transparent;
@@ -44,6 +43,7 @@
       z-index: 6;
     }
 
+    /* MAPPING */
     #checker1:checked~section {
       left: 0%;
     }
@@ -70,43 +70,36 @@
     }
 
     #AR {
-      top: 50px;
+      top: 80px;
       right: 0px;
     }
 
     #AL {
-      top: 50px;
+      top: 80px;
       left: 0px;
     }
-
-    /* .arrows {
-      position: absolute;
-    } */
   </style>
 </head>
 
+
+
 <body>
-  <div>
+
+  <div class="Wrapper">
     <input type="radio" name="silder" id="checker1" checked>
     <input type="radio" name="silder" id="checker2">
     <input type="radio" name="silder" id="checker3">
     <input type="radio" name="silder" id="checker4">
     <!-- <div class="arrows"> -->
-    <label class="swip_next"><img id="AL" src="images/AL.jpg" alt=""></label>
+    <label for="checkek2" class="swip_next"><img id="AL" src="images/AL.jpg" alt=""></label>
     <label class="swip_pre" for="checker2"><img id="AR" src="images/AR.jpg" alt=""></label>
     <!-- </div> -->
     <section>
       <img id="i1" src="images/1.jpeg" alt="i1"><img id="i2" src="images/2.jpg" alt="i2"><img id="i3" src="images/3.jpg"
         alt="i3"><img id="i4" src="images/4.jpg" alt="i4">
     </section>
-    <!-- <div class=arrow_positioner>
-      <label for="checker2" class="silder1_right">
-        <img id="arrow_left" src="images/arrow.jpg" alt="">
-      </label>
-    </div> -->
+
   </div>
-
-
 
 </body>
 
