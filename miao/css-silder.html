@@ -5,101 +5,53 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>CSS-silder2</title>
+  <title>CSS-silder</title>
   <style>
-    body {
-      margin: 0px;
-    }
-
     img {
-      height: 230px;
-      width: 633px;
-    }
 
-    section {
-      width: 2532px;
-      font-size: 0px;
+      height: 460px;
+      width: 1266px;
       position: absolute;
-      top: 0px;
-      left: 0px;
-      transition: .5s;
-    }
-
-    .Wrapper {
-      /* DETERMINE SECTION‘S POSITIONING ANCESTOR */
-      position: relative;
-      border: 1px solid;
-      border-color: transparent;
-      margin: auto;
-      overflow: hidden;
-      height: 230px;
-      width: 633px;
+      left: 0%;
+      top: 0%;
+      opacity: 0;
+      transition: 1s;
     }
 
     input {
       position: relative;
-      top: calc(100% - 40px);
-      left: 40%;
-      z-index: 6;
+      top: calc(100% - 30px);
+      z-index: 2;
     }
 
-    /* MAPPING */
-    #checker1:checked~section {
-      left: 0%;
+    input:checked+*+*+*+img {
+      left: 0;
+      opacity: 1;
+
     }
 
-    #checker2:checked~section {
-      left: -100%;
-    }
-
-    #checker3:checked~section {
-      left: -200%;
-    }
-
-    #checker4:checked~section {
-      left: -300%;
-    }
-
-    /* ARROWS */
-    #AL,
-    #AR {
-      position: absolute;
-      width: 50px;
-      height: 50px;
-      z-index: 6;
-    }
-
-    #AR {
-      top: 80px;
-      right: 0px;
-    }
-
-    #AL {
-      top: 80px;
-      left: 0px;
+    div {
+      position: relative;
+      border: 1px solid black;
+      height: 460px;
+      width: 1266px;
+      box-sizing: content-box;
     }
   </style>
 </head>
+<div>
+  <input type="radio" name="silder" id="" checked>
+  <input type="radio" name="silder" id="">
+  <input type="radio" name="silder" id="">
+  <input type="radio" name="silder" id="">
 
-
+  <img src="images/1.jpeg" alt="i1">
+  <img src="images/2.jpg" alt="i2">
+  <img src="images/3.jpg" alt="i3">
+  <img src="images/4.jpg" alt="i4">
+</div>
 
 <body>
-
-  <div class="Wrapper">
-    <input type="radio" name="silder" id="checker1" checked>
-    <input type="radio" name="silder" id="checker2">
-    <input type="radio" name="silder" id="checker3">
-    <input type="radio" name="silder" id="checker4">
-    <!-- <div class="arrows"> -->
-    <label for="checkek2" class="swip_next"><img id="AL" src="images/AL.jpg" alt=""></label>
-    <label class="swip_pre" for="checker2"><img id="AR" src="images/AR.jpg" alt=""></label>
-    <!-- </div> -->
-    <section>
-      <img id="i1" src="images/1.jpeg" alt="i1"><img id="i2" src="images/2.jpg" alt="i2"><img id="i3" src="images/3.jpg"
-        alt="i3"><img id="i4" src="images/4.jpg" alt="i4">
-    </section>
-
-  </div>
 
 </body>
 
