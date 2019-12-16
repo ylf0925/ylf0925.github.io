@@ -1,5 +1,5 @@
 * {
-  xbackground-color: rgba(0, 0, 0, 0.1);
+  background-color: rgba(0, 0, 0, 0.1);
   margin: 0px;
   padding: 0px;
   text-decoration: none;
@@ -392,6 +392,7 @@ ul {
       > ul {
         padding: 20px 0;
         > li.SideCategory {
+          font-size: 14px;
           color: #ffffff;
           height: 42px;
           line-height: 42px;
@@ -614,4 +615,293 @@ div.HeroSilder
   ~ .Indicators
   label:nth-child(4)::after {
   background-color: #ffffff;
+}
+// HERO SUBLINE END HERE
+.HeroSub {
+  .HeroSubWrapper {
+    height: 170px;
+    width: 1226px;
+    margin: auto;
+    margin-top: 14px;
+    div {
+      cursor: pointer;
+      float: left;
+      height: 170px;
+      &:not(:first-child) {
+        margin-left: 14px;
+        width: 316px;
+      }
+    }
+    // SIX PIC ON CORNER
+    .Six {
+      background-color: #5f5750;
+      width: 234px;
+      ul {
+        width: 234px;
+        height: 170px;
+        display: inline-block;
+        text-align: center;
+
+        li {
+          position: relative;
+          float: left;
+          width: 70px;
+          height: 82px;
+          padding: 0 3px;
+          &:hover {
+            a {
+              opacity: 1;
+            }
+          }
+          a {
+            width: 70px;
+            height: 64px;
+            display: inline-block;
+            padding-top: 18px;
+            opacity: 0.7;
+            transition: 0.2s;
+            p {
+              color: #ffffff;
+              position: relative;
+              font-size: 12px;
+            }
+          }
+          &::before {
+            display: inline-block;
+            z-index: 100;
+            position: absolute;
+            background-color: #665e57;
+            content: "";
+            height: 61px;
+            width: 1px;
+            right: 100%;
+            top: 10px;
+          }
+          &:nth-child(1)::before {
+            content: none;
+          }
+          &:nth-child(4)::before {
+            content: none;
+          }
+          &:nth-child(-n + 3)::after {
+            content: "";
+            width: 64px;
+            height: 1px;
+            display: inline-block;
+            position: absolute;
+            background-color: #665e57;
+            z-index: 100;
+            top: 100%;
+            left: 6px;
+          }
+        }
+      }
+    }
+  }
+}
+.MainPageWrapper {
+  position: relative;
+  z-index: 10;
+  margin-top: 14px;
+  main.MainPage {
+    position: relative;
+    z-index: 10;
+    margin: auto;
+    width: 1226px;
+    .MainPageTitle {
+      font-size: 22px;
+      width: inherit;
+      height: 58px;
+      font-weight: 200;
+      line-height: 58px;
+      font-family: "Helvetica Neue";
+      position: relative;
+      z-index: 10;
+    }
+    div.Sale {
+      height: 300px;
+      width: 234px;
+      padding: 39px 0 0;
+      border-top: 1px solid #e53935;
+      float: left;
+      text-align: center;
+      margin-right: 14px;
+      .Round {
+        padding-top: 15px;
+        font-size: 21px;
+        color: #ef3a3b;
+      }
+      img {
+        margin: 25px 0;
+      }
+      .SaleSub {
+        font-size: 15px;
+        color: rgba(0, 0, 0, 0.54);
+      }
+      .TimerWrapper {
+        height: 46px;
+        margin-top: 28px;
+
+        span {
+          display: inline-block;
+          width: 46px;
+          height: 46px;
+          background: #605751;
+          color: #fff;
+          font-size: 24px;
+          line-height: 46px;
+        }
+        i {
+          display: inline-block;
+          width: 15px;
+          height: 46px;
+          line-height: 46px;
+          color: #605751;
+          font-size: 28px;
+          font-style: normal;
+        }
+      }
+    }
+    div.FourHero {
+      display: inline-block;
+      width: 978px;
+      height: 340px;
+      position: relative;
+      overflow: hidden;
+      label,
+      input {
+        display: none;
+      }
+      div.CtrlPanel {
+        display: inline-block;
+        font-size: 0px;
+        position: absolute;
+        right: 0px;
+        top: -30px;
+        z-index: 999;
+        div.Hero2PreBtn,
+        div.Hero2NextBtn {
+          border: 1px solid #e0e0e0;
+          display: inline-block;
+          width: 24px;
+          height: 16px;
+          padding: 3px 5px;
+          font-size: 16px;
+          line-height: 16px;
+          text-align: center;
+          &:hover {
+            span {
+              color: #ff6700;
+            }
+          }
+          span {
+            display: inline-block;
+          }
+        }
+      }
+
+      input:nth-child(1):checked
+        ~ div.CtrlPanel
+        div.Hero2PreBtn
+        label:nth-child(4) {
+        display: block;
+      }
+      input:nth-child(2):checked
+        ~ div.CtrlPanel
+        div.Hero2PreBtn
+        label:nth-child(1) {
+        display: block;
+      }
+      input:nth-child(3):checked
+        ~ div.CtrlPanel
+        div.Hero2PreBtn
+        label:nth-child(2) {
+        display: block;
+      }
+      input:nth-child(4):checked
+        ~ div.CtrlPanel
+        div.Hero2PreBtn
+        label:nth-child(3) {
+        display: block;
+      }
+      input:nth-child(1):checked
+        ~ div.CtrlPanel
+        div.Hero2NextBtn
+        label:nth-child(2) {
+        display: block;
+      }
+      input:nth-child(2):checked
+        ~ div.CtrlPanel
+        div.Hero2NextBtn
+        label:nth-child(3) {
+        display: block;
+      }
+      input:nth-child(3):checked
+        ~ div.CtrlPanel
+        div.Hero2NextBtn
+        label:nth-child(4) {
+        display: block;
+      }
+      input:nth-child(4):checked
+        ~ div.CtrlPanel
+        div.Hero2NextBtn
+        label:nth-child(1) {
+        display: block;
+      }
+      input:nth-child(1):checked ~ ul.SilderContainer {
+        left: 0;
+      }
+      input:nth-child(2):checked ~ ul.SilderContainer {
+        left: -100%;
+      }
+      input:nth-child(3):checked ~ ul.SilderContainer {
+        left: -200%;
+      }
+      input:nth-child(4):checked ~ ul.SilderContainer {
+        left: -300%;
+      }
+      ul.SilderContainer {
+        transition: 0.6s;
+        position: absolute;
+        background-color: #fff;
+        float: left;
+        width: 3968px;
+        height: 340px;
+        font-size: 0px;
+        li {
+          font-size: normal;
+          display: inline-block;
+          height: 340px;
+          width: 234px;
+          margin-right: 14px;
+          text-align: center;
+          a {
+            div {
+              line-height: 21px;
+              font-size: 14px;
+              font-weight: 400;
+              color: #212121;
+              margin-bottom: 3px;
+            }
+            p {
+              height: 18px;
+              font-size: 12px;
+              color: #b0b0b0;
+              margin-bottom: 12px;
+            }
+            span {
+              display: inline-block;
+              font-size: 12px;
+              color: #ff6700;
+            }
+            span:nth-child(2) {
+              display: inline-block;
+              font-size: 12px;
+              color: #b0b0b0;
+            }
+          }
+        }
+      }
+    }
+  }
 }
