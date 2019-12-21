@@ -1,8 +1,8 @@
 * {
-  background-color: rgba(0, 0, 0, 0.1);
-  margin          : 0px;
-  padding         : 0px;
-  text-decoration : none;
+  xbackground-color: rgba(0, 0, 0, 0.1);
+  margin           : 0px;
+  padding          : 0px;
+  text-decoration  : none;
 }
 
 @font-face {
@@ -340,6 +340,197 @@ body {
   overflow-y      : scroll;
   background-color: #f5f5f5;
 }
+
+div.RightBar {
+  position: fixed;
+  right   : 0px;
+  bottom  : 70px;
+
+  div.Fixed {
+    text-align: center;
+    font-size : 14px;
+    color     : rgb(117, 117, 117);
+
+    a {
+      border  : 1px solid #f5f5f5;
+      display : block;
+      width   : 82px;
+      height  : 90px;
+      position: relative;
+
+
+      >div {
+        margin       : auto;
+        width        : 30px;
+        height       : 30px;
+        transition   : .3s;
+        padding-top  : 18px;
+        margin-bottom: 8px;
+      }
+
+      span {
+        display   : inline-block;
+        transition: .3s;
+        color     : rgb(117, 117, 117);
+      }
+
+
+      div.RBP1 {
+
+        background: url(images/s1g.png) center /30px 30px no-repeat;
+      }
+
+      div.RBP2 {
+        background: url(images/s2g.png) center /30px 30px no-repeat;
+      }
+
+      div.RBP3 {
+        background: url(images/s3g.png) center /30px 30px no-repeat;
+      }
+
+
+      div.RBP4 {
+        background: url(images/s4g.png) center /30px 30px no-repeat;
+      }
+
+
+      div.RBP5 {
+        background: url(images/s5g.png) center /30px 30px no-repeat;
+      }
+
+
+    }
+
+    a.RBBtn1 div.SideQRCode {
+      transition: none;
+      padding   : 0px;
+      position  : absolute;
+      width     : 100px;
+      height    : 162px;
+      right     : 100px;
+      top       : 0px;
+      border    : 1px solid #f5f5f5;
+      visibility: hidden;
+
+
+      img {
+        transition: none;
+        display   : block;
+        width     : 100px;
+        height    : 100px;
+        margin    : 6px 0 6px 0;
+
+      }
+
+      span {
+        transition: none;
+        display   : inline-block;
+        color     : rgb(117, 117, 117);
+
+      }
+    }
+
+    .RBBtn1:hover {
+      div.RBP1 {
+        background: url(images/s1o.png) center /30px 30px no-repeat;
+      }
+
+      span {
+        color: #ff6700;
+      }
+
+      div.SideQRCode {
+        visibility: visible;
+      }
+
+
+    }
+
+
+    .RBBtn2:hover {
+      div.RBP2 {
+        background: url(images/s2o.png) center /30px 30px no-repeat;
+      }
+
+      span {
+        color: #ff6700;
+      }
+    }
+
+    .RBBtn3:hover {
+      div.RBP3 {
+        background: url(images/s3o.png) center /30px 30px no-repeat;
+      }
+
+      span {
+        color: #ff6700;
+      }
+    }
+
+    .RBBtn4:hover {
+      div.RBP4 {
+        background: url(images/s4o.png) center /30px 30px no-repeat;
+      }
+
+      span {
+        color: #ff6700;
+      }
+    }
+
+    .RBBtn5:hover {
+      div.RBP5 {
+        background: url(images/s5o.png) center /30px 30px no-repeat;
+      }
+
+      span {
+        color: #ff6700;
+      }
+    }
+  }
+
+  div.Sticky {
+    margin-top: 14px;
+    text-align: center;
+    font-size : 14px;
+    color     : rgb(117, 117, 117);
+
+    a {
+      border : 1px solid #f5f5f5;
+      display: block;
+      width  : 82px;
+      height : 90px;
+
+      &:hover {
+        div {
+          background: url(images/s6o.png) center /30px 30px no-repeat;
+        }
+
+        span {
+          color: #ff6700;
+        }
+      }
+
+
+      div {
+        margin       : auto;
+        width        : 30px;
+        height       : 30px;
+        transition   : .3s;
+        padding-top  : 18px;
+        margin-bottom: 8px;
+        background   : url(images/s6g.png) center /30px 30px no-repeat;
+      }
+    }
+
+    span {
+      display   : inline-block;
+      transition: .3s;
+      color     : rgb(117, 117, 117);
+    }
+  }
+}
+
+
 
 ul {
   list-style: none;
@@ -1130,13 +1321,14 @@ div.HeroSilder input:nth-child(4):checked~.Indicators label:nth-child(4)::after 
     }
 
     div.Sale {
-      height      : 300px;
-      width       : 234px;
-      padding     : 39px 0 0;
-      border-top  : 1px solid #e53935;
-      float       : left;
-      text-align  : center;
-      margin-right: 14px;
+      height          : 300px;
+      width           : 234px;
+      padding         : 39px 0 0;
+      border-top      : 1px solid #e53935;
+      float           : left;
+      text-align      : center;
+      margin-right    : 14px;
+      background-color: #f1eded;
 
       .Round {
         padding-top: 15px;
@@ -1273,23 +1465,24 @@ div.HeroSilder input:nth-child(4):checked~.Indicators label:nth-child(4)::after 
       }
 
       ul.SilderContainer {
-        top             : 60px;
-        transition      : 0.6s;
-        position        : absolute;
-        background-color: #fff;
-        float           : left;
-        width           : 3912px;
-        height          : 340px;
-        font-size       : 0px;
+        top       : 60px;
+        transition: 0.6s;
+        position  : absolute;
+
+        float    : left;
+        width    : 3912px;
+        height   : 340px;
+        font-size: 0px;
 
         li {
-          vertical-align: top;
-          font-size     : normal;
-          display       : inline-block;
-          height        : 340px;
-          width         : 234px;
-          margin-right  : 14px;
-          text-align    : center;
+          background-color: #fff;
+          vertical-align  : top;
+          font-size       : normal;
+          display         : inline-block;
+          height          : 340px;
+          width           : 234px;
+          margin-right    : 14px;
+          text-align      : center;
 
           &:nth-child(4n) {
             border-top  : 1px solid #00c0a5;
