@@ -94,16 +94,61 @@
     }
 
     .d4 {
+      background-color: tan;
+      height: 200px;
+      width: 200px;
       display: inline-block;
       font-size: 16px;
       vertical-align: middle;
+      line-height: 200px;
+    }
+
+    .outbox5 {
+      display: flex;
+      height: 400px;
+      width: 400px;
+      border: 2px solid;
+      background-color: mediumpurple;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .d5 {
+      line-height: 200px;
+      text-align: center;
+      height: 200px;
+      width: 200px;
+      background-color: blue;
+    }
+
+
+    .outbox6 {
+      position: relative;
+      height: 400px;
+      width: 400px;
+      border: 2px solid;
+      background-color: mediumpurple;
+    }
+
+    .d6 {
+      line-height: 200px;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      text-align: center;
+      height: 200px;
+      width: 200px;
+      background-color: blue;
+      transform: translate(-50%, -50%);
     }
   </style>
 </head>
 
 <body>
   <div class="outbox1">
-    <span class="d1">positioned绝对居中1</span>
+    <span class="d1">定位marginauto绝对居中1</span>
   </div>
   <br>
 
@@ -119,8 +164,17 @@
   </div>
   <br>
 
-  <div class="outbox4">xx<span class="d4">绝对居中4</span>
+  <div class="outbox4">xx<span class="d4">伪元素撑绝对居中4</span>
   </div>
+  <br>
+
+  <div class="outbox5"><span class="d5">Flex绝对居中5</span>
+  </div>
+  <br>
+
+  <div class="outbox6">本质上还是定位,绝对定位所以脱离常规流了不会被挤下去<span class="d6">Translate绝对居中6</span>
+  </div>
+  <br>
 </body>
 
 </html>

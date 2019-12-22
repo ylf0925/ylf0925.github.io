@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rotate cube</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      background-color: gray;
+    }
+
+    @keyframes R {
+      from {
+        transform: rotate3d(1, 1, 1, 360deg);
+      }
+
+      50% {
+        transform: rotate3d(0, -1, 1, 360deg);
+      }
+
+      to {
+        transform: rotate3d(1, 0, 0, 360deg);
+      }
+    }
+
+
+    div.Face {
+      box-sizing: border-box;
+      height: 200px;
+      width: 200px;
+      border: 1px solid black;
+      text-align: center;
+      line-height: 200px;
+      font-size: 40px;
+    }
+
+    div.wrapper {
+      perspective: 10000px;
+      perspective-origin: center;
+      position: relative;
+      border: 1px solid black;
+      height: 400px;
+      width: 400px;
+    }
+
+    div.cube {
+      xanimation: R 10s infinite;
+      transform-origin: 100px 100px -100px;
+      backface-visibility: visible;
+      position: absolute;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      margin: auto;
+      height: 200px;
+      width: 200px;
+      border: 1px solid black;
+      transform-style: preserve-3d;
+      transition: 10s;
+    }
+
+    .top {
+      opacity: 0.65;
+      background-color: blue;
+    }
+
+    .bottom {
+      opacity: 0.65;
+      background-color: red;
+      transform-origin: top;
+      transform: rotateX(-90deg);
+    }
+
+    .left {
+      opacity: 0.65;
+      background-color: tan;
+      transform: translate3d(0px, -400px, -200px);
+    }
+
+    .right {
+      opacity: 0.65;
+      background-color: lime;
+      transform: rotateX(90deg)translate3d(0px, -400px, -200px) translateZ(800px) translateY(200px);
+      transform-origin: top;
+    }
+
+    .front {
+      opacity: 0.65;
+      transform-origin: top left;
+      transform: rotateY(90deg) translateY(-800px);
+
+      background-color: magenta;
+    }
+
+    .back {
+      opacity: 0.65;
+      transform-origin: top right;
+      transform: rotateY(-90deg) translateY(-1000px);
+      opacity: 0.8;
+      background-color: aqua;
+    }
+
+    div.cube:hover {
+
+      transform: rotate3d(1, 1, 1, 720deg);
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrapper">
+    <div class="cube">
+      <div class="Face top">top</div>
+      <div class="Face bottom">bottom</div>
+      <div class="Face left">left</div>
+      <div class="Face right">right</div>
+      <div class="Face front">front</div>
+      <div class="Face back">back</div>
+    </div>
+  </div>
+</body>
+
+</html>
