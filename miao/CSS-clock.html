@@ -35,8 +35,8 @@
     div::after {
       xbox-sizing: border-box;
       content: "";
-      height: 16px;
-      width: 16px;
+      height: 40px;
+      width: 40px;
       border: 1px solid black;
       border-radius: 50%;
       display: inline-block;
@@ -61,7 +61,7 @@
       margin: auto;
       font-size: 40px;
       line-height: 50px;
-      border: 1px solid blueviolet;
+      xborder: 1px solid blueviolet;
     }
 
     span:nth-child(1) {
@@ -133,6 +133,30 @@
       animation: second-tick 1s infinite cubic-bezier(0.4, 2.08, 0.55, 0.44);
     }
 
+    h2 {
+      animation: second 43200s infinite linear;
+      display: block;
+      position: absolute;
+      width: 20px;
+      height: 150px;
+      left: 240px;
+      background-color: gray;
+      top: 100px;
+      transform-origin: center bottom;
+    }
+
+    h1 {
+      animation: second 3600s infinite linear;
+      position: absolute;
+      display: block;
+      width: 14px;
+      height: 200px;
+      left: 243px;
+      top: 70px;
+      background-color: black;
+      transform-origin: center 180px;
+    }
+
     @keyframes second {
       to {
         transform: rotate(360deg);
@@ -168,6 +192,8 @@
     <span>11</span>
     <span>12</span>
     <p></p>
+    <h2></h2>
+    <h1></h1>
   </div>
 </body>
 
