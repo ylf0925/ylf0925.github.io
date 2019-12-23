@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Rotate Smile Face</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+      background-color: rbga(0, 0, 0, 0.1);
+    }
+
+    body {
+
+      display: flex;
+      flex-flow: column nowrap;
+      justify-content: center;
+      height: 800px;
+      width: 800px;
+      border: 1px solid black;
+    }
+
+    @keyframes R {
+      to {
+        transform: rotate(3000deg)
+      }
+    }
+
+    @keyframes Re {
+      to {
+        transform: rotate(-3000deg)
+      }
+    }
+
+    div {
+      visibility: hidden;
+      animation: R 30s linear infinite alternate;
+      position: relative;
+      height: 10px;
+      width: 400px;
+      border: 1px solid black;
+      transform-origin: right center;
+
+    }
+
+    div::after {
+      background-color: lime;
+      animation: Re 30s linear infinite alternate;
+      visibility: visible;
+      top: 0px;
+      bottom: 0px;
+      left: 0px;
+      right: 0px;
+      margin: auto;
+      position: absolute;
+      border-radius: 999px;
+      display: flex;
+      content: "^_^";
+      height: 200px;
+      width: 200px;
+      flex-flow: column nowrap;
+      justify-content: center;
+      align-items: center;
+      font-size: 100px;
+      border: 1px solid black;
+
+    }
+  </style>
+</head>
+
+<body>
+  <div></div>
+</body>
+
+</html>
