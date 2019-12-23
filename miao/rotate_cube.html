@@ -12,19 +12,47 @@
       background-color: gray;
     }
 
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      background-color: gray;
+    }
+
     @keyframes R {
-      from {
-        transform: rotate3d(1, 1, 1, 360deg);
+
+
+      0% {
+        transform: rotate3d(0, 0, 1, 0deg)
       }
 
-      50% {
-        transform: rotate3d(0, -1, 1, 360deg);
+      10% {
+        transform: rotate3d(0, 0, 1, 720deg)
       }
 
-      to {
-        transform: rotate3d(1, 0, 0, 360deg);
+      20% {
+        transform: rotate3d(1, 0, 0, 0deg)
+      }
+
+      40% {
+        transform: rotate3d(1, 0, 0, 720deg)
+      }
+
+      60% {
+        transform: rotate3d(0, 1, 0, 0deg)
+      }
+
+      80% {
+        transform: rotate3d(0, 1, 0, 720deg)
+      }
+
+      90% {
+        transform: rotate3d(-1, -1, 1, 0deg)
+      }
+
+      100% {
+        transform: rotate3d(-1, -1, 1, 720deg)
       }
     }
+
 
 
     div.Face {
@@ -46,8 +74,11 @@
       width: 400px;
     }
 
+
+
     div.cube {
-      xanimation: R 10s infinite;
+      xopacity: 0.6;
+      animation: R 30s infinite;
       transform-origin: 100px 100px -100px;
       backface-visibility: visible;
       position: absolute;
@@ -60,8 +91,18 @@
       width: 200px;
       border: 1px solid black;
       transform-style: preserve-3d;
-      transition: 10s;
+      xoverflow: hidden;
+      transition: 999999s;
     }
+
+
+
+
+
+
+
+
+
 
     .top {
       opacity: 0.65;
@@ -104,9 +145,14 @@
       background-color: aqua;
     }
 
+
+
+
+
+
     div.cube:hover {
 
-      transform: rotate3d(1, 1, 1, 720deg);
+      xtransform: rotate3d(1, 1, 1, 99999999deg);
     }
   </style>
 </head>
@@ -114,12 +160,12 @@
 <body>
   <div class="wrapper">
     <div class="cube">
-      <div class="Face top">top</div>
-      <div class="Face bottom">bottom</div>
-      <div class="Face left">left</div>
-      <div class="Face right">right</div>
-      <div class="Face front">front</div>
-      <div class="Face back">back</div>
+      <div class="Face top">1</div>
+      <div class="Face bottom">2</div>
+      <div class="Face left">3</div>
+      <div class="Face right">4</div>
+      <div class="Face front">5</div>
+      <div class="Face back">6</div>
     </div>
   </div>
 </body>

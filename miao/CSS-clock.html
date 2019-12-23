@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>CSS clock</title>
+  <style>
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    body {
+      border: 1px solid burlywood;
+      display: flex;
+      height: 1000px;
+      width: 1000px;
+      flex-flow: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    div {
+      box-sizing: border-box;
+      height: 500px;
+      width: 500px;
+      border: 1px solid black;
+      border-radius: 50%;
+      position: relative;
+      background-image: radial-gradient(blue red 10%);
+    }
+
+    div::after {
+      xbox-sizing: border-box;
+      content: "";
+      height: 16px;
+      width: 16px;
+      border: 1px solid black;
+      border-radius: 50%;
+      display: inline-block;
+      top: 50%;
+      left: 50%;
+      position: absolute;
+      transform: translate(-50%, -50%);
+
+
+    }
+
+    span {
+      text-align: center;
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      right: 0px;
+      bottom: 0px;
+      display: inline-block;
+      height: 50px;
+      width: 50px;
+      margin: auto;
+      font-size: 40px;
+      line-height: 50px;
+      border: 1px solid blueviolet;
+    }
+
+    span:nth-child(1) {
+      transform: rotate(-60deg) translate(200px) rotate(60deg);
+    }
+
+    span:nth-child(2) {
+      transform: rotate(-30deg) translate(200px) rotate(30deg);
+    }
+
+    span:nth-child(3) {
+      transform: translate(200px);
+    }
+
+    span:nth-child(4) {
+      transform: rotate(30deg) translate(200px) rotate(-30deg);
+    }
+
+    span:nth-child(5) {
+      transform: rotate(60deg) translate(200px) rotate(-60deg);
+    }
+
+    span:nth-child(6) {
+      transform: rotate(90deg) translate(200px) rotate(-90deg);
+    }
+
+    span:nth-child(7) {
+      transform: rotate(120deg) translate(200px) rotate(-120deg);
+    }
+
+    span:nth-child(8) {
+      transform: rotate(150deg) translate(200px) rotate(-150deg);
+    }
+
+    span:nth-child(9) {
+      transform: rotate(180deg) translate(200px) rotate(-180deg);
+    }
+
+    span:nth-child(10) {
+      transform: rotate(210deg) translate(200px) rotate(-210deg);
+    }
+
+    span:nth-child(11) {
+      transform: rotate(240deg) translate(200px) rotate(-240deg);
+    }
+
+    span:nth-child(12) {
+      transform: rotate(270deg) translate(200px) rotate(-270deg);
+    }
+
+    p {
+      height: 250px;
+      width: 10px;
+      xbackground-color: rgba(0, 0, 0, 0.4);
+      position: absolute;
+      left: 245px;
+      top: 10%;
+      transform-origin: 5px 200px;
+      animation: second 60s infinite steps(60);
+    }
+
+    p::after {
+      display: block;
+      content: "";
+      background-color: red;
+      height: 250px;
+      width: 10px;
+      transform-origin: 5px 200px;
+      animation: second-tick 1s infinite cubic-bezier(0.4, 2.08, 0.55, 0.44);
+    }
+
+    @keyframes second {
+      to {
+        transform: rotate(360deg);
+      }
+    }
+
+    @keyframes second-tick {
+      from {
+        transform: rotate(0deg);
+      }
+
+      20%,
+      to {
+
+        transform: rotate(6deg);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div>
+    <span>1</span>
+    <span>2</span>
+    <span>3</span>
+    <span>4</span>
+    <span>5</span>
+    <span>6</span>
+    <span>7</span>
+    <span>8</span>
+    <span>9</span>
+    <span>10</span>
+    <span>11</span>
+    <span>12</span>
+    <p></p>
+  </div>
+</body>
+
+</html>
