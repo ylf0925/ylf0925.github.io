@@ -1679,8 +1679,16 @@ div.HeroSilder input:nth-child(4):checked~.Indicators label:nth-child(4)::after 
       font-size  : 16px;
       position   : relative;
 
+      &:hover {
+        >span {
+          transition   : none;
+          border-bottom: 2px solid transparent;
+          color        : black;
+        }
+      }
+
       >span {
-        transition    : 0.2s;
+        transition    : 0s 9999s;
         margin-left   : 20px;
         line-height   : 22px;
         border-bottom : 2px solid transparent;
@@ -1688,6 +1696,7 @@ div.HeroSilder input:nth-child(4):checked~.Indicators label:nth-child(4)::after 
         display       : inline-block;
 
         &:hover {
+          transition   : none;
           color        : #ff6700;
           border-bottom: 2px solid #ff6700;
 
