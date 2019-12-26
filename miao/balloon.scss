@@ -1,0 +1,214 @@
+* {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding         : 0px;
+  margin          : 0px;
+  box-sizing      : border-box;
+
+}
+
+.container {
+  border          : 1px solid black;
+  margin          : auto;
+  width           : 1000px;
+  background-color: #FFB641;
+
+
+  button {
+    position        : relative;
+    display         : block;
+    font-size       : 15px;
+    color           : #fff;
+    margin          : 80px auto;
+    text-align      : center;
+    border          : none;
+    border-radius   : 3px;
+    background-color: #B71212;
+    padding         : 10px;
+    font-size       : 15px;
+    font-weight     : bold;
+    cursor          : pointer;
+
+    // BEFORE 黑框
+    &::before {
+      transition      : 0.5s;
+      xwhite-space    : nowrap;
+      opacity         : 0;
+      border-radius   : 2px;
+      padding         : .5em 1em;
+      font-size       : 12px;
+      position        : absolute;
+      font-size       : 15px;
+      font-weight     : bold;
+      color           : #fff;
+      text-align      : center;
+      background-color: black;
+      content         : attr(aria-label);
+    }
+
+    // AFTER 是BORDER三角
+    &::after {
+      transition: 0.5s;
+      opacity   : 0;
+      z-index   : 100;
+      margin    : auto;
+      position  : absolute;
+      display   : inline-block;
+      content   : '';
+      width     : 0;
+      height    : 0;
+      border    : 5px solid transparent;
+    }
+  }
+
+  button[data-balloon-pos="up"] {
+    &::before {
+      bottom   : 100%;
+      left     : 50%;
+      transform: translate(-50%) translatey(-5px);
+    }
+
+    &::after {
+      top             : 0px;
+      left            : 50%;
+      transform       : translate(-50%) translatey(-5px);
+      border-top-color: black;
+    }
+
+    &:hover {
+      &::before {
+        opacity  : 1;
+        transform: translate(-50%) translatey(-5px) translatey(-5px);
+      }
+
+      &::after {
+        opacity  : 1;
+        transform: translate(-50%) translatey(-5px) translatey(-5px);
+
+      }
+    }
+  }
+
+  button[data-balloon-pos="down"] {
+    &::before {
+      top      : 100%;
+      left     : 50%;
+      transform: translate(-50%) translateY(5px);
+    }
+
+    &::after {
+      bottom             : 0px;
+      left               : 50%;
+      transform          : translate(-50%) translateY(5px);
+      border-bottom-color: black;
+    }
+
+    &:hover {
+      &::before {
+        opacity  : 1;
+        transform: translate(-50%) translatey(5px) translatey(5px);
+      }
+
+      &::after {
+        opacity  : 1;
+        transform: translate(-50%) translatey(5px) translatey(5px);
+
+      }
+    }
+  }
+
+  button[data-balloon-pos="left"] {
+
+    &::before {
+      right    : 100%;
+      top      : 50%;
+      transform: translatey(-50%) translatex(-5px);
+    }
+
+    &::after {
+      border-left-color: black;
+      left             : 0px;
+      top              : 50%;
+      transform        : translateY(-50%) translatex(-5px);
+
+    }
+
+    &:hover {
+      &::before {
+        opacity  : 1;
+        transform: translatey(-50%) translatex(-5px) translatex(-5px);
+      }
+
+      &::after {
+        opacity  : 1;
+        transform: translatey(-50%) translatex(-5px) translatex(-5px);
+
+      }
+    }
+  }
+
+  button[data-balloon-pos="right"] {
+
+    &::before {
+      top      : 50%;
+      left     : 100%;
+      transform: translatey(-50%) translatex(5px);
+    }
+
+    &::after {
+      right             : 0px;
+      top               : 50%;
+      transform         : translatey(-50%) translatex(5px);
+      border-right-color: black;
+
+    }
+
+    &:hover {
+      &::before {
+        opacity  : 1;
+        transform: translatey(-50%) translatex(5px) translatex(5px);
+      }
+
+      &::after {
+        opacity  : 1;
+        transform: translatey(-50%) translatex(5px) translatex(5px);
+
+      }
+    }
+  }
+
+  button[data-balloon-length="small"] {
+    &::before {
+      width: 80px;
+    }
+
+  }
+
+  button[data-balloon-length="medium"] {
+    &::before {
+      width: 150px;
+    }
+
+  }
+
+  button[data-balloon-length="large"] {
+    &::before {
+      width: 260px;
+    }
+
+  }
+
+  button[data-balloon-length="xlarge"] {
+    &::before {
+      width: 380px;
+    }
+
+  }
+
+  button[data-balloon-length="fit"] {
+    &::before {
+      width: 100%;
+    }
+
+  }
+
+}

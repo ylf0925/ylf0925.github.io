@@ -10,13 +10,14 @@
     * {
       margin: 0px;
       padding: 0px;
-      background-color: rbga(0, 0, 0, 0.1);
+      background-color: rgba(0, 0, 0, 0.1);
     }
 
     body {
       display: flex;
       flex-flow: column nowrap;
       justify-content: center;
+      align-items: center;
       height: 2000px;
       width: 2000px;
       border: 1px solid black;
@@ -34,7 +35,7 @@
       }
     }
 
-    div {
+    div.Method1 {
       visibility: hidden;
       animation: R 30s linear infinite alternate;
       position: relative;
@@ -45,8 +46,8 @@
 
     }
 
-    div::after {
-      background-color: lime;
+    div.Method1::after {
+      background-color: turquoise;
       animation: Re 30s linear infinite alternate;
       visibility: visible;
       top: 0px;
@@ -78,6 +79,7 @@
     }
 
     .Method2 p {
+      background-color: lime;
       top: 0;
       bottom: 0;
       left: 0;
@@ -91,7 +93,52 @@
       border-radius: 999px;
       font-size: 60px;
       line-height: 200px;
-      animation: Rot 100s infinite linear;
+      animation: Rot 4s infinite linear;
+    }
+
+
+    div.Method3 {
+      height: 800px;
+      width: 800px;
+      position: relative;
+    }
+
+    div.Method3 p {
+      background-color: aquamarine;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      margin: auto;
+      text-align: center;
+      height: 200px;
+      width: 200px;
+      border: 1px solid black;
+      border-radius: 999px;
+      font-size: 60px;
+      line-height: 200px;
+      animation: sin 2s cubic-bezier(.36, 0, .64, 1) infinite alternate, cos 2s -1s cubic-bezier(.36, 0, .64, 1) infinite alternate;
+    }
+
+    @keyframes sin {
+      from {
+        left: -400px
+      }
+
+      to {
+        left: 400px;
+      }
+    }
+
+    @keyframes cos {
+      from {
+        top: -400px
+      }
+
+      to {
+        top: 400px;
+      }
     }
 
 
@@ -108,13 +155,15 @@
 </head>
 
 <body>
-  <div></div>
+  <div class="Method1"></div>
 
   <div class="Method2">
     <p>^_^</p>
   </div>
 
-
+  <div class="Method3">
+    <p>^_^</p>
+  </div>
 </body>
 
 </html>

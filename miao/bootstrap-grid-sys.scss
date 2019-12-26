@@ -1,0 +1,51 @@
+$column-count:12;
+
+
+
+
+
+* {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  width  : 960px;
+  margin : auto;
+  padding: 0 15px;
+
+
+  .row {
+    clear: both;
+
+    >* {
+      float   : left;
+      padding : 0 15px;
+      position: relative;
+      margin  : 0 -15px;
+    }
+
+    div {
+      box-sizing: border-box;
+    }
+  }
+}
+
+@media (min-width:768px) {
+  @for $i from 1 through $column-count {
+    .col-md-#{$i} {
+      width: ($i/$column-count)*100%;
+    }
+
+    .col-md-offset-#{$i} {
+      margin-left: ($i/$column-count)*100%;
+    }
+
+    .col-md-push-#{$i} {
+      left: ($i/$column-count)*100%;
+    }
+
+    .col-md-pull-#{$i} {
+      right: ($i/$column-count)*100%;
+    }
+  }
+}
