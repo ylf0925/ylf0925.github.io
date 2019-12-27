@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>JS basic</title>
+  <!-- 01后面的斜杠不要！！！！ -->
+  <!-- 上传至basic-coding.html -->
+  <!-- type="x" script不会运行 -->
+  <script type="x" id="ch0103/01">
+    let c = Number(prompt("Please input a")) + Number(prompt("Please input b"));
+    console.log(c)let 
+  </script>
+  <script type="x" id="ch0103/02">
+    let d = (Number(prompt("Please input a")) + Number(prompt("Please input b"))) * Number(prompt("Please input c"));
+    console.log(d)
+  </script>
+  <script type="x" id="ch0103/03">
+    let a = Number(prompt("Please input a"));
+    let b = Number(prompt("Please input b"));
+    let c = Number(prompt("Please input c"));
+    console.log(a + b < c ? 0 : (Math.trunc(a + b) / c))
+  </script>
+  <script type="x" id="ch0103/04">
+    let a = Number(prompt("Please input a"))
+    let b = Number(prompt("Please input b"))
+    let d = a / b;
+    let e = a % b;
+    console.log(d.toFixed(0))
+    console.log(e)
+  </script>
+  <script type="x" id="ch0103/05">
+    let d = Number(prompt("Please input a")) / Number(prompt("Please input b"));
+    console.log(d.toFixed(9))
+  </script>
+  <script type="x" id="ch0103/06">
+    let a = Number(prompt("Please input 确诊数"))
+    let b = Number(prompt("Please input 死亡数"))
+    console.log(String(((b / a).toFixed(5) * 100 + "%")))
+  </script>
+  <script type="x" id="ch0103/07">
+    let x = Number(prompt("Please input x"))
+    let a = Number(prompt("Please input a"))
+    let b = Number(prompt("Please input b"))
+    let c = Number(prompt("Please input c"))
+    let d = Number(prompt("Please input d"))
+    console.log(Number(a * x ** 3 + b * x ** 2 + c * x + d).toFixed(7))
+  </script>
+
+  <script type="x" id="ch0103/08">
+    let f = Number(prompt("Please input f"))
+    console.log(Number(5 * (f - 32) / 9).toFixed(5))
+  </script>
+
+
+  <script type="x" id="ch0103/09">
+    let a = Number(prompt("Please input Radius"))
+    let d = 2 * a
+    console.log(d.toFixed(4) + " " + (3.14159 * d).toFixed(4) + " " + (3.14159 * a ** 2).toFixed(4))
+  </script>
+
+  <script type="x" id="ch0103/10">
+    let a = Number(1 / prompt("Please input r1"))
+    let b = Number(1 / prompt("Please input r2"))
+    console.log((1 / (a + b)).toFixed(2))
+  </script>
+
+  <script type="x" id="ch0103/11">
+    let a = prompt("Please input a")
+    let b = prompt("Please input b")
+    console.log(a % b)
+  </script>
+
+
+  <script type="x" id="ch0103/12">
+    let a = Number(prompt("Please input Radius"))
+    let vol = (4 / 3) * 3.14 * a ** 3
+    console.log(vol.toFixed(2))
+  </script>
+
+  <script type="x" id="ch0103/13">
+    let a = Number(prompt("Please input {A 3DIGIT NUMBER!!!}"))
+    let x = Math.trunc(a / 100)
+    let y = Math.trunc((a - x * 100) / 10)
+    let z = (a - x * 100 - y * 10)
+    console.log(z, y, x)
+  </script>
+
+  <script type="x" id="ch0103/14">
+    let a = Number(prompt("Please input h(cm)"))
+    let b = Number(prompt("Please input r(cm)"))
+    console.log(Math.ceil(2e4 / (a * b ** 2 * 3.14159)))
+  </script>
+
+  <script type="x" id="ch0103/15">
+    let a = Number(prompt("Please input number of apples"))
+    let b = Number(prompt("Please input the speed of worm eating"))
+    let c = Number(prompt("Please input the time duration"))
+    console.log(a - Math.ceil(c / b))
+
+  </script>
+
+  <script type="x" id="ch0103/16">
+    let a_X = Number(prompt("Please input a_X"))
+    let a_Y = Number(prompt("Please input a_Y"))
+    let b_X = Number(prompt("Please input b_X"))
+    let b_Y = Number(prompt("Please input b_Y"))
+    let AbsDis = Math.sqrt((a_X - b_X) ** 2 + (a_Y - b_Y) ** 2);
+    console.log(AbsDis)
+  </script>
+
+  <!-- 海伦公式 SUCKS～～ VECTOR IS BETTER！！！ -->
+  <!-- IN FACT, THE AREA FORMULA OF A TRIANGLE IS THE EXACT DEFINATION OF "VECTOR PRODUCT" -----向量积-->
+  <!-- THUS WE CAN DEDUCE THAT:  -->
+  <!--            |  i    j    k  |
+      S = 1/2 det | X_1  Y_1  Z_1 |
+                  | X_2  Y_2  Z_2 |       -->
+
+  <!-- FOR 2D TRIANGLE , S = 1/2 [(vec a) x (vec b)] -->
+  <!-- 1/2 (a_X*b_Y + a_Y+b_X) -->
+
+  <script type="x" id="ch0103/17">
+    let a_X = Number(prompt("Please input a_X"))
+    let a_Y = Number(prompt("Please input a_Y"))
+    let b_X = Number(prompt("Please input b_X"))
+    let b_Y = Number(prompt("Please input b_Y"))
+    let c_X = Number(prompt("Please input c_X"))
+    let c_Y = Number(prompt("Please input c_Y"))
+    let vec_A_x = (b_X - a_X)
+    let vec_A_y = (b_Y - a_Y)
+    let vec_B_x = (c_X - a_X)
+    let vec_B_y = (c_Y - a_Y)
+    let S = 0.5 * (vec_A_x * vec_B_y + vec_A_y * vec_B_x);
+    console.log(S)
+  </script>
+
+  <script type="x" id="ch0103/18">
+    let a_1 = Number(prompt("Please input a_1"))
+    let a_2 = Number(prompt("Please input a_2"))
+    let n = Number(prompt("Please input n"))
+    console.log((a_2 - a_1) * Number(n - Number(1)) + a_1) 
+  </script>
+
+
+  <script type="x" id="ch0103/19">
+    let a_1 = Number(prompt("Please input a_1"))
+    let a_2 = Number(prompt("Please input a_2"))
+    console.log(a_2 * a_1) 
+  </script>
+
+  <script type="x" id="ch0103/20">
+    let power = Number(prompt("Please input n"))
+    console.log(2 ** power) 
+  </script>
+</head>
+
+<body>
+
+</body>
+
+</html>
