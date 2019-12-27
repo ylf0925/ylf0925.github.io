@@ -19,10 +19,10 @@
     console.log(d)
   </script>
   <script type="x" id="ch0103/03">
-    let a = Number(prompt("Please input a"));
+    let a = Number(p rompt("Please input a"));
     let b = Number(prompt("Please input b"));
     let c = Number(prompt("Please input c"));
-    console.log(a + b < c ? 0 : (Math.trunc(a + b) / c))
+    console.log(a + b < c ? 0 : (Math.trunc(a + b) /c))
   </script>
   <script type="x" id="ch0103/04">
     let a = Number(prompt("Please input a"))
@@ -69,8 +69,8 @@
   </script>
 
   <script type="x" id="ch0103/11">
-    let a = prompt("Please input a")
-    let b = prompt("Please input b")
+    let a = Number(prompt("Please input a"))
+    let b = Number(prompt("Please input b"))
     console.log((a % b).toFixed(4))
   </script>
 
@@ -81,7 +81,7 @@
     console.log(vol.toFixed(2))
   </script>
 
-  <script xtype="x" id="ch0103/13">
+  <script type="x" id="ch0103/13">
     let a = String(Number(prompt("Please input {A 3DIGIT NUMBER!!!}")))
     let x = String(Math.trunc(a / 100))
     let y = String(Math.trunc((a - x * 100) / 10))
@@ -128,7 +128,8 @@
     let vec_B_x = (c_X - a_X)
     let vec_B_y = (c_Y - a_Y)
     let S = 0.5 * (vec_A_x * vec_B_y + vec_A_y * vec_B_x);
-    console.log(Number(S.toFixed(2)))
+    let S_1 = String(S) + ".00"
+    console.log(Number(S_1).toFixed(2))
   </script>
 
   <script type="x" id="ch0103/18">
