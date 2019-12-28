@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>olad-layout</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 0px;
+      margin: 0px;
+    }
+
+    main {
+      height: 100vh;
+      width: 100vw;
+
+    }
+
+    .d1 {
+      background-color: lime;
+      float: left;
+      height: 100%;
+      width: 20%;
+    }
+
+    .d2 {
+      background-color: tan;
+      float: left;
+      height: 100%;
+      width: 40%;
+
+    }
+
+    .a1 {
+      height: 20%;
+      background-color: yellow;
+
+    }
+
+    .a2 {
+      height: 80%;
+      background-color: blueviolet;
+
+    }
+
+    .d3 {
+      background-color: teal;
+      float: right;
+      height: 100%;
+      width: 20%;
+
+    }
+
+    .d4 {
+      float: right;
+      height: 100%;
+      width: 20%;
+
+      background-color: aquamarine;
+
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="d1">a</div>
+    <div class="d2">
+      <div class="a1">1</div>
+      <div class="a2">2</div>
+    </div>
+    <div class="d3">c</div>
+    <div class="d4">d</div>
+  </main>
+
+</body>
+
+</html>

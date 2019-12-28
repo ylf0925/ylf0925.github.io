@@ -1,171 +1,170 @@
 * {
   background-color: rgba(0, 0, 0, 0.1);
-  padding: 0px;
-  margin: 0px;
-  -webkit-box-sizing: border-box;
-          box-sizing: border-box;
+  padding         : 0px;
+  margin          : 0px;
 }
 
 .container {
-  border: 1px solid black;
-  margin: auto;
-  width: 1000px;
+  border          : 1px solid black;
+  margin          : auto;
+  width           : 1000px;
   background-color: #FFB641;
 }
 
 .container button {
-  position: relative;
-  display: block;
-  font-size: 15px;
-  color: #fff;
-  margin: 80px auto;
-  text-align: center;
-  border: none;
-  border-radius: 3px;
+  position        : relative;
+  display         : block;
+  font-size       : 15px;
+  color           : #fff;
+  margin          : 80px auto;
+  text-align      : center;
+  border          : none;
+  border-radius   : 3px;
   background-color: #B71212;
-  padding: 10px;
-  font-size: 15px;
-  font-weight: bold;
-  cursor: pointer;
+  padding         : 10px;
+  font-size       : 15px;
+  font-weight     : bold;
+  cursor          : pointer;
 }
 
 .container button::before {
+  -webkit-box-sizing: border-box;
+  box-sizing        : border-box;
   -webkit-transition: 0.5s;
-  transition: 0.5s;
-  xwhite-space: nowrap;
-  opacity: 0;
-  border-radius: 2px;
-  padding: .5em 1em;
-  font-size: 12px;
-  position: absolute;
-  font-size: 15px;
-  font-weight: bold;
-  color: #fff;
-  text-align: center;
-  background-color: black;
-  content: attr(aria-label);
+  transition        : 0.5s;
+  opacity           : 0;
+  border-radius     : 2px;
+  padding           : .5em 1em;
+  font-size         : 12px;
+  position          : absolute;
+  font-size         : 15px;
+  font-weight       : bold;
+  color             : #fff;
+  text-align        : center;
+  background-color  : black;
+  content           : attr(aria-label);
 }
 
 .container button::after {
   -webkit-transition: 0.5s;
-  transition: 0.5s;
-  opacity: 0;
-  z-index: 100;
-  margin: auto;
-  position: absolute;
-  display: inline-block;
-  content: '';
-  width: 0;
-  height: 0;
-  border: 5px solid transparent;
+  transition        : 0.5s;
+  opacity           : 0;
+  z-index           : 100;
+  margin            : auto;
+  position          : absolute;
+  display           : inline-block;
+  content           : '';
+  width             : 0;
+  height            : 0;
+  border            : 5px solid transparent;
 }
 
 .container button[data-balloon-pos="up"]::before {
-  bottom: 100%;
-  left: 50%;
+  bottom           : 100%;
+  left             : 50%;
   -webkit-transform: translate(-50%) translatey(-5px);
-          transform: translate(-50%) translatey(-5px);
+  transform        : translate(-50%) translatey(-5px);
 }
 
 .container button[data-balloon-pos="up"]::after {
-  top: 0px;
-  left: 50%;
+  top              : 0px;
+  left             : 50%;
   -webkit-transform: translate(-50%) translatey(-5px);
-          transform: translate(-50%) translatey(-5px);
-  border-top-color: black;
+  transform        : translate(-50%) translatey(-5px);
+  border-top-color : black;
 }
 
 .container button[data-balloon-pos="up"]:hover::before {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translate(-50%) translatey(-5px) translatey(-5px);
-          transform: translate(-50%) translatey(-5px) translatey(-5px);
+  transform        : translate(-50%) translatey(-5px) translatey(-5px);
 }
 
 .container button[data-balloon-pos="up"]:hover::after {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translate(-50%) translatey(-5px) translatey(-5px);
-          transform: translate(-50%) translatey(-5px) translatey(-5px);
+  transform        : translate(-50%) translatey(-5px) translatey(-5px);
 }
 
 .container button[data-balloon-pos="down"]::before {
-  top: 100%;
-  left: 50%;
+  top              : 100%;
+  left             : 50%;
   -webkit-transform: translate(-50%) translateY(5px);
-          transform: translate(-50%) translateY(5px);
+  transform        : translate(-50%) translateY(5px);
 }
 
 .container button[data-balloon-pos="down"]::after {
-  bottom: 0px;
-  left: 50%;
-  -webkit-transform: translate(-50%) translateY(5px);
-          transform: translate(-50%) translateY(5px);
+  bottom             : 0px;
+  left               : 50%;
+  -webkit-transform  : translate(-50%) translateY(5px);
+  transform          : translate(-50%) translateY(5px);
   border-bottom-color: black;
 }
 
 .container button[data-balloon-pos="down"]:hover::before {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translate(-50%) translatey(5px) translatey(5px);
-          transform: translate(-50%) translatey(5px) translatey(5px);
+  transform        : translate(-50%) translatey(5px) translatey(5px);
 }
 
 .container button[data-balloon-pos="down"]:hover::after {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translate(-50%) translatey(5px) translatey(5px);
-          transform: translate(-50%) translatey(5px) translatey(5px);
+  transform        : translate(-50%) translatey(5px) translatey(5px);
 }
 
 .container button[data-balloon-pos="left"]::before {
-  right: 100%;
-  top: 50%;
+  right            : 100%;
+  top              : 50%;
   -webkit-transform: translatey(-50%) translatex(-5px);
-          transform: translatey(-50%) translatex(-5px);
+  transform        : translatey(-50%) translatex(-5px);
 }
 
 .container button[data-balloon-pos="left"]::after {
   border-left-color: black;
-  left: 0px;
-  top: 50%;
+  left             : 0px;
+  top              : 50%;
   -webkit-transform: translateY(-50%) translatex(-5px);
-          transform: translateY(-50%) translatex(-5px);
+  transform        : translateY(-50%) translatex(-5px);
 }
 
 .container button[data-balloon-pos="left"]:hover::before {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translatey(-50%) translatex(-5px) translatex(-5px);
-          transform: translatey(-50%) translatex(-5px) translatex(-5px);
+  transform        : translatey(-50%) translatex(-5px) translatex(-5px);
 }
 
 .container button[data-balloon-pos="left"]:hover::after {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translatey(-50%) translatex(-5px) translatex(-5px);
-          transform: translatey(-50%) translatex(-5px) translatex(-5px);
+  transform        : translatey(-50%) translatex(-5px) translatex(-5px);
 }
 
 .container button[data-balloon-pos="right"]::before {
-  top: 50%;
-  left: 100%;
+  top              : 50%;
+  left             : 100%;
   -webkit-transform: translatey(-50%) translatex(5px);
-          transform: translatey(-50%) translatex(5px);
+  transform        : translatey(-50%) translatex(5px);
 }
 
 .container button[data-balloon-pos="right"]::after {
-  right: 0px;
-  top: 50%;
-  -webkit-transform: translatey(-50%) translatex(5px);
-          transform: translatey(-50%) translatex(5px);
+  right             : 0px;
+  top               : 50%;
+  -webkit-transform : translatey(-50%) translatex(5px);
+  transform         : translatey(-50%) translatex(5px);
   border-right-color: black;
 }
 
 .container button[data-balloon-pos="right"]:hover::before {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translatey(-50%) translatex(5px) translatex(5px);
-          transform: translatey(-50%) translatex(5px) translatex(5px);
+  transform        : translatey(-50%) translatex(5px) translatex(5px);
 }
 
 .container button[data-balloon-pos="right"]:hover::after {
-  opacity: 1;
+  opacity          : 1;
   -webkit-transform: translatey(-50%) translatex(5px) translatex(5px);
-          transform: translatey(-50%) translatex(5px) translatex(5px);
+  transform        : translatey(-50%) translatex(5px) translatex(5px);
 }
 
 .container button[data-balloon-length="small"]::before {
@@ -187,4 +186,5 @@
 .container button[data-balloon-length="fit"]::before {
   width: 100%;
 }
+
 /*# sourceMappingURL=balloon.css.map */

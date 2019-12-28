@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>olad-layout</title>
+  <style>
+    * {
+      background-color: rgba(0, 0, 0, 0.1);
+      padding: 0px;
+      margin: 0px;
+    }
+
+    main {
+      height: 100vh;
+      display: flex;
+      flex-flow: row nowrap;
+      align-items: stretch;
+    }
+
+    .d1 {
+      background-color: lime;
+      flex-basis: auto;
+      flex-grow: 1;
+    }
+
+    .d2 {
+      background-color: tan;
+      display: flex;
+      flex-flow: column nowrap;
+      flex-basis: auto;
+      flex-grow: 2;
+
+    }
+
+    .a1 {
+      background-color: yellow;
+      flex-grow: 1;
+    }
+
+    .a2 {
+      background-color: blueviolet;
+      flex-grow: 5;
+    }
+
+    .d3 {
+      background-color: teal;
+      flex-basis: auto;
+      flex-grow: 1;
+    }
+
+    .d4 {
+      background-color: aquamarine;
+      flex-basis: auto;
+      flex-grow: 1;
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <div class="d1">a</div>
+    <div class="d2">
+      <div class="a1">1</div>
+      <div class="a2">2</div>
+    </div>
+    <div class="d3">c</div>
+    <div class="d4">d</div>
+  </main>
+
+</body>
+
+</html>

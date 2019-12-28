@@ -2,7 +2,7 @@
   background-color: rgba(0, 0, 0, 0.1);
   padding         : 0px;
   margin          : 0px;
-  box-sizing      : border-box;
+
 
 }
 
@@ -30,6 +30,7 @@
 
     // BEFORE 黑框
     &::before {
+      box-sizing      : border-box;
       transition      : 0.5s;
       xwhite-space    : nowrap;
       opacity         : 0;

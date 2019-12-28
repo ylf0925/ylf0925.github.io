@@ -1,0 +1,525 @@
+* {
+  background-color: rgba(0, 0, 0, 0.1);
+  padding         : 0px;
+  margin          : 0px;
+  text-decoration : none;
+}
+
+body {
+  overflow-y : scroll;
+  font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Microsoft Yahei", "WenQuanYi Micro Hei", Arial, Verdana, sans-serif;
+}
+
+main {
+  background: url(MobikeIMG/mo1.jpg) 72% 72% /cover no-repeat;
+}
+
+nav {
+  display    : flex;
+  max-width  : 1080px;
+  height     : 80px;
+  margin     : auto;
+  flex-flow  : row nowrap;
+  align-items: center;
+
+
+  ul {
+    flex-grow : 1;
+    list-style: none;
+    display   : flex;
+    flex-flow : row nowrap;
+
+    li {
+      display        : flex;
+      flex-flow      : column nowrap;
+      padding        : 0 20px;
+      justify-content: center;
+
+      a {
+
+        color      : white;
+        font-size  : 16px;
+        font-weight: 400;
+        display    : inline;
+      }
+
+      &:first-child {
+        padding-left: 20px;
+        flex-grow   : 1;
+      }
+
+      &:nth-child(n+2) {
+        @media (max-width:1080px) {
+          display: none;
+        }
+      }
+    }
+
+    .Product {
+      position: relative;
+
+      &:hover {
+        .Tray {
+          border-radius: 10px;
+          transition   : none;
+          visibility   : visible;
+          z-index      : 9999;
+        }
+      }
+
+      .Tray {
+        transition      : none;
+        visibility      : hidden;
+        background-color: #fff;
+        left            : 0px;
+        position        : absolute;
+        top             : 100%;
+        display         : flex;
+        flex-flow       : column nowrap;
+
+        &:after {
+          position          : absolute;
+          top               : -16px;
+          left              : 26px;
+          height            : 0;
+          width             : 0;
+          content           : '';
+          border            : 8px solid white;
+          border-top-color  : transparent;
+          border-left-color : transparent;
+          border-right-color: transparent;
+        }
+
+
+        li {
+          padding  : 15px 20px 8px;
+          font-size: 14px;
+          width    : 240px;
+          color    : #808080;
+          display  : block;
+
+          a {
+
+            font-size: 20px;
+            color    : black;
+            display  : block;
+
+            &:hover {
+              transition: .5s;
+              color     : #ff6700;
+            }
+          }
+        }
+      }
+
+    }
+  }
+
+
+  .RightMenu {
+    display : none;
+    width   : 20px;
+    height  : 40px;
+    padding : 0 10px 0 10px;
+    position: relative;
+
+    &::before {
+      position        : absolute;
+      content         : "";
+      background-color: white;
+      width           : 20px;
+      height          : 2px;
+      top             : 35%;
+    }
+
+    &::after {
+      position        : absolute;
+      content         : "";
+      background-color: white;
+      width           : 20px;
+      height          : 2px;
+      bottom          : 35%;
+    }
+
+
+    @media (max-width:1080px) {
+      display: block;
+    }
+  }
+}
+
+.MainPage {
+  height  : 680px;
+  position: relative;
+
+
+  .TitleWrapper {
+    padding  : 0 20px;
+    max-width: 1080px;
+    margin   : auto;
+    color    : #fff;
+
+    .TitleContainer {
+      position : absolute;
+      top      : 50%;
+      transform: translate(0, -50%);
+
+      h1 {
+
+        font-size    : 68px;
+        font-weight  : 400;
+        margin-bottom: 20px;
+
+        @media (max-width:1080px) {
+          font-size: 280%;
+
+        }
+
+      }
+
+      p {
+        cursor          : pointer;
+        transition      : .4s;
+        display         : inline-block;
+        background-color: rgba(0, 0, 0, .6);
+        font-size       : 22px;
+        padding         : 14px 26px;
+        letter-spacing  : .1em;
+        border-radius   : 6px;
+        font-weight     : bold;
+
+        &:hover {
+          background-color: rgba(0, 0, 0, 0.8);
+        }
+      }
+    }
+  }
+}
+
+.UnderTitleWrapper {
+  padding         : 0 20px;
+  vertical-align  : bottom;
+  background-color: rgba(122, 112, 101, 0.4);
+
+
+
+  .UnderTitle {
+    margin    : auto;
+    box-sizing: padding-box;
+    padding   : 10px;
+    text-align: left;
+    margin    : auto;
+    max-width : 1060px;
+
+    span {
+      color: white;
+
+      &:first-child {
+        padding      : 2px;
+        font-size    : 12px;
+        border-radius: 4px;
+        background   : linear-gradient(to bottom, #ec614f 0%, #ff2e2e 100%);
+      }
+    }
+  }
+
+
+}
+
+ul.Four {
+  margin-top     : 2px;
+  list-style     : none;
+  display        : flex;
+  flex-flow      : row wrap;
+  justify-content: space-between;
+
+  li {
+    padding   : 30px;
+    box-sizing: border-box;
+    height    : 260px;
+    display   : block;
+    width     : calc(25% - 2px);
+
+
+    div {
+      text-align: center;
+      color     : #ffffff;
+      font-size : 24px;
+
+    }
+
+    @media (min-width:641px)and(max-width:1080px) {
+      width: calc(50% - 2px);
+
+      &:nth-child(3),
+      &:nth-child(4) {
+        margin: 4px 0 4px;
+      }
+    }
+
+    @media (max-width:640px) {
+      width : calc(100% - 2px);
+      margin: 2px 0 0 0;
+
+    }
+  }
+
+
+  li:nth-child(1) {
+    background: url(MobikeIMG/mo41.jpg) center /cover no-repeat;
+  }
+
+  li:nth-child(2) {
+    background: url(MobikeIMG/mo42.jpg) center /cover no-repeat;
+  }
+
+  li:nth-child(3) {
+    background: url(MobikeIMG/mo43.jpg) center /cover no-repeat;
+  }
+
+  li:nth-child(4) {
+    background: url(MobikeIMG/mo44.jpg) center /cover no-repeat;
+  }
+}
+
+div.IconWrapper {
+  border-bottom: 1px solid #eeeeee;
+}
+
+div.ThreeWrapper {
+  box-sizing: border-box;
+  padding   : 0px 20px;
+  max-width : 1080px;
+  margin    : auto;
+
+  div.ThreeContainer {
+    max-width      : 1040px;
+    display        : flex;
+    flex-flow      : row wrap;
+    justify-content: space-between;
+    align-items    : center;
+
+
+    >div {
+      display        : flex;
+      box-sizing     : border-box;
+      padding        : 45px 0;
+      flex           : 1 0 0;
+      flex-flow      : row nowrap;
+      justify-content: flex-start;
+      align-items    : center;
+
+
+      &:nth-child(2) {
+        justify-content: center;
+      }
+
+      &:nth-child(3) {
+        justify-content: flex-end;
+      }
+
+
+      img {
+        vertical-align: middle;
+        display       : inline-block;
+        width         : 50px;
+        height        : 50px;
+        margin-right  : 16px;
+      }
+
+      div {
+        display        : flex;
+        vertical-align : middle;
+        flex-flow      : column nowrap;
+        justify-content: space-between;
+
+
+
+        p:first-child {
+          font-size  : 16px;
+          font-weight: 400;
+        }
+
+        p:nth-child(2) {
+          font-size  : 16px;
+          font-weight: 300;
+        }
+      }
+    }
+  }
+}
+
+
+div.LinksWrapper {
+  box-sizing   : border-box;
+  padding      : 0 20px;
+  max-width    : 1080px;
+  margin       : auto;
+  border-bottom: 1px solid #eeeeee;
+
+  .Links {
+    display       : flex;
+    max-width     : 1040px;
+    padding-top   : 45px;
+    padding-bottom: 45px;
+    flex-flow     : row wrap;
+
+    .LinksLeft {
+      margin-right: 40px;
+      flex-grow   : 2;
+
+      dl {
+        * {
+          white-space: nowrap;
+          height     : 36.8px;
+          line-height: 36.8px;
+        }
+
+        dt {
+          margin: 0px 0px 10px;
+
+          a {
+
+            width        : 160px;
+            margin-bottom: 10px;
+            display      : block;
+            background   : url("/MobikeIMG/footer-mlogo.svg") center/contain no-repeat;
+          }
+        }
+
+        dd {
+          font-weight: 300;
+
+          &::selection {
+            background-color: #fcebe6;
+          }
+        }
+      }
+    }
+
+    .LinksRight {
+
+      flex-grow      : 0;
+      display        : flex;
+      flex-wrap      : wrap;
+      justify-content: space-between;
+
+      dl {
+        margin-left: 8vw;
+
+        &:first-child {
+          margin: 0px;
+        }
+
+        dt {
+          font-weight  : bold;
+          margin-bottom: 10px;
+          font-size    : 18px;
+
+        }
+
+        dd {
+          line-height: 2;
+          font-size  : 15px;
+
+          a {
+            transition : .5s;
+            font-weight: 300;
+            color      : #000;
+
+            &:hover {
+              color: #ff4611;
+            }
+          }
+        }
+      }
+
+
+
+    }
+  }
+}
+
+.FooterWrapper {
+  box-sizing: border-box;
+  margin    : auto;
+  max-width : 1080px;
+  padding   : 0 20px;
+
+  .FooterContainer {
+    line-height: 28px;
+    display    : flex;
+    padding    : 45px 0;
+    flex-flow  : row wrap;
+    align-items: center;
+
+    .FooterLeft {
+      flex-grow   : 1;
+      font-size   : 12px;
+      margin-right: 40px;
+
+      @media (max-width:625px) {
+        margin: 0 40px 40px 0px;
+      }
+
+      &::selection {
+        background-color: #fcebe6;
+      }
+
+      i {
+        vertical-align: -2px;
+        display       : inline-block;
+        width         : 15px;
+        height        : 15px;
+        background    : url(MobikeIMG/guohui.png) center/contain no-repeat;
+      }
+    }
+
+    .FooterRight {
+
+      height    : 60px;
+      width     : 60px;
+      padding   : 10px;
+      box-sizing: border-box;
+
+    }
+  }
+}
+
+@media (max-width:640px) {
+
+  div.ThreeWrapper {
+    div.ThreeContainer {
+      justify-content: flex-start;
+
+      >div {
+        padding: 20px 0px;
+        flex   : none;
+      }
+    }
+  }
+
+  div.LinksWrapper {
+    border-bottom: 1px solid #ffffff;
+
+    .Links {
+      .LinksLeft {
+        margin-bottom: 40px;
+      }
+
+      .LinksRight {
+        flex-grow: 1;
+
+        >dl {
+          &:first-child {
+            margin    : 0px 0px 40px;
+            flex-basis: 50%;
+          }
+
+          margin    : 0px 0px 40px;
+          flex-basis: 50%;
+        }
+      }
+    }
+  }
+}
