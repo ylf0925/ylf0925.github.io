@@ -906,10 +906,11 @@ ul {
         right        : 20%;
 
         a {
-          padding  : 2px;
-          border   : 1px solid #b0b0b0;
-          color    : #616161;
-          font-size: 12px;
+          background-color: #eeeeee;
+          padding         : 2px;
+          border          : 1px solid #eeeeee;
+          color           : #616161;
+          font-size       : 12px;
 
           &:hover {
             background-color: #ff6700;

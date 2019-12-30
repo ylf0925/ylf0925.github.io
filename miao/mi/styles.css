@@ -885,8 +885,9 @@ ul {
 }
 
 .HeaderPositioning .HeaderWrapper .SearchWrapper .TextWrapper a {
+  background-color: #eeeeee;
   padding: 2px;
-  border: 1px solid #b0b0b0;
+  border: 1px solid #eeeeee;
   color: #616161;
   font-size: 12px;
 }

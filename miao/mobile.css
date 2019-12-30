@@ -1,0 +1,181 @@
+* {
+  padding: 0px;
+  margin: 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+html {
+  font-size: calc(10000vw / 500);
+}
+
+header {
+  background: #f0f0f0;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  height: .6rem;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
+}
+
+header .LogoLeft {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: column nowrap;
+          flex-flow: column nowrap;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  width: .7rem;
+}
+
+header .LogoLeft p {
+  display: block;
+  margin: auto;
+  height: .22rem;
+  width: .33rem;
+  background: url(images/M1.png) center/contain no-repeat;
+}
+
+header .SearchBarWrapper {
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  -webkit-box-flex: 36;
+      -ms-flex-positive: 36;
+          flex-grow: 36;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  border: 1px solid #e1e1e1;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+header .SearchBarWrapper .SearchBar {
+  margin: 0.1rem 0 0.1rem 0;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-flow: row nowrap;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+header .SearchBarWrapper .SearchBar i {
+  display: inline-block;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+header .SearchBarWrapper .SearchBar input {
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  -webkit-box-flex: 8;
+      -ms-flex-positive: 8;
+          flex-grow: 8;
+}
+
+header .LogoRight {
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-flex: 7;
+      -ms-flex-positive: 7;
+          flex-grow: 7;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+header .LogoRight a {
+  margin: 0.1rem 0 0.1rem 0;
+  -ms-flex-preferred-size: 0%;
+      flex-basis: 0%;
+  display: block;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+header .LogoRight a p {
+  display: block;
+  margin: auto;
+  height: .28rem;
+  width: .30rem;
+  background: url(images/M2.png) center/contain no-repeat;
+}
+
+div.HeaderSub {
+  height: .4rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+div.HeaderSub ul {
+  font-size: 0px;
+  list-style: none;
+  height: .4rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-flow: row nowrap;
+          flex-flow: row nowrap;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+}
+
+div.HeaderSub ul li {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  height: .4rem;
+  display: inline-block;
+  font-size: .2rem;
+  border: .02rem solid #ff6700;
+  line-height: .4rem;
+}
+
+div.HeaderSub ul li:first-child {
+  margin-left: 0.16rem;
+}
+
+div.HeaderSub ul li:last-child {
+  margin-right: 0.16rem;
+}
+/*# sourceMappingURL=mobile.css.map */

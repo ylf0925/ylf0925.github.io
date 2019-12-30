@@ -1,0 +1,123 @@
+* {
+  padding         : 0px;
+  margin          : 0px;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+html {
+  font-size: calc(10000vw / 500)
+}
+
+header {
+  background: #f0f0f0;
+  display   : flex;
+  height    : .6rem;
+  flex-flow : row nowrap;
+  flex      : 1;
+
+  .LogoLeft {
+    display        : flex;
+    flex-flow      : column nowrap;
+    justify-content: center;
+    align-items    : center;
+    width          : .7rem;
+
+    p {
+      display   : block;
+      margin    : auto;
+      height    : .22rem;
+      width     : .33rem;
+      background: url(images/M1.png) center/contain no-repeat;
+    }
+  }
+
+  .SearchBarWrapper {
+    flex-flow      : row nowrap;
+    display        : flex;
+    flex-basis     : 0%;
+    flex-grow      : 36;
+    justify-content: center;
+    border         : 1px solid #e1e1e1;
+    box-sizing     : border-box;
+
+    .SearchBar {
+      margin   : 0.1rem 0 0.1rem 0;
+      flex-flow: row nowrap;
+      display  : flex;
+      flex-flow: row nowrap;
+      flex-grow: 1;
+
+      i {
+        display   : inline-block;
+        flex-basis: 0%;
+        flex-grow : 1;
+      }
+
+      input {
+        flex-basis: 0%;
+        flex-grow : 8;
+      }
+    }
+  }
+
+  .LogoRight {
+    flex-basis     : 0%;
+    display        : flex;
+    flex-grow      : 7;
+    justify-content: center;
+    align-items    : center;
+
+    a {
+      margin    : 0.1rem 0 0.1rem 0;
+      flex-basis: 0%;
+      display   : block;
+      flex-grow : 1;
+
+
+
+      p {
+        display   : block;
+        margin    : auto;
+        height    : .28rem;
+        width     : .30rem;
+        background: url(images/M2.png) center/contain no-repeat;
+
+      }
+    }
+  }
+
+
+}
+
+div.HeaderSub {
+  height    : .4rem;
+  box-sizing: border-box;
+
+  ul {
+    font-size      : 0px;
+    list-style     : none;
+    height         : .4rem;
+    display        : flex;
+    flex-flow      : row nowrap;
+    align-items    : center;
+    justify-content: space-between;
+
+    li {
+      box-sizing : border-box;
+      height     : .4rem;
+      display    : inline-block;
+      font-size  : .2rem;
+      border     : .02rem solid #ff6700;
+      line-height: .4rem;
+
+      &:first-child {
+        margin-left: 0.16rem;
+      }
+
+      &:last-child {
+        margin-right: 0.16rem;
+      }
+    }
+
+  }
+}
