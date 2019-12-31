@@ -460,7 +460,7 @@
     }
 
   </script>
-  <script xtype="x" id="ch0104/20">
+  <script type="x" id="ch0104/20">
     let a = Number(prompt("Please input a"))
     let b = Number(prompt("Please input b"))
     let c = Number(prompt("Please input c"))
@@ -499,12 +499,58 @@
   </script>
 
 
-  <!-- <script id="ch0105/01"></script>
-  <script id="ch0105/02"></script>
-  <script id="ch0105/03"></script>
-  <script id="ch0105/04"></script>
-  <script id="ch0105/05"></script>
-  <script id="ch0105/06"></script>
+  <script type="x" id="ch0105/01">
+    let x = Number(prompt("Please input total number of persons"))
+    let totalAge = 0
+    for (let i = 0; i < x; i++) {
+      totalAge += Number(prompt("Please input Age"))
+    }
+    console.log((totalAge / x).toFixed(2))
+  </script>
+
+  <script type="x" id="ch0105/02">
+    let i = 0
+    let totalMoney = 0
+    while (i < 12) {
+      i += 1
+      totalMoney += Number(prompt("Please input balance of each month"))
+    }
+    console.log("$" + ((totalMoney / 12).toFixed(2)))
+  </script>
+  <script type="x" id="ch0105/03">
+    let x = Number(prompt("Please input total number"))
+    let total = 0
+    for (let i = 0; i < x; i++) {
+      total += Number(prompt("Please input Age"))
+    }
+    console.log((total / x).toFixed(4))
+  </script>
+  <script type="x" id="ch0105/04">
+    let x = Number(prompt("Please input total number"))
+    let total = 0
+    let avg = 0
+    for (let i = 0; i < x; i++) {
+      total += Number(prompt("Please input value"))
+    }
+    avg = total / x
+    console.log(total, avg.toFixed(5))
+  </script>
+  <script type="x" id="ch0105/05">
+    let x = Number(prompt("Please input total number of persons"))
+    let max = Number(prompt("Please input numbers"))
+    let a = 0
+    for (let i = 0; i < (x - 1); i++) {
+      a = Number(prompt("Please input numbers"))
+      if (a >= max) {
+        max = a
+      }
+    }
+    console.log(Math.trunc(max))
+  </script>
+  <script id="ch0105/06">
+    let x = Number(prompt("Please input count number"))
+
+  </script>
   <script id="ch0105/07"></script>
   <script id="ch0105/08"></script>
   <script id="ch0105/09"></script>
@@ -543,7 +589,7 @@
   <script id="ch0105/42"></script>
   <script id="ch0105/43"></script>
   <script id="ch0105/44"></script>
-  <script id="ch0105/45"></script> -->
+  <script id="ch0105/45"></script>
 
 
 </head>
