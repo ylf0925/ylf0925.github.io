@@ -64,7 +64,6 @@ header .SearchBarWrapper {
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  border: 1px solid #e1e1e1;
   -webkit-box-sizing: border-box;
           box-sizing: border-box;
 }
@@ -91,6 +90,7 @@ header .SearchBarWrapper .SearchBar i {
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  background: url(images/M3.png) center/75% 75% no-repeat;
 }
 
 header .SearchBarWrapper .SearchBar input {
@@ -99,6 +99,8 @@ header .SearchBarWrapper .SearchBar input {
   -webkit-box-flex: 8;
       -ms-flex-positive: 8;
           flex-grow: 8;
+  outline: none;
+  font-size: 0.20rem;
 }
 
 header .LogoRight {
@@ -168,7 +170,7 @@ div.HeaderSub ul li {
   display: inline-block;
   font-size: .2rem;
   border: .02rem solid #ff6700;
-  line-height: .4rem;
+  line-height: calc(.4rem - .04rem);
 }
 
 div.HeaderSub ul li:first-child {

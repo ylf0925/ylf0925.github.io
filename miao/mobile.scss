@@ -37,8 +37,8 @@ header {
     flex-basis     : 0%;
     flex-grow      : 36;
     justify-content: center;
-    border         : 1px solid #e1e1e1;
-    box-sizing     : border-box;
+
+    box-sizing: border-box;
 
     .SearchBar {
       margin   : 0.1rem 0 0.1rem 0;
@@ -51,11 +51,14 @@ header {
         display   : inline-block;
         flex-basis: 0%;
         flex-grow : 1;
+        background: url(images/M3.png) center/75% 75% no-repeat;
       }
 
       input {
         flex-basis: 0%;
         flex-grow : 8;
+        outline   : none;
+        font-size : 0.20rem;
       }
     }
   }
@@ -108,7 +111,7 @@ div.HeaderSub {
       display    : inline-block;
       font-size  : .2rem;
       border     : .02rem solid #ff6700;
-      line-height: .4rem;
+      line-height: calc(.4rem - .04rem);
 
       &:first-child {
         margin-left: 0.16rem;
