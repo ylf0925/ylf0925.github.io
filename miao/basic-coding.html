@@ -739,31 +739,36 @@
     }
   </script>
 
-  <script type="x" id="ch0105/18">
+  <script xtype="x" id="ch0105/18">
     let a = +prompt("Please input the number of experiments")
     let x = +prompt("Please input the number of person who treated by HAARY")
     let y = +prompt("Please input the number of person cure by HAARY")
+    let c = true
     let cureRateHAARY = y / x
     let cureRateOther = 0
+
     for (let i = 1; i < a; i++) {
       let treatPerson = +prompt("Please input the number of person who treated by Other")
       let curePerson = +prompt("Please input the number of person who treated by Other")
       cureRateOther = curePerson / treatPerson
-      for (let j = 1; j < a; j++) {
+
+      while (c) {
         if (Math.abs(cureRateOther - cureRateHAARY) <= 0.05) {
           console.log("same")
           break
         }
-        if (Math.abs(cureRateOther - cureRateHAARY) > 0.05) {
+        if ((cureRateOther - cureRateHAARY) > 0.05) {
           console.log("better")
           break
         }
-        if (Math.abs(cureRateOther - cureRateHAARY) < 0.05) {
+        if ((cureRateOther - cureRateHAARY) < 0.05) {
           console.log("worse")
           break
         }
+
       }
     }
+
 
   </script>
   <script type="x" id="ch0105/19">
@@ -824,7 +829,7 @@
       }
     }
   </script>
-  <script id="ch0105/22">
+  <script type="x" id="ch0105/22">
     let x = 300
     for (let i = 0; i < 12; i++) {
 
