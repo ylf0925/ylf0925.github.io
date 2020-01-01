@@ -590,8 +590,8 @@
   </script>
 
   <script type="x" id="ch0105/09">
-    let n = Number(prompt("Please input n"))
     let m = Number(prompt("Please input m"))
+    let n = Number(prompt("Please input n"))
     let total = 0
     let k = 0
     if (m === n && n % 2 !== 0) {
@@ -741,7 +741,7 @@
       } */
   </script>
 
-  <script id="ch0105/18">
+  <script type="x" id="ch0105/18">
     let a = +prompt("Please input the number of experiments")
     let x = +prompt("Please input the number of person who treated by HAARY")
     let y = +prompt("Please input the number of person cure by HAARY")
@@ -752,13 +752,13 @@
       let curePerson = +prompt("Please input the number of person who treated by Other")
       cureRateOther = curePerson / treatPerson
     }
-    if (cureRateOther == cureRateHAARY) {
+    if (Math.abs(cureRateOther - cureRateHAARY) <= 0.05) {
       console.log("same")
     }
-    if (cureRateOther > cureRateHAARY) {
+    if (Math.abs(cureRateOther - cureRateHAARY) > 0.05) {
       console.log("better")
     }
-    if (cureRateOther < cureRateHAARY) {
+    if (Math.abs(cureRateOther - cureRateHAARY) < 0.05) {
       console.log("worse")
     }
   </script>
