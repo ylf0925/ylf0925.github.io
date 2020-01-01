@@ -722,23 +722,21 @@
   </script>
 
   <script type="x" id="ch0105/17">
-    /*   let k = +prompt("Please index of Fib")
-      let a = 1
-      let b = 2
-  
-      if (k <= 2) {
-        console.log("1")
-      } else {
-  
-        for (let j = 0; j < ; j++) {
-          a += j
-          b = a + b
-          for (let i = 0; i < ; i++) {
-            a_k = a_k + a_k_before
-  
-          }
-        }
-      } */
+    let k = +prompt("Please input the index of Fib")
+    let a = 1
+    let b = 1
+    let x = 0
+    if (k <= 2) {
+      console.log("1")
+    }
+    else {
+      for (let j = 0; j < (k - 2); j++) {
+        x = a + b
+        a = b
+        b = x
+      }
+      console.log(x)
+    }
   </script>
 
   <script type="x" id="ch0105/18">
@@ -751,16 +749,22 @@
       let treatPerson = +prompt("Please input the number of person who treated by Other")
       let curePerson = +prompt("Please input the number of person who treated by Other")
       cureRateOther = curePerson / treatPerson
+      for (let j = 1; j < a; j++) {
+        if (Math.abs(cureRateOther - cureRateHAARY) <= 0.05) {
+          console.log("same")
+          break
+        }
+        if (Math.abs(cureRateOther - cureRateHAARY) > 0.05) {
+          console.log("better")
+          break
+        }
+        if (Math.abs(cureRateOther - cureRateHAARY) < 0.05) {
+          console.log("worse")
+          break
+        }
+      }
     }
-    if (Math.abs(cureRateOther - cureRateHAARY) <= 0.05) {
-      console.log("same")
-    }
-    if (Math.abs(cureRateOther - cureRateHAARY) > 0.05) {
-      console.log("better")
-    }
-    if (Math.abs(cureRateOther - cureRateHAARY) < 0.05) {
-      console.log("worse")
-    }
+
   </script>
   <script id="ch0105/19"></script>
   <script id="ch0105/20"></script>
