@@ -264,25 +264,25 @@
     if (a === 0 && b === 0 && c === 0) {
       console.log("3" + " " + "5" + " " + "7")
     } else {
-        if (a === 0 && b === 0) {
+      if (a === 0 && b === 0) {
         console.log("3" + " " + "5")
       }
-        if (b === 0 && c === 0) {
+      if (b === 0 && c === 0) {
         console.log("5" + " " + "7")
       }
-        if (a === 0 && c === 0) {
+      if (a === 0 && c === 0) {
         console.log("3" + " " + "7")
       } else {
-          if (a === 0) {
+        if (a === 0) {
           console.log("3")
         }
-          if (b === 0) {
+        if (b === 0) {
           console.log("5")
         }
-          if (c === 0) {
+        if (c === 0) {
           console.log("7")
         } else {
-          console.log("Can't find a solution")
+          console.log("n")
         }
       }
     }
@@ -547,22 +547,221 @@
     }
     console.log(Math.trunc(max))
   </script>
-  <script id="ch0105/06">
-    let x = Number(prompt("Please input count number"))
+  <script type="x" id="ch0105/06">
+    let a = Number(prompt("Please input count number"))
+    let max = Number(prompt("Please input numbers"))
+    let min = max
+    let y
+    for (let i = 0; i < (a - 1); i++) {
+      y = Number(prompt("Please input numbers"))
+      if (y >= max) {
+        max = y
+      } else if (y <= min) {
+        min = y
+      }
+    }
+    console.log(max - min)
 
   </script>
-  <script id="ch0105/07"></script>
-  <script id="ch0105/08"></script>
-  <script id="ch0105/09"></script>
-  <script id="ch0105/10"></script>
-  <script id="ch0105/11"></script>
-  <script id="ch0105/12"></script>
-  <script id="ch0105/13"></script>
-  <script id="ch0105/14"></script>
-  <script id="ch0105/15"></script>
-  <script id="ch0105/16"></script>
-  <script id="ch0105/17"></script>
-  <script id="ch0105/18"></script>
+  <script type="x" id="ch0105/07">
+    let x = Number(prompt("Please input count days"))
+    let a = 0
+    let b = 0
+    let c = 0
+    let total = 0
+    for (let i = 0; i < x; i++) {
+      a += Number(prompt("Please input gold medal"))
+      b += Number(prompt("Please input silver medal"))
+      c += Number(prompt("Please input bronze medal"))
+    }
+    total = a + b + c
+    console.log(a, b, c, total)
+
+
+  </script>
+
+  <script type="x" id="ch0105/08">
+    let x = Number(prompt("Please input angles"))
+    let total = 0
+    for (let i = 0; i < (x - 1); i++) {
+      total += Number(prompt("Please input inner angles"))
+    }
+    console.log((x - 2) * 180 - total)
+  </script>
+
+  <script type="x" id="ch0105/09">
+    let n = Number(prompt("Please input n"))
+    let m = Number(prompt("Please input m"))
+    let total = 0
+    let k = 0
+    if (m === n && n % 2 !== 0) {
+      console.log(n)
+    } else if (m === n && n % 2 === 0) {
+      console.log("Can't find a solution")
+    } else {
+      if (m % 2 === 0 && n % 2 === 0) {
+        for (let i = m + 1; i <= (n - 1); i = i + 2) {
+          total += i
+        }
+        console.log(total)
+      }
+      if (m % 2 === 0 && n % 2 !== 0) {
+        for (let i = m + 1; i <= n; i = i + 2) {
+          total += i
+        }
+        console.log(total)
+      }
+      if (m % 2 !== 0 && n % 2 === 0) {
+        for (let i = m; i <= (n - 1); i = i + 2) {
+          total += i
+        }
+        console.log(total)
+      }
+      if (m % 2 !== 0 && n % 2 !== 0) {
+        for (let i = m; i <= n; i = i + 2) {
+          total += i
+        }
+        console.log(total)
+      }
+    }
+  </script>
+  <script type="x" id="ch0105/10">
+    let m = Number(prompt("Please input m"))
+    let n = Number(prompt("Please input n"))
+    let total = 0
+    for (let i = m; i <= n; i++) {
+      if (i % 17 == 0) {
+        total += i
+      }
+    }
+    console.log(total)
+  </script>
+
+  <script type="x" id="ch0105/11">
+    let m = Number(prompt("Please input count number"))
+    let n = 0
+    let x = 0
+    let y = 0
+    let z = 0
+    for (let i = 0; i < m; i++) {
+      n = Number(prompt("Please input number"))
+      if (n === 1) {
+        x += 1
+      }
+      if (n === 5) {
+        y += 1
+      }
+      if (n === 10) {
+        z += 1
+      }
+    }
+    console.log(x)
+    console.log(y)
+    console.log(z)
+
+  </script>
+  <script type="x" id="ch0105/12">
+    let m = +prompt("Please input lenth of the sequence")
+    let n = +prompt("Please input specified number")
+    let x = 0
+    let count = 0
+    for (let i = 0; i < m; i++) {
+      x = +prompt("Please input specified number")
+      if (x === n) {
+        count += 1
+      }
+    }
+    console.log(count)
+  </script>
+  <script type="x" id="ch0105/13">
+    let m = +prompt("Please input 底数")
+    let n = +prompt("Please input power")
+    let total = m
+    for (let i = 1; i < n; i++) {
+      total = total * m
+    }
+    console.log(total)
+
+  </script>
+  <script type="x" id="ch0105/14">
+    let m = +prompt("Please input pupolation")
+    let n = +prompt("Please input years to come")
+    for (let i = 0; i < n; i++) {
+      m = m * 1.001
+    }
+    console.log(m.toFixed(4))
+
+  </script>
+  <script type="x" id="ch0105/15">
+    let r = +prompt("Please input  interests rate")
+    let m = +prompt("Please input money")
+    let t = +prompt("Please input investment years")
+    for (let i = 0; i < t; i++) {
+      m = m * (1 + (r / 100))
+    }
+    console.log(Math.trunc(m))
+
+  </script>
+
+  <script type="x" id="ch0105/16">
+    let moneySaved = 50
+    let housePrice = 200
+    let m = +prompt("Please input total annual income")
+    let r = +prompt("Please input house price increaing rate ")
+    for (let i = 1; i <= 20; i++) {
+      housePrice = housePrice * (1 + (r / 100))
+      moneySaved += m
+      if (moneySaved >= housePrice) {
+        console.log(i + 1)
+        break
+      }
+      if (moneySaved < housePrice && i == 20) {
+        console.log("Impossible")
+      }
+    }
+  </script>
+
+  <script type="x" id="ch0105/17">
+    /*   let k = +prompt("Please index of Fib")
+      let a = 1
+      let b = 2
+  
+      if (k <= 2) {
+        console.log("1")
+      } else {
+  
+        for (let j = 0; j < ; j++) {
+          a += j
+          b = a + b
+          for (let i = 0; i < ; i++) {
+            a_k = a_k + a_k_before
+  
+          }
+        }
+      } */
+  </script>
+
+  <script id="ch0105/18">
+    let a = +prompt("Please input the number of experiments")
+    let x = +prompt("Please input the number of person who treated by HAARY")
+    let y = +prompt("Please input the number of person cure by HAARY")
+    let cureRateHAARY = y / x
+    let cureRateOther = 0
+    for (let i = 1; i < a; i++) {
+      let treatPerson = +prompt("Please input the number of person who treated by Other")
+      let curePerson = +prompt("Please input the number of person who treated by Other")
+      cureRateOther = curePerson / treatPerson
+    }
+    if (cureRateOther == cureRateHAARY) {
+      console.log("same")
+    }
+    if (cureRateOther > cureRateHAARY) {
+      console.log("better")
+    }
+    if (cureRateOther < cureRateHAARY) {
+      console.log("worse")
+    }
+  </script>
   <script id="ch0105/19"></script>
   <script id="ch0105/20"></script>
   <script id="ch0105/21"></script>
