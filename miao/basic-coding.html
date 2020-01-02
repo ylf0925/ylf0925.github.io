@@ -594,36 +594,49 @@
     let n = Number(prompt("Please input n"))
     let total = 0
     let k = 0
-    if (m === n && n % 2 !== 0) {
-      console.log(n)
-    } else if (m === n && n % 2 === 0) {
-      console.log("Can't find a solution")
-    } else {
-      if (m % 2 === 0 && n % 2 === 0) {
-        for (let i = m + 1; i <= (n - 1); i = i + 2) {
-          total += i
-        }
-        console.log(total)
-      }
-      if (m % 2 === 0 && n % 2 !== 0) {
-        for (let i = m + 1; i <= n; i = i + 2) {
-          total += i
-        }
-        console.log(total)
-      }
-      if (m % 2 !== 0 && n % 2 === 0) {
-        for (let i = m; i <= (n - 1); i = i + 2) {
-          total += i
-        }
-        console.log(total)
-      }
-      if (m % 2 !== 0 && n % 2 !== 0) {
-        for (let i = m; i <= n; i = i + 2) {
-          total += i
-        }
-        console.log(total)
-      }
+    if (m % 2 == 0) {
+      m++
     }
+    if (n % 2 == 0) {
+      n--
+    }
+
+    for (i = m; i <= n; i = i + 2) {
+      total += i
+    }
+    console.log(total)
+
+
+    // if (m === n && n % 2 !== 0) {
+    //   console.log(n)
+    // } else if (m === n && n % 2 === 0) {
+    //   console.log("Can't find a solution")
+    // } else {
+    //   if (m % 2 === 0 && n % 2 === 0) {
+    //     for (let i = m + 1; i <= (n - 1); i = i + 2) {
+    //       total += i
+    //     }
+    //     console.log(total)
+    //   }
+    //   if (m % 2 === 0 && n % 2 !== 0) {
+    //     for (let i = m + 1; i <= n; i = i + 2) {
+    //       total += i
+    //     }
+    //     console.log(total)
+    //   }
+    //   if (m % 2 !== 0 && n % 2 === 0) {
+    //     for (let i = m; i <= (n - 1); i = i + 2) {
+    //       total += i
+    //     }
+    //     console.log(total)
+    //   }
+    //   if (m % 2 !== 0 && n % 2 !== 0) {
+    //     for (let i = m; i <= n; i = i + 2) {
+    //       total += i
+    //     }
+    //     console.log(total)
+    //   }
+    // }
   </script>
   <script type="x" id="ch0105/10">
     let m = Number(prompt("Please input m"))
@@ -737,6 +750,16 @@
       }
       console.log(x)
     }
+    // Optimizations using only two variables
+    
+    // let a = 1
+    // let b = 2
+    // let k = + prompt()
+    // for (let i = 0; i < (k - 3); i++) {
+    //   a = b - a
+    //   b = a + b
+    // }
+    // console.log(b)
   </script>
 
   <script type="x" id="ch0105/18">
@@ -915,10 +938,12 @@
   </script>
 
 
-  <script xtype="x" id="ch0105/28">
+  <script type="x" id="ch0105/28">
     const u = +prompt("Please input n")
     let n = u
-    let k = a = b = 0
+    let k  = 0
+    let a = 0
+    let b = 0
     let j
     // First loop is to determine the total digit 
     for (j = 1; ; j++) {
@@ -928,6 +953,7 @@
       }
     }
     // Second loop is to output given number in reverse direction
+    // Regain value
     a = u
     for (let i = 1; ; i++) {
       a = a - b
@@ -939,28 +965,41 @@
     }
   </script>
 
-  <script id="ch0105/29">
-    const u = +prompt("Please input n")
-    let n = u
-    let k = a = b = 0
-    let j
-    // First loop is to determine the total digit 
-    for (j = 1; ; j++) {
-      n = (Math.trunc(n / 10))
-      if (n == 0) {
+  <script type="x" id="ch0105/29">
+    const userInput = +prompt("Please input n")
+    let num, digits, current
+    let truncRemain = 0
+    let total = 0
+    let newDigits = 0
+    num = userInput
+
+    // First loop is to determine the total digit (j)
+    for (digits = 1; ; digits++) {
+      num = (Math.trunc(num / 10))
+      if (num == 0) {
         break
       }
     }
-    console.log(i)
-    let a = u
-    i
-    total += k / 10 ** (i - 1)
+
+    // Regain the value, jump to trunction sequence
+    num = userInput
+    newDigits = digits
+
+    for (let i = 1; i <= newDigits; i++) {
+      num = num - truncRemain
+      truncRemain = num - Math.trunc(num / 10 ** i) * 10 ** i
+      current = truncRemain / 10 ** (i - 1)
+      total += (current * 10 ** (newDigits - i))
+    }
+    console.log(total)
   </script>
 
   <script type="x" id="ch0105/30">
     const u = +prompt("Please input n")
     let n = u
-    let k = w = count = 0
+    let k = 0
+    let  w = 0
+    let  count = 0
     let j = +prompt("Please input j")
     for (i = 1; ; i++) {
       n = n - k
@@ -979,7 +1018,7 @@
       console.log('NO')
     }
   </script>
-  <script xtype="x" id="ch0105/31">
+  <script type="x" id="ch0105/31">
     let n = +prompt("lights")
     let m = +prompt("mans")
     for (let i = 0; i < n; i++) {
@@ -990,7 +1029,7 @@
       }
     }
   </script>
-  <script xtype="x" id="ch0105/32">
+  <script type="x" id="ch0105/32">
     let n = +prompt("input n")
     let a = b = x = 1
     let total = A = B = 0
