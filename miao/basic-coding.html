@@ -1061,37 +1061,46 @@
     console.log(s.toFixed(4))
   </script>
 
-  <script id="ch0105/34">
+  <script type="x" id="ch0105/34">
     let n = +prompt("Please input n")
     let s = 0
     let k = 1
-    let i, j
-    for (i = 2; i <= n; i++) {
-
-      for (j = i; ; j--) {
-        k = j * 1
-        k = k
-        if (j == 1) {
-          break
-        }
-      }
+    for (let i = 1; i <= n; i++) {
+      k = k * i
+      s += k
     }
+    console.log(s)
   </script>
-  <script id="ch0105/35">
+  <script type="x" id="ch0105/35">
+    let n = +prompt("Please input n")
+    let s = 0
+    let k = 1
+    for (let i = 1; i <= n; i++) {
+      k = k * i
+      s += 1 / k
+    }
+    console.log((s + 1).toFixed(10))
   </script>
 
-  <script id="ch0105/36">
+  <script xtype="x" id="ch0105/36">
     let x = +prompt("Please input x")
     let n = +prompt("Please input n")
     let s = 0
-    let i, j
-    for (i = 2; i <= n; i++) {
-      for (j = i; ; j--) {
-        x = x * x
+    let y = 1
+    if (n == 0) {
+      console.log("1")
+    } else {
+      for (let i = 0; i < n; i++) {
+        y *= x
+        s += y
       }
+      console.log((s + 1).toFixed(2))
     }
   </script>
+
+
   <script id="ch0105/37">
+
   </script>
   <script id="ch0105/38"></script>
   <script id="ch0105/39"></script>
