@@ -913,23 +913,51 @@
     }
     console.log(i - 1)
   </script>
-  <script type="x" id="ch0105/28">
-    let n = +prompt("Please input n")
-    let k = 0
-    for (i = 1; ; i++) {
-      n = n - k
-      k = n - (Math.trunc(n / 10 ** i)) * 10 ** i
-      if (k == 0) {
+
+
+  <script xtype="x" id="ch0105/28">
+    const u = +prompt("Please input n")
+    let n = u
+    let k = a = b = 0
+    let j
+    // First loop is to determine the total digit 
+    for (j = 1; ; j++) {
+      n = (Math.trunc(n / 10))
+      if (n == 0) {
         break
       }
-      console.log(k / 10 ** (i - 1))
+    }
+    // Second loop is to output given number in reverse direction
+    a = u
+    for (let i = 1; ; i++) {
+      a = a - b
+      b = a - (Math.trunc(a / 10 ** i)) * 10 ** i
+      console.log(b / 10 ** (i - 1))
+      if (i == j) {
+        break
+      }
     }
   </script>
 
   <script id="ch0105/29">
-
+    const u = +prompt("Please input n")
+    let n = u
+    let k = a = b = 0
+    let j
+    // First loop is to determine the total digit 
+    for (j = 1; ; j++) {
+      n = (Math.trunc(n / 10))
+      if (n == 0) {
+        break
+      }
+    }
+    console.log(i)
+    let a = u
+    i
+    total += k / 10 ** (i - 1)
   </script>
-  <script id="ch0105/30">
+
+  <script type="x" id="ch0105/30">
     const u = +prompt("Please input n")
     let n = u
     let k = w = count = 0
@@ -951,8 +979,29 @@
       console.log('NO')
     }
   </script>
-  <script id="ch0105/31"></script>
-  <script id="ch0105/32"></script>
+  <script xtype="x" id="ch0105/31">
+    let n = +prompt("lights")
+    let m = +prompt("mans")
+    for (let i = 0; i < n; i++) {
+      k = i
+
+      for (let j = 0; i < n; j++) {
+
+      }
+    }
+  </script>
+  <script xtype="x" id="ch0105/32">
+    let n = +prompt("input n")
+    let a = b = x = 1
+    let total = A = B = 0
+    for (let i = 0; i < n; i++) {
+      x = b + a
+      total += x / b
+      a = b
+      b = x
+    }
+    console.log(total.toFixed(4))
+  </script>
   <script id="ch0105/33"></script>
   <script id="ch0105/34"></script>
   <script id="ch0105/35"></script>
