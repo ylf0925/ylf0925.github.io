@@ -750,16 +750,15 @@
       }
       console.log(x)
     }
-    // Optimizations using only two variables
-    
-    // let a = 1
-    // let b = 2
-    // let k = + prompt()
-    // for (let i = 0; i < (k - 3); i++) {
-    //   a = b - a
-    //   b = a + b
-    // }
-    // console.log(b)
+    /* Optimizations using only two variables
+    let a = 1
+    let b = 2
+    let k = + prompt()
+    for (let i = 0; i < (k - 3); i++) {
+      a = b - a
+      b = a + b
+    }
+    console.log(b) */
   </script>
 
   <script type="x" id="ch0105/18">
@@ -900,8 +899,20 @@
     }
     console.log(count - 1)
   </script>
-  <script id="ch0105/25">
+  <script type="ok" id="ch0105/25">
+    for (var i = 100; i <= 999; i++) {
+      var a7 = i % 7
+      var b7 = (i - a7) / 7 % 7
+      var c7 = (i - a7 - b7 * 7) / 7 / 7 % 7
 
+      var a9 = i % 9
+      var b9 = (i - a9) / 9 % 9
+      var c9 = (i - a9 - b9 * 9) / 9 / 9 % 9
+
+      if (a7 == c9 && b7 == b9 && c7 == a9) {
+        console.log(i, "" + c7 + b7 + a7, "" + c9 + b9 + a9)
+      }
+    }
   </script>
 
   <script type="x" id="ch0105/26">
@@ -939,6 +950,16 @@
 
 
   <script type="x" id="ch0105/28">
+    var n = +prompt()
+    do {
+    var digit = n % 10
+    console.log(digit)
+    n=(n-digit)/10
+    } while(n>0)
+
+
+    
+    /*
     const u = +prompt("Please input n")
     let n = u
     let k  = 0
@@ -963,38 +984,76 @@
         break
       }
     }
+    */
   </script>
 
   <script type="x" id="ch0105/29">
-    const userInput = +prompt("Please input n")
-    let num, digits, current
-    let truncRemain = 0
-    let total = 0
-    let newDigits = 0
-    num = userInput
 
-    // First loop is to determine the total digit (j)
-    for (digits = 1; ; digits++) {
-      num = (Math.trunc(num / 10))
-      if (num == 0) {
-        break
+    var remain= +prompt()
+    var result = 0
+    do {
+      var digit = remain % 10
+      result = result * 10 + digit
+      remain = (remain - digit) / 10
+    } while (remain != 0)
+    console.log(result)
+
+
+    /*
+      const userInput = +prompt("Please input n")
+      let num, digits, current
+      let truncRemain = 0
+      let total = 0
+      let newDigits = 0
+      num = userInput
+
+      // First loop is to determine the total digit (j)
+      for (digits = 1; ; digits++) {
+        num = (Math.trunc(num / 10))
+        if (num == 0) {
+          break
+        }
       }
-    }
 
-    // Regain the value, jump to trunction sequence
-    num = userInput
-    newDigits = digits
+      // Regain value, jump to trunction sequence
+      num = userInput
+      newDigits = digits
 
-    for (let i = 1; i <= newDigits; i++) {
-      num = num - truncRemain
-      truncRemain = num - Math.trunc(num / 10 ** i) * 10 ** i
-      current = truncRemain / 10 ** (i - 1)
-      total += (current * 10 ** (newDigits - i))
-    }
-    console.log(total)
+      for (let i = 1; i <= newDigits; i++) {
+        num = num - truncRemain
+        truncRemain = num - Math.trunc(num / 10 ** i) * 10 ** i
+        current = truncRemain / 10 ** (i - 1)
+        total += (current * 10 ** (newDigits - i))
+      }
+      console.log(total)
+       */
   </script>
 
   <script type="x" id="ch0105/30">
+    let remain = +prompt()
+    let k = +prompt()
+    let result = 0
+    let count = 0
+    let indicator = false
+    let digit 
+    if (remain % 19 == 0) {
+      indicator = true
+    } 
+    do {
+      digit = remain % 10
+      if (digit === 3) {
+        count += 1
+      }
+      remain=(remain-digit)/10
+    } while(remain!=0)
+    if (count==3 && indicator==true){
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+
+
+    /*
     const u = +prompt("Please input n")
     let n = u
     let k = 0
@@ -1017,17 +1076,25 @@
     } else {
       console.log('NO')
     }
+    */
   </script>
+
   <script type="x" id="ch0105/31">
-    let n = +prompt("lights")
-    let m = +prompt("mans")
-    for (let i = 0; i < n; i++) {
-      k = i
-
-      for (let j = 0; i < n; j++) {
-
+    let n = + prompt("灯")
+    let m = + prompt("人")
+    let i, j;
+    for (i = 1; i <= n; i++) {
+      let indicator = true
+      for (j = 1; j <= m && j <= i; j++) {
+        if (i % j == 0) {
+          indicator = !indicator
+        }
+      }
+      if (indicator == false) {
+        console.log(i)
       }
     }
+
   </script>
   <script type="x" id="ch0105/32">
     let n = +prompt("input n")
@@ -1082,7 +1149,7 @@
     console.log((s + 1).toFixed(10))
   </script>
 
-  <script xtype="x" id="ch0105/36">
+  <script type="x" id="ch0105/36">
     let x = +prompt("Please input x")
     let n = +prompt("Please input n")
     let s = 0
@@ -1099,19 +1166,106 @@
   </script>
 
 
-  <script id="ch0105/37">
+  <script type="ok" id="ch0105/37">
+    let M = +prompt()
+    let N = +prompt()
+    let X = +prompt()
+    let damage = N
+    do {
+      damage+=Math.trunc(M/damage)
+      X -= Math.ceil(M/damage)
+    } while(X>=0)
+    console.log(damage)
+  </script>
+
+  <script type="ok" id="ch0105/38">
+    let n = +prompt()
+    let c
+    for (let i = 1; i <= n; i++) {
+      let powerMax = +prompt()
+      for (let j = powerMax; j >= 0; j--) {
+        c = +prompt()
+        c = j * c
+        console.log(c)
+      }
+    }
 
   </script>
-  <script id="ch0105/38"></script>
-  <script id="ch0105/39"></script>
-  <script id="ch0105/40"></script>
-  <script id="ch0105/41"></script>
-  <script id="ch0105/42"></script>
-  <script id="ch0105/43"></script>
-  <script id="ch0105/44"></script>
-  <script id="ch0105/45"></script>
+  <script type="x" id="ch0105/39">
+    var n = +prompt
+    for (var i = 1; i <= n; i++) {
+      if (i % 7 == 0) {
+        continue
+      } else {
+        var t = i
+        while (t > 0) {
+          var d = t % 10
+          if (d == 7) {
+            break
+          }
+          t = (t - d) / 10
+        }
+        continue
+      }
+      sum += i * i
+    }
+  </script>
 
 
+  <script id="ch0105/40">
+
+
+  </script>
+  <script id="ch0105/41">
+
+  </script>
+  <script id="ch0105/42">
+  </script>
+  <script id="ch0105/43">
+
+  </script>
+  <script id="ch0105/44">
+
+  </script>
+  <script id="ch0105/45">
+  </script>
+
+  <script type="ok" id="Chessboard">
+    let n = +prompt()
+    let snippet = ""
+    for (let row = 1; row <= n; row++) {
+      for (let column = 1; column <= n; column++) {
+        if ((row + column) % 2 == 0) {
+          snippet += " "
+        } else {
+          snippet += "#"
+        }
+      }
+      snippet += "\n"
+    }
+    console.log(snippet)
+  </script>
+  <script type="ok" id="Chessboard2">
+    let n = +prompt()
+  </script>
+  <script type="ok" id="sqrt">
+    // half-interval search algorithm
+    let n = +prompt()
+    let up = n
+    let mid
+    let down = 0
+    while (up - down > 0.01) {
+      mid = (up + down) / 2
+      if (mid ** 2 > n) {
+        up = mid
+      } else if (mid ** 2 < n) {
+        down = mid
+      } else {
+        console.log(mid)
+      }
+    }
+    console.log(mid)
+  </script>
 </head>
 
 <body>
