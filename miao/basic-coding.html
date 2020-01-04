@@ -1079,7 +1079,7 @@
     */
   </script>
 
-  <script type="x" id="ch0105/31">
+  <script xtype="x" id="ch0105/31">
     let n = + prompt("灯")
     let m = + prompt("人")
     let i, j;
@@ -1091,11 +1091,15 @@
           indicator = !indicator
         }
       }
-      if (indicator ==false) {
-        console.log(i)
+      if (indicator == false) {
+        count += 1
+        if (count == 1)
+          console.log(i + " ")
+        else {
+          console.log("," + i)
+        }
       }
     }
-
   </script>
   <script type="x" id="ch0105/32">
     let n = +prompt("input n")
@@ -1345,10 +1349,10 @@
   </script>
   <script type="ok" id="ch0105/45">
     let day = +prompt()
-    let salary = 1
+    let salary 
     let total = 0
     let time = 0
-    for (let salary = 1; ; salary++) {
+    for (salary = 1; ; salary++) {
       for (let i = 1; i <= salary; i++) {
         time++
         total += salary
