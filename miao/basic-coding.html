@@ -1188,8 +1188,11 @@
         dump = + prompt()
         console.log(0)
       } else {
-        for (let j = powerMax; j >= 0; j--) {
+        for (let j = powerMax; j => 0; j--) {
           c = +prompt()
+          if(j==0){
+            break
+          }
           c = j * c
           console.log(c)
         }
@@ -1340,9 +1343,21 @@
       }
     } */
   </script>
-  <script id="ch0105/45">
-
-
+  <script type="ok" id="ch0105/45">
+    let day = +prompt()
+    let salary = 1
+    let total = 0
+    let time = 0
+    for (let salary = 1; ; salary++) {
+      for (let i = 1; i <= salary; i++) {
+        time++
+        total += salary
+      }
+      if (time == day) {
+        break
+      }
+    }
+    console.log(total)
   </script>
 
   <script type="ok" id="Chessboard">
