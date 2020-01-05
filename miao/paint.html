@@ -142,12 +142,9 @@
   for (let x_200 = 250; x_200 <= 350; x_200++) {
     for (let y_200 = 25; y_200 <= 125; y_200++) {
       // let co = rgba(255, Math.round(((x_200 - 250) / 100) * 255), Math.round((y_200 - 25) / 100) * 255)
-
       let green = Math.round(((x_200 - 250) / 100) * 255)
       let blue = Math.round(((y_200 - 25) / 100) * 255)
-      // rgba(255,green,blue)
-      // "rgba" + "(" + "255" + "," + green.toString + "," + blue.toString + ")"
-      dot(x_200, y_200, "rgba" + "(" + "255" + "," + green.toString + "," + blue.toString + ")")
+      dot(x_200, y_200, "rgba" + "(" + "255" + "," + green.toString() + "," + blue.toString() + ")")
     }
   }
 

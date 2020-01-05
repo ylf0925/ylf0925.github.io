@@ -1538,12 +1538,77 @@
       sum = 0
     }
   </script>
+  <script type="ok" id="palindrom">
+    let n = +prompt()
+    let digit
+    let j = n
+    let sum = 0
+    let count = 0
+
+    do {
+      digit = j % 10
+      j = (j - digit) / 10
+      count++
+    } while (j > 0)
+
+    j = n
+
+    for (let i = 1; i <= count; i++) {
+      digit = j % 10
+      j = (j - digit) / 10
+      sum += digit * Math.pow(10, i - 1)
+    }
+    if (sum == n) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+  </script>
+  <script type="ok" id="complete-number">
+    let n = +prompt()
+    let sqrt_n = Math.sqrt(n)
+    let sum = 0
+    for (i = 2; i <= sqrt_n; i++) {
+      if (n % i == 0) {
+        sum += i
+        sum += (n / i)
+      }
+    }
+    sum++
+    if (sum == n) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+  </script>
+  <script id="complete-numbers"> 
+    let sum = 0
+    for (let i = 2; i <= 1000; i++) {
+      let sqrt_i = Math.sqrt(i)
+      for (let j=2;j<=sqrt_i;j++){
+      if (i % j == 0) {
+        sum += i
+        sum += (i / j)
+      }
+
+      }
 
 
+
+    }
+    sum++
+    if (sum == n) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+
+  </script>
   <script type="ok" id="prime">
     let n = +prompt()
     let sqrt_n = Math.sqrt(n)
     let isPrime = true
+    if (n!==1){
     for (i = 2; i <= sqrt_n; i++) {
       isPrime = true
       if (n % i == 0) {
@@ -1556,20 +1621,22 @@
     } else {
       console.log("NO")
     }
+  }
+  else{
+    console.log("NO")
+  }
   </script>
   <script type="ok" id="primes">
     let isPrime
     for (var i = 2; i <= 100; i++) {
-      for (var j = 2; j <= 10; j++) {
-        isPrime = true
-        if (i % j == 0) {
+      isPrime = true
+      for (var j = 2; j<=i&&j <= 10; j++) {
+        if (i % j == 0 &&i!==j) {
           isPrime = false
           break
         }
       }
-      if (i == 2) {
-        console.log(2)
-      }
+      
       if (isPrime) {
         console.log(i)
       }
