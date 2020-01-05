@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>画图</title>
@@ -11,6 +12,7 @@
     }
   </style>
 </head>
+
 <body>
   <canvas width="400" height="300"></canvas>
 </body>
@@ -41,7 +43,32 @@
    */
 </script>
 <script>
+  let x, y, i, k
   // YOUR CODE GOES BELOW
+  for (i = 0; i <= 400; i++) {
+    dot(i, 150)
+
+    if (i % 2 == 0) {
+      dot(i, 100)
+    }
+
+    if (i % 4 == 0) {
+      dot(i, 50)
+      dot(i + 1, 50)
+    }
+
+    if (i % 5 == 0) {
+      dot(i, 200)
+      dot(i + 1, 200)
+      dot(i + 2, 200)
+
+    }
+  }
+  for (x = 0; x <= 400; x++) {
+    y = x
+    dot(x, y)
+  }
 
 </script>
+
 </html>
