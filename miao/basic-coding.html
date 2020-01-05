@@ -1094,9 +1094,9 @@
       if (indicator == false) {
         count += 1
         if (count == 1)
-          console.log(i+"")
+          console.log(i)
         else {
-          console.log("," +" "+ i)
+          console.log(","+ i)
         }
       }
     }
@@ -1432,6 +1432,148 @@
       }
     }
     console.log(mid)
+  </script>
+  <script type="ok" id="7">
+    let n = +prompt()
+    let digit
+    if (n % 7 == 0) {
+      console.log("YES")
+    } else {
+      do {
+        digit = n % 10
+        if (digit == 7) {
+          console.log("YES")
+          break
+        }
+        n = (n - digit) / 10
+        if (n == 0) {
+          console.log("NO")
+        }
+      } while (n > 0)
+    }
+
+  </script>
+  <script type="ok" id="sort">
+    let a = +prompt()
+    let b = +prompt()
+    let c = +prompt()
+    let max, min, mid
+    if (a >= b) {
+      max = a
+      if (b >= c) {
+        // a >=b>=c 
+        mid = b
+        min = c
+      } else {
+        // b<c && a>=b
+        if (a >= c) {
+          // a>=c>=b
+          mid = c
+          min = b
+        } else {
+          // c>a>=b
+          max = c
+          mid = a
+          min = b
+        }
+      }
+    }
+    else {
+      // a<b
+      max = b
+      if (a >= c) {
+        // c<=a<b
+        mid = a
+        min = c
+      }
+      else {
+        // b>a && c>a 
+        if (b >= c) {
+          // b>=c>a
+          mid = c
+          min = a
+        }
+        else {
+          // a<b<c
+          max = c
+          mid = b
+          min = a
+        }
+
+      }
+    }
+    console.log(min, mid, max)
+  </script>
+
+  <script type="x" id="narcissistic">
+    let n = +prompt()
+    let j = n
+    let digit
+    let sum = 0
+    do {
+      digit = n % 10
+      sum += digit ** 3
+      n = (n - digit) / 10
+    } while (n > 0)
+    if (sum == j) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+  </script>
+  <script type="x" id="narcissistics">
+    let digit
+    let sum = 0
+    let n
+    for (var i = 100; i <= 1000; i++) {
+      n = i
+      do {
+        digit = n % 10
+        sum += digit ** 3
+        n = (n - digit) / 10
+      } while (n > 0)
+      if (sum === i) {
+        console.log(i)
+      }
+      sum = 0
+    }
+  </script>
+
+
+  <script type="ok" id="prime">
+    let n = +prompt()
+    let sqrt_n = Math.sqrt(n)
+    let isPrime = true
+    for (i = 2; i <= sqrt_n; i++) {
+      isPrime = true
+      if (n % i == 0) {
+        isPrime = false
+        break
+      }
+    }
+    if (isPrime) {
+      console.log("YES")
+    } else {
+      console.log("NO")
+    }
+  </script>
+  <script type="ok" id="primes">
+    let isPrime
+    for (var i = 2; i <= 100; i++) {
+      for (var j = 2; j <= 10; j++) {
+        isPrime = true
+        if (i % j == 0) {
+          isPrime = false
+          break
+        }
+      }
+      if (i == 2) {
+        console.log(2)
+      }
+      if (isPrime) {
+        console.log(i)
+      }
+    }
   </script>
 </head>
 
