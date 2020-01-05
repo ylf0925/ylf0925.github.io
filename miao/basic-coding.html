@@ -1583,7 +1583,7 @@
       console.log("NO")
     }
   </script>
-  <script id="complete-numbers">
+  <script type="ok" id="complete-numbers">
     let sum = 0
     for (let i = 4; i <= 1000; i++) {
       let sqrt_i = Math.sqrt(i)
@@ -1595,8 +1595,8 @@
         } else if (i % j == 0 && j == sqrt_i) {
           sum += sqrt_i
         }
-        sum++
       }
+      sum++
       if (sum == i) {
         console.log(i)
       }
