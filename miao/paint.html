@@ -43,9 +43,9 @@
    */
 </script>
 <script>
-  let x, y, i, k
+
   // YOUR CODE GOES BELOW
-  for (i = 0; i <= 400; i++) {
+  for (let i = 0; i <= 400; i++) {
     dot(i, 150)
 
     if (i % 2 == 0) {
@@ -64,11 +64,23 @@
 
     }
   }
-  for (x = 0; x <= 400; x++) {
-    y = x
+
+
+  for (let x = 0; x <= 400; x++) {
+    let y = x
     dot(x, y)
+    let y_1 = (3 / 4) * x
+    dot(x, y_1)
   }
 
+  for (let y_2 = 220; y_2 <= 270; y_2++) {
+    dot(20, y_2)
+    dot(60, y_2)
+  }
+  for (let x_1 = 21; x_1 < 60; x_1++) {
+    dot(x_1, 220)
+    dot(x_1, 270)
+  }
 </script>
 
 </html>
