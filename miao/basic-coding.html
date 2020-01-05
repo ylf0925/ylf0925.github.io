@@ -1544,6 +1544,7 @@
     let j = n
     let sum = 0
     let count = 0
+    let w 
 
     do {
       digit = j % 10
@@ -1552,11 +1553,12 @@
     } while (j > 0)
 
     j = n
-
+    w = count
     for (let i = 1; i <= count; i++) {
       digit = j % 10
       j = (j - digit) / 10
-      sum += digit * Math.pow(10, i - 1)
+      sum += digit * Math.pow(10, w-1)
+      w--
     }
     if (sum == n) {
       console.log("YES")
@@ -1581,28 +1583,24 @@
       console.log("NO")
     }
   </script>
-  <script id="complete-numbers"> 
+  <script id="complete-numbers">
     let sum = 0
-    for (let i = 2; i <= 1000; i++) {
+    for (let i = 4; i <= 1000; i++) {
       let sqrt_i = Math.sqrt(i)
-      for (let j=2;j<=sqrt_i;j++){
-      if (i % j == 0) {
-        sum += i
-        sum += (i / j)
+      sum = 0
+      for (let j = 2; j <= sqrt_i; j++) {
+        if (i % j == 0 && j !== sqrt_i) {
+          sum += j
+          sum += (i / j)
+        } else if (i % j == 0 && j == sqrt_i) {
+          sum += sqrt_i
+        }
+        sum++
       }
-
+      if (sum == i) {
+        console.log(i)
       }
-
-
-
     }
-    sum++
-    if (sum == n) {
-      console.log("YES")
-    } else {
-      console.log("NO")
-    }
-
   </script>
   <script type="ok" id="prime">
     let n = +prompt()
