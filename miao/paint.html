@@ -134,7 +134,7 @@
 
   //Sine
   for (let x_20 = 0; x_20 <= 400; x_20++) {
-    let y_20 = 150 + (-50 * Math.sin(x_20 / (10 * Math.PI)))
+    let y_20 = 150 + (-50 * Math.sin(x_20 * Math.PI / 100))
     dot(x_20, y_20)
   }
 
