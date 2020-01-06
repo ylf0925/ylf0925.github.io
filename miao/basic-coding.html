@@ -1414,31 +1414,31 @@
     }
     console.log(snippet)
   </script>
-  <script type="ok" id="sqrt">
+  <script xtype="ok" id="sqrt">
     // half-interval search algorithm
-    /*   let n = +prompt()
-      let up = n
-      let mid
-      let down = 0
-      while (up - down > 0.0000000000001) {
-        mid = (up + down) / 2
-        if (mid ** 2 > n) {
-          up = mid
-        } else if (mid ** 2 < n) {
-          down = mid
-        } else {
-          console.log(mid)
-        }
+    let n = +prompt()
+    let up = n
+    let mid
+    let down = 0
+    while (up - down > 0.0000000000001) {
+      mid = (up + down) / 2
+      if (mid ** 2 > n) {
+        up = mid
+      } else if (mid ** 2 < n) {
+        down = mid
+      } else {
+        console.log(mid)
       }
-      console.log(mid) */
+    }
+    console.log(mid)
 
 
     // Newton Method
-    let n = +prompt()
+    /* let n = +prompt()
     for (let i = 0; i < 10; i++) {
       n = n - (n ** 2 - 2) / (2 * n)
     }
-    console.log(n)
+    console.log(n) */
 
     // Taylor expension 前两项展开，只取线性项，其他截断
   </script>
