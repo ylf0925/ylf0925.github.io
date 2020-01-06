@@ -1299,7 +1299,6 @@
     }
     console.log(content)
   </script>
-
   <script type="ok" id="ch0105/43">
     // 加密算法基于质因数分解 
     let n = +prompt()
@@ -1439,7 +1438,7 @@
     for (let i = 0; i < 10; i++) {
       a = a - (a ** 2 - n) / (2 * a)
     }
-    console.log(a)
+    console.log(a.toFixed(3))
 
 
     // Taylor expension 前两项展开，只取线性项，其他截断
@@ -1650,7 +1649,7 @@
       }
     }
   </script>
-  <script xtype="ok" id="lcf&lcm">
+  <script type="ok" id="lcf&lcm">
     /*   let lcf = function (m, n) {
          let reservedM = m
          let reservedN = n
@@ -1681,8 +1680,7 @@
     }
     let w = m || n
     let b = reservedM * reservedN / w
-    console.log(w, b)
-
+    console.log(b, w)
   </script>
   <script type="ok" id="itob">
     /*    let itob = function (remain) {
@@ -1714,6 +1712,8 @@
     let n = + prompt()
     if (n < 0) {
       w = -n
+    } else {
+      w = n
     }
     remain = w
     do {
