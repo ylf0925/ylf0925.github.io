@@ -29,6 +29,12 @@
     ctx.fillStyle = color
     ctx.fillRect(x, y, 1, 1)
   }
+  function line(x1, y1, x2, y2) {
+    ctx.strokeStyle = 'black'
+    ctx.moveTo(x1, y1)
+    ctx.lineTo(x2, y2)
+    ctx.stroke()
+  }
   /**
    * YOUR TASK
 画图的题：
@@ -67,7 +73,6 @@
       dot(i, 200)
       dot(i + 1, 200)
       dot(i + 2, 200)
-
     }
   }
 
@@ -141,7 +146,6 @@
   //  Slice rectangle of RGB space cube
   for (let x_200 = 250; x_200 <= 350; x_200++) {
     for (let y_200 = 25; y_200 <= 125; y_200++) {
-      // let co = rgba(255, Math.round(((x_200 - 250) / 100) * 255), Math.round((y_200 - 25) / 100) * 255)
       let green = Math.round(((x_200 - 250) / 100) * 255)
       let blue = Math.round(((y_200 - 25) / 100) * 255)
       dot(x_200, y_200, "rgba" + "(" + "255" + "," + green.toString() + "," + blue.toString() + ")")
