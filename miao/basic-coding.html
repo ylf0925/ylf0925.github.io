@@ -1416,29 +1416,31 @@
   </script>
   <script xtype="ok" id="sqrt">
     // half-interval search algorithm
-    let n = +prompt()
-    let up = n
-    let mid
-    let down = 0
-    while (up - down > 0.0000000000001) {
-      mid = (up + down) / 2
-      if (mid ** 2 > n) {
-        up = mid
-      } else if (mid ** 2 < n) {
-        down = mid
-      } else {
-        console.log(mid)
-      }
-    }
-    console.log(mid)
+    /*  let n = +prompt()
+     let up = n
+     let mid
+     let down = 0
+     while (up - down > 0.0000000000001) {
+       mid = (up + down) / 2
+       if (mid ** 2 > n) {
+         up = mid
+       } else if (mid ** 2 < n) {
+         down = mid
+       } else {
+         console.log(mid)
+       }
+     }
+     console.log(mid) */
 
 
     // Newton Method
-    /* let n = +prompt()
+    let n = +prompt()
+    a = n
     for (let i = 0; i < 10; i++) {
-      n = n - (n ** 2 - 2) / (2 * n)
+      a = a - (a ** 2 - n) / (2 * a)
     }
-    console.log(n) */
+    console.log(n)
+
 
     // Taylor expension 前两项展开，只取线性项，其他截断
   </script>
@@ -1648,34 +1650,74 @@
       }
     }
   </script>
-  <script type="ok" id="lcf&lcm">
-    let lcf = function (m, n) {
-      let reservedM = m
-      let reservedN = n
-      while (m && n) {
-        if (m < n) {
-          let t = n
-          n = m
-          m = t
-        }
-        m = m % n
+  <script xtype="ok" id="lcf&lcm">
+    /*   let lcf = function (m, n) {
+         let reservedM = m
+         let reservedN = n
+         while (m && n) {
+           if (m < n) {
+             let t = n
+             n = m
+             m = t
+           }
+           m = m % n
+         }
+         let w = m || n
+         let b = reservedM * reservedN / w
+         console.log(w, b)
+       }  */
+
+    let reservedM = +prompt()
+    let reservedN = +prompt()
+    m = reservedM
+    n = reservedN
+    while (m && n) {
+      if (m < n) {
+        let t = n
+        n = m
+        m = t
       }
-      let w = m || n
-      let b = reservedM * reservedN / w
-      console.log(w, b)
+      m = m % n
     }
+    let w = m || n
+    let b = reservedM * reservedN / w
+    console.log(w, b)
+
   </script>
-  <script type="ok" id="itob">
-    let itob = function (remain) {
-      let result = ""
-      do {
-        let digit = remain % 10
-        result = digitToChar(digit) + result
-        remain = (remain - digit) / 10
-      } while (remain > 0)
-      return result
-    }
-    function digitToChar(n) {
+  <script xtype="ok" id="itob">
+    /*    let itob = function (remain) {
+         let result = ""
+         do {
+           let digit = remain % 10
+           result = digitToChar(digit) + result
+           remain = (remain - digit) / 10
+         } while (remain > 0)
+         return result
+       }
+       function digitToChar(n) {
+         switch (n) {
+           case 0: return "0"
+           case 1: return "1"
+           case 2: return "2"
+           case 3: return "3"
+           case 4: return "4"
+           case 5: return "5"
+           case 6: return "6"
+           case 7: return "7"
+           case 8: return "8"
+           case 9: return "9"
+         }
+       }
+    */
+    let result = ""
+    let n = + prompt()
+    remain = n
+    do {
+      let digit = remain % 10
+      result = CharTodigit(digit) + result
+      remain = (remain - digit) / 10
+    } while (remain > 0)
+    function CharTodigit(n) {
       switch (n) {
         case 0: return "0"
         case 1: return "1"
@@ -1689,7 +1731,7 @@
         case 9: return "9"
       }
     }
-
+    console.log(result)
   </script>
 
 
