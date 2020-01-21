@@ -537,8 +537,29 @@ var removeElement = function (nums, val) {
   return j
 }
 //49
+//输入数组每一项排序后的结果是一样的，用该结果作为ojb的key
 var groupAnagrams = function (strs) {
+  let map = {}
+  let l = strs.length
+  for (let i = 0; i < l; i++) {
+    let top = strs[i]
+    let key = getKey(top)
+    if (key in map) {
+      map[key].push(top)
+    } else {
+      map[key] = [top]
+    }
+  }
+  let result = []
+  for (key in map) {
+    result.push(map[key])
+  }
+  return result
 
+  function getKey(strs) {//传入字符串，返回排序后的字符串
+    var chars = strs.split('')//将传入的字符串分割，返回一个数组
+    return chars.sort().join('')//将数组排序（alphabaticallly）之后的结果，在拼接为字符串
+  }
 };
 // 50
 // 二进制法 
@@ -739,11 +760,48 @@ var searchInsert = function (nums, target) {
   }
 }
 
+var searchInsert = function (nums, target) {
+  let hiIdx = nums.length - 1
+  let loIdx = 0
+  let midIdx
+  while () {
+    midIdx = parseInt((hiIdx + loIdx) / 2)
+
+  }
+};
+
 //14
 var longestCommonPrefix = function (strs) {
+  let map = {}
+  let result = ""
+  let flag = false
+  if (strs.length == 0) {
+    return ''
+  }
+  for (let i = 0; i < strs[0].length; i++) {
+    map[strs[0][i]] = 1
+  }
 
-
-
+  for (let i = 1; i < strs.length; i++) {
+    for (let j = 0; j < strs[i].length; j++) {
+      if (strs[i][j] in map) {
+        map[strs[i][j]]++
+      } else {
+        break
+      }
+    }
+  }
+  for (var key in map) {
+    if (map[key] == strs.length) {
+      result += key
+      flag = true
+    }
+  }
+  if (flag) {
+    return result
+  } else {
+    return ''
+  }
 };
 
 
@@ -757,6 +815,23 @@ var minimumTotal = function (triangle) {
   }
   return findMin(0, 0)
 };
+
+[
+  [1]
+  [4, 5]
+  [5, 1, 6]
+  [8, 6, 342, 1]
+]
+
+var minimumTotal = function (triangle) {
+  for (let i = triangle.length - 2; i >= 0; i--) {
+    for (let j = 0; j < triangle[i].length; j++) {
+      triangle[i][j] = Math.min(triangle[i + 1][j], triangle[i + 1][j + 1]) + triangle[i][j]
+    }
+  }
+  return triangle[0][0]
+}
+
 
 // 709 
 ASCII
@@ -1036,7 +1111,31 @@ var addStrings = function (num1, num2) {
     return sum
   }
 };
+//242
 
+var isAnagram = function (s, t) {
+  let map = {}
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] in map) {
+      map[s[i]]++
+    } else {
+      map[s[i]] = 1
+    }
+  }
+  for (let i = 0; i < t.length; i++) {
+    if (t[i] in map) {
+      map[t[i]]--
+    } else {
+      return false
+    }
+  }
+  for (key in map) {
+    if (map[key] !== 0) {
+      return false
+    }
+  }
+  return true
+};
 var addStrings = function (num1, num2) {
   var i = num1.length - 1
   var j = num2.length - 1
@@ -1096,7 +1195,20 @@ var containsNearbyDuplicate = function (nums, k) {
   }
   return min <= k
 }
-
+//62 
+/* 假如一个5x3的格子，那么一共存在>>>>vv步， */
+var uniquePaths = function (m, n) {
+  let w = m + n - 2
+  let a = w
+  let b = n
+  while (n > 1) {
+    a *= w - 1
+    b *= n - 1
+    w--
+    n--
+  }
+  return a / b
+};
 //1089
 var duplicateZeros = function (arr) {
   let i = 0
@@ -1111,7 +1223,10 @@ var duplicateZeros = function (arr) {
     i = i + 2
   }
 };
+//74
+var searchMatrix = function (matrix, target) {
 
+};
 //171
 var titleToNumber = function (s) {
   let l = s.length
@@ -1120,6 +1235,79 @@ var titleToNumber = function (s) {
   for (let i = l - 1; i >= 0; i--) {
     result += Number((s[i].charCodeAt() - 64)) * Math.pow(26, k)
     k++
+  }
+  return result
+};
+
+
+//290
+var wordPattern = function (pattern, str) {
+  str = str.split(' ')//已经是数组了
+  if (pattern.length !== str.length) {
+    return false
+  }
+
+  let map = {}
+  for (let i = 0; i < pattern.length; i++) {
+    if (pattern[i] in map) {
+      if (map[pattern[i]] !== str[i]) {
+        return false
+      }
+    } else {
+      map[pattern[i]] = str[i]
+    }
+  }
+
+  map = {}
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] in map) {
+      if (map[str[i]] !== pattern[i]) {
+        return false
+      }
+    } else {
+      map[str[i]] = pattern[i]
+    }
+  }
+  return true
+}
+//189
+var rotate = function (nums, k) {
+  k = k % nums.length
+  while (k > 0) {
+    var w = nums.pop()
+    nums.unshift(w)
+    k--
+  }
+};
+//122
+var maxProfit = function (prices) {
+  let i = 0
+  let j = 1
+  let profit = 0
+  for (; j < prices.length; j++) {
+    while (prices[i] >= prices[j] && i < j) {
+      i++
+    }
+    if (prices[i] < prices[j]) {
+      profit += prices[j] - prices[i]
+      i = j
+    }
+  }
+  return profit
+};
+//389
+var findTheDifference = function (s, t) {
+  result = ''
+  let l = Math.max(s.length, t.length)
+  for (let i = 0; i < l; i++) {
+    if (s[i] !== t[i]) {
+      if (s.length > t.length) {
+        result += s[i]
+      }
+      if (t.length > s.length) {
+        result += t[i]
+      }
+    }
   }
   return result
 };
@@ -1152,7 +1340,19 @@ var reverse = function (x) {
     }
   }
 };
-
+//905
+var sortArrayByParity = function (A) {
+  let i = 0
+  for (let j = 0; j < A.length; j++) {
+    if (A[j] % 2 == 0) {
+      tmp = A[i]
+      A[i] = A[j]
+      A[j] = tmp
+      i++
+    }
+  }
+  return A
+};
 
 //453 
 var minMoves = function (nums) {
@@ -1188,9 +1388,99 @@ var minMoves = function (nums) {
   }
   return sum - nums.length * min
 };
+
+//14
+var longestCommonPrefix = function (strs) {
+  let map = {}
+  let result = ""
+  let flag = false
+  for (let i = 0; i < strs[0].length; i++) {
+    map[strs[0][i]] = 1
+  }
+
+  for (let i = 1; i < strs.length; i++) {
+    for (let j = 0; j < strs[i].length; j++) {
+      if (strs[i][j] in map) {
+        map[strs[i][j]]++
+      } else {
+        break
+      }
+    }
+  }
+  for (var key in map) {
+    if (map[key] == strs.length) {
+      result += key
+      flag = true
+    }
+  }
+  if (flag) {
+    return result
+  } else {
+    return ''
+  }
+};
+
+
+
+//441
+var arrangeCoins = function (n) {
+  let i
+  for (i = 1; ; i++) {
+    let s = (1 + i) * i / 2
+    if (s >= n) {
+      return i
+      break
+    }
+  }
+
+};
 //462
 var minMoves2 = function (nums) {//中位数
+  let map = {}
+  let mid
+  for (let i = 0; i < nums.length; i++) {
+    let cur = nums[i]
+    if (cur in map) {
+      nums.splice(i, 1)
+    } else {
+      map[cur] = 1
+    }
+  }
+  if (nums.length % 2 !== 0) {
+    mid = nums[parseInt(nums.length / 2) + 1]
+  } else {
+    mid = nums[parseInt(nums.length / 2)]
+  }
+  return mid
+};
 
+var minMoves2 = function (nums) {
+  let j = 0
+  let tmp
+  let i
+  let isSorted
+  while (j <= nums.length - 2) {
+    isSorted = true
+    for (i = 0; i <= nums.length - 2 - j; i++) {
+      if (nums[i] > nums[i + 1]) {
+        tmp = nums[i]
+        nums[i] = nums[i + 1]
+        nums[i + 1] = tmp
+        isSorted = false
+      }
+    }
+    if (isSorted) {
+      break
+    }
+    j++
+  }
+
+  mid = nums[parseInt(nums.length / 2)]
+  let moves = 0
+  for (let i = 0; i < nums.length; i++) {
+    moves += Math.abs(nums[i] - mid)
+  }
+  return moves
 };
 //43
 var multiply = function (num1, num2) {
@@ -1246,6 +1536,57 @@ var twoSum = function (numbers, target) {
     j = i + 1
   }
 };
+
+//Map法，空间(map)换时间(减少一个for循环)
+var twoSum = function (numbers, target) {
+  let map = {}
+  let l = numbers.length
+  for (let i = 0; i < l; i++) {
+    let cur = numbers[i]
+    let need = target - cur
+    if (need in map) {
+      return [map[need] + 1, i + 1]
+    } else {//如果需要的数不在map里，就把现在指向的数的idx存入对应的map中的value
+      map[cur] = i
+    }
+  }
+};
+
+//双指针反向扫描法
+//利用了数组sorted了的条件！
+var twoSum = function (numbers, target) {
+  let i = 0
+  let j = numbers.length - 1
+  while ((numbers[i] + numbers[j]) !== target) {
+    if (numbers[i] + numbers[j] > target) {
+      j--
+    } else if (numbers[i] + numbers[j] < target) {
+      i++
+    } else {
+      return [i + 1, j + 1]
+    }
+  }
+  return [i + 1, j + 1]
+}
+//11
+var maxArea = function (height) {
+  let i = 0
+  let j = height.length - 1
+  let max = -Infinity
+  let area
+  while (j - i >= 1) {
+    area = (Math.min(height[j], height[i])) * (j - i)
+    if (area > max) {
+      max = area
+    }
+    if (height[i] > height[j]) {
+      j--
+    } else {
+      i++
+    }
+  }
+  return max
+};
 //168
 var convertToTitle = function (n) {
   let result = ""
@@ -1263,7 +1604,23 @@ var convertToTitle = function (n) {
   }
   return result
 };
-
+//119
+var getRow = function (rowIndex) {
+  let map = {}
+  map[0] = [1]
+  map[1] = [1, 1]
+  let j = 2
+  if (rowIndex >= 2) {
+    while (j <= rowIndex) {
+      map[j] = Array(j + 1).fill(1)
+      for (let i = 1; i <= j - 1; i++) {
+        map[j][i] = map[j - 1][i - 1] + map[j - 1][i]
+      }
+      j++
+    }
+  }
+  return map[rowIndex]
+};
 //387
 var firstUniqChar = function (s) {
   let l = s.length
@@ -1276,7 +1633,7 @@ var firstUniqChar = function (s) {
       map[c] = 1
     }
   }
-  for (var i = 0; i < s.length; i++) {//第二个循环遍历字符串中的相对应obj的key，如果对应的value为1，则返回
+  for (var i = 0; i < s.length; i++) {//第二个循环遍历输入字符串的每一个字母，如果出出现次数为1，返回idx
     var c = s[i]
     if (map[c] == 1) {
       return i
@@ -1286,18 +1643,58 @@ var firstUniqChar = function (s) {
 }
 
 
-// 随堂练习
-/*
-function findIndex(ary, target) {
-  for (var i = 0; i < ary.length; i++) {
-    if (ary[i ] == target) {
-      return i
-    } else {
-      return -1
+function listToArray(head) {
+  let ary = []
+  if (head == null) {
+    return ary
+  }
+  while (head) {
+    ary.push(head[val])
+    head = head[next]
+  }
+  return ary
+}
+
+
+function listToArray2(head) {
+  let ary = []
+  if (head == null) {
+    return ary
+  }
+  var tail = head.next
+  var tailAry = listToArray2(tail)
+  return [head.val].concat(tailAry)
+}
+
+
+{
+  a: 1, next: {
+    b: 2, next: {
+      c: 3, next: {
+        d: 4, next: null
+      }
     }
   }
 }
- */
+
+function append(val, head) {
+  while (head.next) {
+    head = head.next
+  }
+  head.next = {
+  }
+}
+function rand() {
+  var a = r()
+  var b = r()
+  if (a == 0 && b == 1) {
+    return 1
+  }
+  if (a == 1 && b == 0) {
+    return 0
+  }
+  return rand()
+}
 
 
 /* function fib(n){
@@ -1311,152 +1708,147 @@ function findIndex(ary, target) {
 
 
 
-function argsToArray(args) {
+//排序专题
 
-}
-
-
-
-
-//Object 
-let journal = []
-function addEntry(events, squirrel) {
-  journal.push({ events, squirrel })
-}
-addEntry(["work", "touched tree", "pizza", "running", 'televsion'], false)
-
-// calculate phi
-function phi(table) {
-  return ((table[3] * table[0] - table[2] * table[1]) / (Math.sqrt((table[2] + table[3]) * (table[0] + table[1]) * (table[1] + table[3]) * (table[0] + table[2]))))
-}
-
-
-function tableFor(event, journal) {
-  let table = [0, 0, 0, 0]
-  for (let i = 0; i < journal.length; i++) {
-    let entry = journal[i], index = 0
-    if (entry.events.includes(event)) index += 1
-    if (entry["squirrel"]) index += 2
-    table[index]++
+//归并排序
+function mergeSort(ary) {
+  if (ary.length == 0 || ary.length == 1) {
+    return ary
   }
-  return table;
+
+  var mid = ary.length >> 1
+  var left = ary.slice(0, mid)
+  var right = ary.slice(mid, ary.length)
+
+  left = mergeSort(left)
+  right = mergeSort(right)
+
+  var i = 0
+  var j = 0
+  var k = 0
+
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      ary[k] = left[i]
+      i++
+    } else {
+      ary[k] = right[j]
+      j++
+    }
+    k++
+  }
+
+  while (i < left.length) {
+    ary[k] = left[i]
+    i++
+    k++
+  }
+
+  while (j < right.length) {
+    ary[k] = right[j]
+    j++
+    k++
+  }
+  return ary
+}
+//快排
+function quickSort() {
+  var randIdx = Math.random() * ary.length | 0
+  var
 }
 
-function journalEvents(journal) {
-
-  let events = []
-  for (let entry of journal) {
-    for (let event of entry.events) {
-      if (!events.includes(event)) {
-        events.push(event)
-      }
+function quickSort(A) {
+  var pivotIdx = Math.floor(ary.length * Math.random())
+  let i = -1
+  let j = 0
+  let tmp
+  for (; j < A.length - 1; j++) {
+    if (A[j] < A[pivotIdx]) {
+      i++
+      tmp = A[i]
+      A[i] = A[j]
+      A[j] = tmp
     }
   }
-  return events
 }
 
-
-var JOURNAL = [
-  { "events": ["carrot", "exercise", "weekend"], "squirrel": false },
-  { "events": ["bread", "pudding", "brushed teeth", "weekend", "touched tree"], "squirrel": false },
-  { "events": ["carrot", "nachos", "brushed teeth", "cycling", "weekend"], "squirrel": false },
-  { "events": ["brussel sprouts", "ice cream", "brushed teeth", "computer", "weekend"], "squirrel": false },
-  { "events": ["potatoes", "candy", "brushed teeth", "exercise", "weekend", "dentist"], "squirrel": false },
-  { "events": ["brussel sprouts", "pudding", "brushed teeth", "running", "weekend"], "squirrel": false },
-  { "events": ["pizza", "brushed teeth", "computer", "work", "touched tree"], "squirrel": false },
-  { "events": ["bread", "beer", "brushed teeth", "cycling", "work"], "squirrel": false },
-  { "events": ["cauliflower", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["pizza", "brushed teeth", "cycling", "work"], "squirrel": false },
-  { "events": ["lasagna", "nachos", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["brushed teeth", "weekend", "touched tree"], "squirrel": false },
-  { "events": ["lettuce", "brushed teeth", "television", "weekend"], "squirrel": false },
-  { "events": ["spaghetti", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["brushed teeth", "computer", "work"], "squirrel": false },
-  { "events": ["lettuce", "nachos", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["carrot", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["brushed teeth", "work"], "squirrel": false },
-  { "events": ["cauliflower", "reading", "weekend"], "squirrel": false },
-  { "events": ["bread", "brushed teeth", "weekend"], "squirrel": false },
-  { "events": ["lasagna", "brushed teeth", "exercise", "work"], "squirrel": false },
-  { "events": ["spaghetti", "brushed teeth", "reading", "work"], "squirrel": false },
-  { "events": ["carrot", "ice cream", "brushed teeth", "television", "work"], "squirrel": false },
-  { "events": ["spaghetti", "nachos", "work"], "squirrel": false },
-  { "events": ["cauliflower", "ice cream", "brushed teeth", "cycling", "work"], "squirrel": false },
-  { "events": ["spaghetti", "peanuts", "computer", "weekend"], "squirrel": true },
-  { "events": ["potatoes", "ice cream", "brushed teeth", "computer", "weekend"], "squirrel": false },
-  { "events": ["potatoes", "ice cream", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["peanuts", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["potatoes", "exercise", "work"], "squirrel": false },
-  { "events": ["pizza", "ice cream", "computer", "work"], "squirrel": false },
-  { "events": ["lasagna", "ice cream", "work"], "squirrel": false },
-  { "events": ["cauliflower", "candy", "reading", "weekend"], "squirrel": false },
-  { "events": ["lasagna", "nachos", "brushed teeth", "running", "weekend"], "squirrel": false },
-  { "events": ["potatoes", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["carrot", "work"], "squirrel": false },
-  { "events": ["pizza", "beer", "work", "dentist"], "squirrel": false },
-  { "events": ["lasagna", "pudding", "cycling", "work"], "squirrel": false },
-  { "events": ["spaghetti", "brushed teeth", "reading", "work"], "squirrel": false },
-  { "events": ["spaghetti", "pudding", "television", "weekend"], "squirrel": false },
-  { "events": ["bread", "brushed teeth", "exercise", "weekend"], "squirrel": false },
-  { "events": ["lasagna", "peanuts", "work"], "squirrel": true },
-  { "events": ["pizza", "work"], "squirrel": false },
-  { "events": ["potatoes", "exercise", "work"], "squirrel": false },
-  { "events": ["brushed teeth", "exercise", "work"], "squirrel": false },
-  { "events": ["spaghetti", "brushed teeth", "television", "work"], "squirrel": false },
-  { "events": ["pizza", "cycling", "weekend"], "squirrel": false },
-  { "events": ["carrot", "brushed teeth", "weekend"], "squirrel": false },
-  { "events": ["carrot", "beer", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["pizza", "peanuts", "candy", "work"], "squirrel": true },
-  { "events": ["carrot", "peanuts", "brushed teeth", "reading", "work"], "squirrel": false },
-  { "events": ["potatoes", "peanuts", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["carrot", "nachos", "brushed teeth", "exercise", "work"], "squirrel": false },
-  { "events": ["pizza", "peanuts", "brushed teeth", "television", "weekend"], "squirrel": false },
-  { "events": ["lasagna", "brushed teeth", "cycling", "weekend"], "squirrel": false },
-  { "events": ["cauliflower", "peanuts", "brushed teeth", "computer", "work", "touched tree"], "squirrel": false },
-  { "events": ["lettuce", "brushed teeth", "television", "work"], "squirrel": false },
-  { "events": ["potatoes", "brushed teeth", "computer", "work"], "squirrel": false },
-  { "events": ["bread", "candy", "work"], "squirrel": false },
-  { "events": ["potatoes", "nachos", "work"], "squirrel": false },
-  { "events": ["carrot", "pudding", "brushed teeth", "weekend"], "squirrel": false },
-  { "events": ["carrot", "brushed teeth", "exercise", "weekend", "touched tree"], "squirrel": false },
-  { "events": ["brussel sprouts", "running", "work"], "squirrel": false },
-  { "events": ["brushed teeth", "work"], "squirrel": false },
-  { "events": ["lettuce", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["candy", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["brussel sprouts", "brushed teeth", "computer", "work"], "squirrel": false },
-  { "events": ["bread", "brushed teeth", "weekend"], "squirrel": false },
-  { "events": ["cauliflower", "brushed teeth", "weekend"], "squirrel": false },
-  { "events": ["spaghetti", "candy", "television", "work", "touched tree"], "squirrel": false },
-  { "events": ["carrot", "pudding", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["lettuce", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["carrot", "ice cream", "brushed teeth", "cycling", "work"], "squirrel": false },
-  { "events": ["pizza", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["spaghetti", "peanuts", "exercise", "weekend"], "squirrel": true },
-  { "events": ["bread", "beer", "computer", "weekend", "touched tree"], "squirrel": false },
-  { "events": ["brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["lettuce", "peanuts", "brushed teeth", "work", "touched tree"], "squirrel": false },
-  { "events": ["lasagna", "brushed teeth", "television", "work"], "squirrel": false },
-  { "events": ["cauliflower", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["carrot", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["carrot", "reading", "weekend"], "squirrel": false },
-  { "events": ["carrot", "peanuts", "reading", "weekend"], "squirrel": true },
-  { "events": ["potatoes", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["lasagna", "ice cream", "work", "touched tree"], "squirrel": false },
-  { "events": ["cauliflower", "peanuts", "brushed teeth", "cycling", "work"], "squirrel": false },
-  { "events": ["pizza", "brushed teeth", "running", "work"], "squirrel": false },
-  { "events": ["lettuce", "brushed teeth", "work"], "squirrel": false },
-  { "events": ["bread", "brushed teeth", "television", "weekend"], "squirrel": false },
-  { "events": ["cauliflower", "peanuts", "brushed teeth", "weekend"], "squirrel": false }
-];
+//冒泡
+//插入
+//计数
+//
 
 
-for (let event of journalEvents(JOURNAL)) {
-  console.log(event + ":", phi(tableFor(event, JOURNAL)))
+
+//交换ary数组的第i和j项
+function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
+  if (end - start < 1) {
+    return ary
+  }
+
+  var pivotIdx = Math.floor(Math.random() * (end - start + 1)) + start
+  var pivot = ary[pivotIdx]
+  swap(ary, pivotIdx, end)
+  var i = start
+  for (var j = start; j < end; j++) {
+    if (ary[j] < pivot) {
+      swap(ary, i++, j)
+    }
+  }
+  swap(ary, i, end)
+  qSort(ary, start, i - 1)
+  qSort(ary, i + 1, end)
+  return ary
+  function swap(ary, i, j) {
+    var t = ary[i]
+    ary[i] = ary[j]
+    ary[j] = t
+    return ary
+  }
 }
 
 
 
-//ARRAY LOOP
-for (let entry of JOURNAL) {
-  console.log(entry.events.length, entry.events)
-}
+
+
+//merge sort 自己写
+var sortArray = function (nums) {
+
+  if (nums.length == 0 || nums.length == 1) {
+    return nums
+  }
+
+  let mid = nums.length >> 1
+  let left = nums.slice(0, mid)
+  let right = nums.slice(mid, nums.length)
+
+  left = sortArray(left)
+  right = sortArray(right)
+
+  let i = 0
+  let j = 0
+  let k = 0
+
+  while (i < left.length && j < right.length) {
+    if (left[i] <= right[j]) {
+      nums[k] = left[i]
+      i++
+    } else {
+      nums[k] = right[j]
+      j++
+    }
+    k++
+  }
+
+  while (i < left.length) {
+    nums[k] = left[i]
+    i++
+    k++
+  }
+
+  while (j < right.length) {
+    nums[k] = right[j]
+    j++
+    k++
+  }
+  return nums
+};
