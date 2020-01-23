@@ -248,7 +248,19 @@ var addDigits = function (num) {
     return num % 9
   }
 }
-
+//58 
+var lengthOfLastWord = function (s) {
+  let l = s.length - 1
+  let count = 0
+  for (let i = l; i >= 0; i--) {
+    if (s[i] !== '') {
+      count++
+    } else if (s[i] === '') {
+      break
+    }
+  }
+  return count
+};
 // 412
 var fizzBuzz = function (n) {
   var ary = []
@@ -1420,6 +1432,33 @@ var longestCommonPrefix = function (strs) {
   }
 };
 
+var longestCommonPrefix = function (strs) {
+  if (strs.length == 0) {
+    return ""
+  } else if (strs.length == 1) {
+    return strs[0]
+  }
+  else {
+    let j = 0
+    let i = 0
+    let prefix = ""
+    while (i <= strs[0].length) {
+      j = 0 //数组中第一项 
+      prefix += strs[j][i]
+      for (; j < strs.length; j++) {
+        if (prefix == "") {
+          return ""
+        }
+        if (prefix[i] !== strs[j][i]) {
+          prefix = prefix.substring(0, i)
+          return prefix
+        }
+      }
+      i++
+    }
+    return strs[0]
+  }
+};
 
 
 //441
