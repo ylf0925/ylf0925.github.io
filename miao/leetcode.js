@@ -2014,6 +2014,19 @@ var thirdMax = function (nums) {
 
 
 
+//不均匀硬币，生成概率为0.5的
+
+function rand() {
+  var a = r()
+  var b = r()
+  if (a == 0 && b == 1) {
+    return 1
+  }
+  if (a == 1 && b == 0) {
+    return 0
+  }
+  return rand()
+}
 
 
 
@@ -2262,7 +2275,7 @@ var reverseList = function (head) {
 };
 
 //206. Reverse Linked List
-//(1)Recustion
+//(1)recusion
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2397,13 +2410,7 @@ var mergeTwoLists = function (l1, l2) {
 var mergeTwoLists = function (l1, l2) {
   var dummy = {}
   var l = dummy
-  if (l1.val > l2.val) {
-    l.next = new ListNode(l2.val)
-    l2 = l2.next
-  } else {
-    l.next = new ListNode(l1.val)
-    l1 = l1.next
-  }
+
   while (l1 && l2) {
     if (l1.val > l2.val) {
       l.next = l2
@@ -2416,10 +2423,42 @@ var mergeTwoLists = function (l1, l2) {
   }
 
   l.next = l1 || l2
-  return l
+  return dummy.next
 };
+
+
 debugger; mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } } }, { val: 1, next: { val: 3, next: { val: 4, next: null } } })
-//(3) recursively 
+//(3) Recursively 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;ER
+ *     this.next = null;
+ * }
+ */
+
+/** 
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+
+var mergeTwoLists = function (l1, l2) {
+  if (!l1 || !l2) {//l1及l2中有一个为空，返回不是空的那个
+    return l1 || l2
+  }
+
+  if (l1.val < l2.val) {
+    l1.next = mergeTwoLists(l1.next, l2)
+    return l1
+  } else {
+    l2.next = mergeTwoLists(l1, l2.next)
+    return l2
+  }
+};
+
+
+//24. Swap Nodes in Pairs
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2428,45 +2467,12 @@ debugger; mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } }
  * }
  */
 /**
- * @param {ListNode} l1
- * @param {ListNode} l2
+ * @param {ListNode} head
  * @return {ListNode}
  */
-var mergeTwoLists = function (l1, l2) {
-  var a = l1
-  var b = l2
-  var dummy = new ListNode(0)
-  var t = dummy
-  while (a && b) {
-    if (a.val < b.val) {
-      t.next = a
-      a = a.next
-    } else {
-      t.next = b
-      b = b.next
-    }
-    t = t.next
-  }
-  t.next = a || b
-  return dummy.next
+var swapPairs = function (head) {
+
 };
-//不均匀硬币，生成概率为0.5的
-
-function rand() {
-  var a = r()
-  var b = r()
-  if (a == 0 && b == 1) {
-    return 1
-  }
-  if (a == 1 && b == 0) {
-    return 0
-  }
-  return rand()
-}
-
-
-
-
 
 
 //排序专题
