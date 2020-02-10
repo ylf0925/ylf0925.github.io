@@ -839,49 +839,6 @@ var longestCommonPrefix = function (strs) {
     return ''
   }
 };
-//63. Unique Paths II
-// 1）DP
-/**
- * @param {number[][]} obstacleGrid
- * @return {number}
- */
-var uniquePathsWithObstacles = function (obstacleGrid) {
-  let row = obstacleGrid.length
-  let col = obstacleGrid[0].length
-
-  if (obstacleGrid[0][0] == 1) {
-    return 0
-  }
-
-  obstacleGrid[0][0] = 1
-
-  for (let i = 1; i < row; i++) {
-    if (obstacleGrid[i][0] == 0 && obstacleGrid[i - 1][0] == 1) {
-      obstacleGrid[i][0] = 1
-    } else {
-      obstacleGrid[i][0] = 0
-    }
-  }
-
-  for (let i = 1; i < col; i++) {
-    if (obstacleGrid[0][i] == 0 && obstacleGrid[0][i - 1] == 1) {
-      obstacleGrid[0][i] = 1
-    } else {
-      obstacleGrid[0][i] = 0
-    }
-  }
-
-  for (let i = 1; i < row; i++) {
-    for (let j = 1; j < col; j++) {
-      if (obstacleGrid[i][j] == 0) {
-        obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
-      } else {
-        obstacleGrid[i][j] = 0
-      }
-    }
-  }
-  return obstacleGrid[row - 1][col - 1]
-};
 
 //704. Binary Search
 var search = function (nums, target) {
@@ -1264,21 +1221,25 @@ var isAnagram = function (s, t) {
  */
 var searchMatrix = function (matrix, target) {//按对角线二分查找
   let row = matrix.length
-  let col = matrix[0].length
-  if (matrix[0][0] < target || matrix[row - 1][col - 1] > target || row == 0) {//exceptions
+  if (row == 0) {
     return false
   }
-
-  //target在matrix范围之内
-
+  let col = matrix[0].length
+  if (col == 0) {
+    return false
+  }
+  if (matrix[0][0] > target || matrix[row - 1][col - 1] < target) {
+    return false
+  }
+  //exceptions excluded
+  //target in range 
   let i = 0//row pivot
   let j = 0//col pivot 
-
   let upIdx = Math.min(row, col) - 1
   let downIdx = 0
   let diaIdx
   while (upIdx - downIdx > 1) {
-    diaIdx = (downIdx + upIdx) >> 10
+    diaIdx = (downIdx + upIdx) >> 1
     if (matrix[diaIdx][diaIdx] == target) {
       return true
     }
@@ -1289,41 +1250,17 @@ var searchMatrix = function (matrix, target) {//按对角线二分查找
       upIdx = diaIdx
     }
   }
-  if (matrix[upIdx][upIdx] == target || matrix[downIdx][downIdx] == target) {
+  if (matrix[downIdx][downIdx] == target || matrix[upIdx][upIdx] == target) {
     return true
   }
-
-  //在upIdx与downIdx之内
-
-  i = upIdx
-  j = upIdx
-  let ary = []
-  for (let k = 0; k < i; k++) {
-    ary.push(matrix[k][i])
-  }
-
-
-
-  /* function binarySearchRow(ary, target) {
-    let l = ary.length
-    if (l == 0) {
-      return false;
-    } else if (l == 1) {
-      return ary[0] == target
-    }
-
-  }
-
-  function binarySearchCol(ary, target) {
-    let l = ary.length
-    if (l == 0) {
-      return false;
-    } else if (l == 1) {
-      return ary[0] == target
-    }
-
-  } */
+  //target NOT in diagonal, try D&C
+  //问题1：如何传入右上，左下，使之作为矩阵
+  //问题2：一次递归后，不为方阵如何处理
+  [upIdx][col - 1]
+  //target index 
 }
+
+
 
 
 //415
@@ -1421,20 +1358,7 @@ var containsNearbyDuplicate = function (nums, k) {
   }
   return min <= k
 }
-//62 
-/* 假如一个5x3的格子，那么一共存在>>>>vv步， */
-var uniquePaths = function (m, n) {
-  let w = m + n - 2
-  let a = w
-  let b = n
-  while (n > 1) {
-    a *= w - 1
-    b *= n - 1
-    w--
-    n--
-  }
-  return a / b
-};
+
 //1089
 var duplicateZeros = function (arr) {
   let i = 0
@@ -1449,6 +1373,7 @@ var duplicateZeros = function (arr) {
     i = i + 2
   }
 };
+
 //74
 var searchMatrix = function (matrix, target) {
   let row = matrix.length
@@ -2013,7 +1938,6 @@ var thirdMax = function (nums) {
 };
 
 
-
 //不均匀硬币，生成概率为0.5的
 
 function rand() {
@@ -2027,7 +1951,6 @@ function rand() {
   }
   return rand()
 }
-
 
 
 //链表专题
@@ -2146,6 +2069,16 @@ function arrayToList4(ary, start = 0) {
     }
   }
 }
+
+
+
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
+
 function listToArray(head) {
   let ary = []
   if (head == null) {
@@ -2238,14 +2171,11 @@ function nth2(head, idx) {
 /* 链表与数组的不同 
 链表不能随机访问
 数组可以随机访问（可以以任意顺序访问数组中的任意元素）
-
 链表易增删，难查找
 数组易查找，难增删
+*/
 
- */
-
-
-
+//206. Reverse Linked List
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2258,23 +2188,24 @@ function nth2(head, idx) {
  * @return {ListNode}
  */
 var reverseList = function (head) {
-  if (head.length == 0) {
-    return {}
+  if (!head || !head.next) {
+    return head
   }
-  let linkedList = {}
-  let prev = linkedList
-  //生成正向链表
-  let lastIdx = head.length - 1
-  let node
-  for (let i = 0; i < lastIdx; i++) {
-    node = new ListNode(head[i])
-    prev.next = node
-    prev = node
+  var a = head.next
+  var b = head.next.next
+  head.next = null
+  while (true) {
+    a.next = head
+    if (b == null) {
+      return a
+    }
+    head = a
+    a = b
+    b = b.next
   }
+}
 
-};
 
-//206. Reverse Linked List
 //(1)recusion
 /**
  * Definition for singly-linked list.
@@ -2318,7 +2249,6 @@ var reverseList = function (head) {
   var a = null
   var b = head
   var c = head.next
-
   do {
     b.next = a
     a = b
@@ -2459,6 +2389,7 @@ var mergeTwoLists = function (l1, l2) {
 
 
 //24. Swap Nodes in Pairs
+//(1)loop
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2471,6 +2402,103 @@ var mergeTwoLists = function (l1, l2) {
  * @return {ListNode}
  */
 var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  var dummy = new ListNode(0)
+  dummy.next = head
+
+  var a = null
+  var b = dummy
+  var c = null
+  var d = head
+
+  while (d && d.next) {
+    a = b
+    c = d.next
+    b = d
+    d = c.next
+
+    a.next = c
+    c.next = b
+    b.next = d
+  }
+  return dummy.next
+};
+
+//(2)recusively
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  var a = head
+  var b = head.next
+  var tail = b.next
+
+  b.next = a
+  a.next = swapPairs(tail)
+
+  return b
+
+};
+
+//83. Remove Duplicates from Sorted List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null; 
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+  //two node at least 
+  let a = head
+  let b = head.next
+  while (b) {
+    if (a.val == b.val) {
+      b = b.next
+      a.next = b
+      continue
+    }
+    a = b
+    b = b.next
+  }
+  return head
+};
+
+//82. Remove Duplicates from Sorted List II
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
 
 };
 
@@ -2604,17 +2632,182 @@ var sortArray = function (nums) {
     }
     k++
   }
-
   while (i < left.length) {
     nums[k] = left[i]
     i++
     k++
   }
-
   while (j < right.length) {
     nums[k] = right[j]
     j++
     k++
   }
   return nums
+};
+
+
+//动态规划专题
+//62 Unique Path  
+/* 假如一个5x3的格子，那么一共存在>>>>vv步， */
+var uniquePaths = function (m, n) {
+  let w = m + n - 2
+  let a = w
+  let b = n
+  while (n > 1) {
+    a *= w - 1
+    b *= n - 1
+    w--
+    n--
+  }
+  return a / b
+};
+//(1)DP  计数型
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function (m, n) {
+  let dpMatrix = new Array(n)
+  for (var j = 0; j < n; ++j) {
+    dpMatrix[j] = new Array(m)
+  }
+
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < m; ++j) {
+      if (i == 0 || j == 0) {
+        dpMatrix[i][j] = 1
+      } else {
+        dpMatrix[i][j] = dpMatrix[i - 1][j] + dpMatrix[i][j - 1]
+      }
+    }
+  }
+  return dpMatrix[m - 1][n - 1]
+};
+
+
+
+//63. Unique Paths II
+// (1）DP 计数型
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles = function (obstacleGrid) {
+  let row = obstacleGrid.length
+  let col = obstacleGrid[0].length
+
+  if (obstacleGrid[0][0] == 1) {
+    return 0
+  }
+
+  obstacleGrid[0][0] = 1
+
+  for (let i = 1; i < row; i++) {
+    if (obstacleGrid[i][0] == 0 && obstacleGrid[i - 1][0] == 1) {
+      obstacleGrid[i][0] = 1
+    } else {
+      obstacleGrid[i][0] = 0
+    }
+  }
+
+  for (let i = 1; i < col; i++) {
+    if (obstacleGrid[0][i] == 0 && obstacleGrid[0][i - 1] == 1) {
+      obstacleGrid[0][i] = 1
+    } else {
+      obstacleGrid[0][i] = 0
+    }
+  }
+
+  for (let i = 1; i < row; i++) {
+    for (let j = 1; j < col; j++) {
+      if (obstacleGrid[i][j] == 0) {
+        obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
+      } else {
+        obstacleGrid[i][j] = 0
+      }
+    }
+  }
+  return obstacleGrid[row - 1][col - 1]
+};
+
+
+
+//322. Coin Change
+//dp 最值型
+/** 
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  //example：coins=[2,5,7],amount=27
+  //DP status dp[x] = 拼出x最少需要多少枚硬币
+  //DP Array
+
+  let dp = []
+  let n = coins.length
+
+  //initialization
+  dp[0] = 0
+
+  let i, j
+  for (i = 1; i <= amount; ++i) {
+    dp[i] = Infinity
+    for (j = 0; j < n; ++j) {
+      if (i >= coins[j]) {
+        dp[i] = Math.min(dp[i - coins[j]] + 1, dp[i])
+      }
+    }
+  }
+
+  if (dp[amount] === Infinity) {
+    dp[amount] = -1
+  }
+  return dp[amount]
+};
+
+//55. Jump Game
+//(1)dp可行性型
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+//dp[j]表示青蛙能不能跳到石头j
+var canJump = function (nums) {
+  let n = nums.length
+  let dp = []
+
+  //initialization
+  dp[0] = true
+
+  //对于dp数组中的每一项
+  for (var j = 1; j < n; ++j) {
+    dp[j] = false;
+    //previous stone i
+    //last jump is from i to j
+    for (var i = 0; i < j; ++i) {
+      if (dp[i] && i + nums[i] >= j) {
+        dp[j] = true;
+        break;
+      }
+    }
+  }
+  return dp[n - 1]
+};
+
+//(2)backtracking
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+
+
+//152. Maximum Product Subarray
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function (nums) {
+
 };
