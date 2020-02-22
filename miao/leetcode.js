@@ -109,6 +109,7 @@ var isIsomorphic = function (s, t) {//利用obj的唯一性
   }
   return true
 };
+
 //575
 var distributeCandies = function (candies) {
   let ary = []
@@ -838,49 +839,6 @@ var longestCommonPrefix = function (strs) {
     return ''
   }
 };
-//63. Unique Paths II
-// 1）DP
-/**
- * @param {number[][]} obstacleGrid
- * @return {number}
- */
-var uniquePathsWithObstacles = function (obstacleGrid) {
-  let row = obstacleGrid.length
-  let col = obstacleGrid[0].length
-
-  if (obstacleGrid[0][0] == 1) {
-    return 0
-  }
-
-  obstacleGrid[0][0] = 1
-
-  for (let i = 1; i < row; i++) {
-    if (obstacleGrid[i][0] == 0 && obstacleGrid[i - 1][0] == 1) {
-      obstacleGrid[i][0] = 1
-    } else {
-      obstacleGrid[i][0] = 0
-    }
-  }
-
-  for (let i = 1; i < col; i++) {
-    if (obstacleGrid[0][i] == 0 && obstacleGrid[0][i - 1] == 1) {
-      obstacleGrid[0][i] = 1
-    } else {
-      obstacleGrid[0][i] = 0
-    }
-  }
-
-  for (let i = 1; i < row; i++) {
-    for (let j = 1; j < col; j++) {
-      if (obstacleGrid[i][j] == 0) {
-        obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
-      } else {
-        obstacleGrid[i][j] = 0
-      }
-    }
-  }
-  return obstacleGrid[row - 1][col - 1]
-};
 
 //704. Binary Search
 var search = function (nums, target) {
@@ -1263,21 +1221,25 @@ var isAnagram = function (s, t) {
  */
 var searchMatrix = function (matrix, target) {//按对角线二分查找
   let row = matrix.length
-  let col = matrix[0].length
-  if (matrix[0][0] < target || matrix[row - 1][col - 1] > target || row == 0) {//exceptions
+  if (row == 0) {
     return false
   }
-
-  //target在matrix范围之内
-
+  let col = matrix[0].length
+  if (col == 0) {
+    return false
+  }
+  if (matrix[0][0] > target || matrix[row - 1][col - 1] < target) {
+    return false
+  }
+  //exceptions excluded
+  //target in range 
   let i = 0//row pivot
   let j = 0//col pivot 
-
   let upIdx = Math.min(row, col) - 1
   let downIdx = 0
   let diaIdx
   while (upIdx - downIdx > 1) {
-    diaIdx = (downIdx + upIdx) >> 10
+    diaIdx = (downIdx + upIdx) >> 1
     if (matrix[diaIdx][diaIdx] == target) {
       return true
     }
@@ -1288,41 +1250,17 @@ var searchMatrix = function (matrix, target) {//按对角线二分查找
       upIdx = diaIdx
     }
   }
-  if (matrix[upIdx][upIdx] == target || matrix[downIdx][downIdx] == target) {
+  if (matrix[downIdx][downIdx] == target || matrix[upIdx][upIdx] == target) {
     return true
   }
-
-  //在upIdx与downIdx之内
-
-  i = upIdx
-  j = upIdx
-  let ary = []
-  for (let k = 0; k < i; k++) {
-    ary.push(matrix[k][i])
-  }
-
-
-
-  /* function binarySearchRow(ary, target) {
-    let l = ary.length
-    if (l == 0) {
-      return false;
-    } else if (l == 1) {
-      return ary[0] == target
-    }
-
-  }
-
-  function binarySearchCol(ary, target) {
-    let l = ary.length
-    if (l == 0) {
-      return false;
-    } else if (l == 1) {
-      return ary[0] == target
-    }
-
-  } */
+  //target NOT in diagonal, try D&C
+  //问题1：如何传入右上，左下，使之作为矩阵
+  //问题2：一次递归后，不为方阵如何处理
+  [upIdx][col - 1]
+  //target index 
 }
+
+
 
 
 //415
@@ -1420,20 +1358,7 @@ var containsNearbyDuplicate = function (nums, k) {
   }
   return min <= k
 }
-//62 
-/* 假如一个5x3的格子，那么一共存在>>>>vv步， */
-var uniquePaths = function (m, n) {
-  let w = m + n - 2
-  let a = w
-  let b = n
-  while (n > 1) {
-    a *= w - 1
-    b *= n - 1
-    w--
-    n--
-  }
-  return a / b
-};
+
 //1089
 var duplicateZeros = function (arr) {
   let i = 0
@@ -1448,6 +1373,7 @@ var duplicateZeros = function (arr) {
     i = i + 2
   }
 };
+
 //74
 var searchMatrix = function (matrix, target) {
   let row = matrix.length
@@ -1999,21 +1925,51 @@ var firstUniqChar = function (s) {
   }
   return -1
 }
-//414. Third Maximum Number
+//599. Minimum Index Sum of Two Lists
 /**
- * @param {number[]} nums
- * @return {number}
+ * @param {string[]} list1
+ * @param {string[]} list2
+ * @return {string[]}
  */
-
-
-var thirdMax = function (nums) {
-  let l = nums.length
-
+var findRestaurant = function (list1, list2) {
+  let map = {}
+  let mapSum = {}
+  let result = []
+  let list1.length = l1
+  let list2.length = l2
+  let min = Infinity
+  for (let i = 0; i < l1; ++i) {
+    map[list1[i]] = i
+  }
+  for (let i = 0; i < l2; ++i) {
+    if (list2[i] in map) {
+      mapSum[list2[i]] = i + map[list1[i]]
+      if (min >= (i + map[list1[i]])) {
+        min = i + map[list1[i]]
+      }
+    }
+  }
+  for (key in mapSum) {
+    if (mapSum[key] == min) {
+      result.push(mapSum[key])
+    }
+  }
+  return result
 };
 
+//不均匀硬币，生成概率为0.5的
 
-
-
+function rand() {
+  var a = r()
+  var b = r()
+  if (a == 0 && b == 1) {
+    return 1
+  }
+  if (a == 1 && b == 0) {
+    return 0
+  }
+  return rand()
+}
 
 
 //链表专题
@@ -2045,12 +2001,12 @@ function arrayToList2(ary) {
   var dummy = {} // dummy与空对象绑定 
   var prev = dummy //prev 与dummy绑定 
   for (var i = 0; i < ary.length; i++) {
-    var node = {
+    var node = {//生成节点 
       val: ary[i],
       next: null,
     }
-    //生成节点
     prev.next = node//将prev里面的next属性值与node绑定
+    /* 如果prev直接等于node的话，dummy仍然是空的 */
     prev = node//将prev与node绑定
   }
   return dummy.next
@@ -2099,11 +2055,48 @@ function arrayToList4(ary, start = 0) {
       val: 3,
         next: {
         val: 4,
+          next: {
+          val: 5,
+            next: null,
+          };
+      };
+    };
+  };
+};
+
+{
+  val: 1,
+    next: {
+    val: 2,
+      next: {
+      val: 3,
+        next: {
+        val: 4,
           next: null
       }
     }
   }
 }
+
+{
+  val: 1,
+    next: {
+    val: 2,
+      next: {
+      val: 3,
+        next: null
+    }
+  }
+}
+
+
+
+
+function ListNode(val) {
+  this.val = val;
+  this.next = null;
+}
+
 
 function listToArray(head) {
   let ary = []
@@ -2162,32 +2155,602 @@ function append2(val, head) {
       next: null,
     }
   }
-  head.next = append2(val, head.next)
+  return append2(val, head.next)
+}
+
+
+function nth(head, idx) {
+  if (head == null || idx < 0) {
+    return undefined
+  }
+
+  var i = 0
+  var p = head
+  while (p.next && i < idx) {
+    p = p.next
+    i++
+  }
+  if (i == idx) {
+    return p.val
+  } else {
+    return undefined
+  }
+}
+
+function nth2(head, idx) {
+  if (head == null || idx < 0) {
+    return undefined
+  }
+  if (idx == 0) {
+    return head.val
+  }
+  return nth2(head.next, idx - 1)
+}
+
+/* 链表与数组的不同 
+链表不能随机访问
+数组可以随机访问（可以以任意顺序访问数组中的任意元素）
+链表易增删，难查找
+数组易查找，难增删
+*/
+
+//206. Reverse Linked List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+  var a = head.next
+  var b = head.next.next
+  head.next = null
+  while (true) {
+    a.next = head
+    if (b == null) {
+      return a
+    }
+    head = a
+    a = b
+    b = b.next
+  }
+}
+
+
+//(1)recusion
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+  if (head == null || head.next == null) {
+    return head
+  }
+
+  var tail = head.next
+  head.next = null
+  var newHead = reverseList(tail)
+  tail.next = head
+  return newHead
+};
+
+//(2) while loop (using three pivot)
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var reverseList = function (head) {
+  if (head == null || head.next == null) {
+    return head
+  }
+  var a = null
+  var b = head
+  var c = head.next
+  do {
+    b.next = a
+    a = b
+    b = c
+    c = c.next
+  } while (c !== null)
+  b.next = a
+  return b
+};
+
+
+var reverseList = function (head) {
+  if (head == null || head.next == null) {
+    return head
+  }
+  var a = null
+  var b = null
+  var c = head
+  while (c) {
+    a = b
+    b = c
+    c = c.next
+  }
+  return b
+};
+
+//237. Delete Node in a Linked List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} node
+ * @return {void} Do not return anything, modify node in-place instead.
+ */
+var deleteNode = function (node) {
+  node.val = node.next.val
+  node.next = node.next.next
+}
+//21. Merge Two Sorted Lists
+//(1) In-place reordering 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (l1, l2) {
+  var a = l1
+  var b = l2
+  var dummy = new ListNode(0)
+  var t = dummy
+  while (a && b) {
+    if (a.val < b.val) {
+      t.next = a
+      a = a.next
+    } else {
+      t.next = b
+      b = b.next
+    }
+    t = t.next
+  }
+  t.next = a || b
+  return dummy.next
+};
+
+//(2) new linkedList
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var mergeTwoLists = function (l1, l2) {
+  var dummy = {}
+  var l = dummy
+
+  while (l1 && l2) {
+    if (l1.val > l2.val) {
+      l.next = l2
+      l2 = l2.next
+    } else {
+      l.next = l1
+      l1 = l1.next
+    }
+    l = l.next
+  }
+
+  l.next = l1 || l2
+  return dummy.next
+};
+
+
+debugger; mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } } }, { val: 1, next: { val: 3, next: { val: 4, next: null } } })
+//(3) Recursively 
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;ER
+ *     this.next = null;
+ * }
+ */
+
+/** 
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+
+var mergeTwoLists = function (l1, l2) {
+  if (!l1 || !l2) {//l1及l2中有一个为空，返回不是空的那个
+    return l1 || l2
+  }
+
+  if (l1.val < l2.val) {
+    l1.next = mergeTwoLists(l1.next, l2)
+    return l1
+  } else {
+    l2.next = mergeTwoLists(l1, l2.next)
+    return l2
+  }
+};
+
+
+//24. Swap Nodes in Pairs
+//(1)loop
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  var dummy = new ListNode(0)
+  dummy.next = head
+
+  var a = null
+  var b = dummy
+  var c = null
+  var d = head
+
+  while (d && d.next) {
+    a = b
+    c = d.next
+    b = d
+    d = c.next
+
+    a.next = c
+    c.next = b
+    b.next = d
+  }
+  return dummy.next
+};
+
+//(2)recusively
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var swapPairs = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+
+  var a = head
+  var b = head.next
+  var tail = b.next
+
+  b.next = a
+  a.next = swapPairs(tail)
+
+  return b
+
+};
+
+//83. Remove Duplicates from Sorted List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null; 
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var deleteDuplicates = function (head) {
+  if (!head || !head.next) {
+    return head
+  }
+  //two node at least 
+  let a = head
+  let b = head.next
+  while (b) {
+    if (a.val == b.val) {
+      b = b.next
+      a.next = b
+      continue
+    }
+    a = b
+    b = b.next
+  }
   return head
+};
+
+//82. Remove Duplicates from Sorted List II
+//快慢指针经典问题
+//利用dummy.next = head 解决开头就重复得问题
+//inner-loop寻找重复,outer-loop遍历链表
+//重复时快指针走，不重复时快慢一起走
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+var deleteDuplicates = function (head) {
+
+  if (head == null || head.next == null) {
+    return head
+  }
+
+  // length >= 2
+  let dummy = new ListNode(0)
+  dummy.next = head
+  let slow = dummy
+  let fast = head
+
+  while (fast !== null) {
+    if (fast.next != null && fast.val == fast.next.val) {
+      //internal loop, stop when fast!=fast.next.val
+
+      do {
+        fast = fast.next
+      } while (fast.next !== null && fast.val == fast.next.val)
+
+      // change pointer
+      slow.next = fast.next
+      fast = fast.next
+    } else {
+      fast = fast.next
+      slow = slow.next
+    }
+  }
+  return dummy.next
 }
 
+//142. Linked List Cycle II
 
+//(1)Hash map approach
+//Time complexity O(n)
+//Space complexity O(n)
+//时间复杂度为什么不是O(n**2)?
+//set数组有n个元素，每个元素为一个节点，里面有n个
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
 
-//不均匀硬币，生成概率为0.5的
+  let curr = head
+  let map = new Set()
 
-function rand() {
-  var a = r()
-  var b = r()
-  if (a == 0 && b == 1) {
-    return 1
+  while (curr !== null) {
+    if (map.has(curr)) {
+      return curr
+    }
+    map.add(curr)
+    curr = curr.next
   }
-  if (a == 1 && b == 0) {
-    return 0
+  return null
+};
+
+
+//floyd algorithm
+//Time complexity O(n)
+//Space complexity O(1)
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var detectCycle = function (head) {
+  let start = head
+  let slow = head
+  let fast = head
+  while (true) {
+    if (fast == null) { return null }
+    fast = fast.next
+    if (fast == null) { return null }
+    fast = fast.next
+    slow = slow.next
+    if (fast == slow) { break }
   }
-  return rand()
-}
+  while (start !== slow) {
+    start = start.next
+    slow = slow.next
+  }
+  return slow
+};
+//141. Linked List Cycle
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+//try floyd
+var hasCycle = function (head) {
+  let fast = head
+  let slow = head
+  while (fast !== null) {
+    fast = fast.next
+    if (fast == null) { return false }
+    fast = fast.next
+    slow = slow.next
+    if (fast == slow) { return true }
+  }
+  return false
+};
 
 
+//876. Middle of the Linked List
+//try floyd algorithm
+
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+var middleNode = function (head) {
+  let fast = head, slow = head;
+  if (head.next == null) { return head }
+  //length >=2  
+  while (fast.next != null) {
+    fast = fast.next
+    slow = slow.next
+    if (fast.next !== null) {
+      fast = fast.next
+    }
+  }
+  return slow
+};
+
+//160. Intersection of Two Linked Lists
+//(1) hash table
+//Time complexcity O(m+n)
+//Space complexcity O(m) or O(n)
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+
+var getIntersectionNode = function (headA, headB) {
+  let pointerA = headA
+  let pointerB = headB
+  let map = new Set()
+  while (pointerA != null) {
+    map.add(pointerA)
+    pointerA = pointerA.next
+  }
+  while (true) {
+    if (map.has(pointerB)) { return pointerB }
+    if (pointerB !== null) {
+      pointerB = pointerB.next
+    } else { return null }
+  }
+};
+
+//(2) double pointer
+//Time complexcity O(n)
+//Space complexcity O(1)
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} headA
+ * @param {ListNode} headB
+ * @return {ListNode}
+ */
+
+var getIntersectionNode = function (headA, headB) {
+  let pointerA = headA
+  let pointerB = headB
+  if (headA == null || headB == null) { return null }
+  while (pointerA !== pointerB) {
+    pointerA = (pointerA == null) ? headB : pointerA.next
+    pointerB = (pointerB == null) ? headA : pointerB.next
+  }
+  return pointerA
+};
 
 
-
-
-//排序专题
+//Sorting
+/* 
+冒泡
+选择
+插入
+希尔
+归并
+快排
+堆排序
+计数排序
+桶排序
+基数排序
+ */
 //归并排序(merge sort)
 function mergeSort(ary) {
   if (ary.length == 0 || ary.length == 1) {
@@ -2250,13 +2813,6 @@ function quickSort(A) {
   }
 }
 
-//冒泡
-//插入
-//计数
-//快排
-
-
-
 //交换ary数组的第i和j项
 function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
   if (end - start < 1) {
@@ -2316,13 +2872,11 @@ var sortArray = function (nums) {
     }
     k++
   }
-
   while (i < left.length) {
     nums[k] = left[i]
     i++
     k++
   }
-
   while (j < right.length) {
     nums[k] = right[j]
     j++
@@ -2330,3 +2884,290 @@ var sortArray = function (nums) {
   }
   return nums
 };
+
+
+//动态规划专题
+//62 Unique Path  
+/* 假如一个5x3的格子，那么一共存在>>>>vv步， */
+var uniquePaths = function (m, n) {
+  let w = m + n - 2
+  let a = w
+  let b = n
+  while (n > 1) {
+    a *= w - 1
+    b *= n - 1
+    w--
+    n--
+  }
+  return a / b
+};
+//(1)DP  计数型
+/**
+ * @param {number} m
+ * @param {number} n
+ * @return {number}
+ */
+var uniquePaths = function (m, n) {
+  let dpMatrix = new Array(n)
+  for (var j = 0; j < n; ++j) {
+    dpMatrix[j] = new Array(m)
+  }
+
+  for (var i = 0; i < n; ++i) {
+    for (var j = 0; j < m; ++j) {
+      if (i == 0 || j == 0) {
+        dpMatrix[i][j] = 1
+      } else {
+        dpMatrix[i][j] = dpMatrix[i - 1][j] + dpMatrix[i][j - 1]
+      }
+    }
+  }
+  return dpMatrix[m - 1][n - 1]
+};
+
+
+
+//63. Unique Paths II
+// (1）DP 计数型
+/**
+ * @param {number[][]} obstacleGrid
+ * @return {number}
+ */
+var uniquePathsWithObstacles = function (obstacleGrid) {
+  let row = obstacleGrid.length
+  let col = obstacleGrid[0].length
+
+  if (obstacleGrid[0][0] == 1) {
+    return 0
+  }
+
+  obstacleGrid[0][0] = 1
+
+  for (let i = 1; i < row; i++) {
+    if (obstacleGrid[i][0] == 0 && obstacleGrid[i - 1][0] == 1) {
+      obstacleGrid[i][0] = 1
+    } else {
+      obstacleGrid[i][0] = 0
+    }
+  }
+
+  for (let i = 1; i < col; i++) {
+    if (obstacleGrid[0][i] == 0 && obstacleGrid[0][i - 1] == 1) {
+      obstacleGrid[0][i] = 1
+    } else {
+      obstacleGrid[0][i] = 0
+    }
+  }
+
+  for (let i = 1; i < row; i++) {
+    for (let j = 1; j < col; j++) {
+      if (obstacleGrid[i][j] == 0) {
+        obstacleGrid[i][j] = obstacleGrid[i - 1][j] + obstacleGrid[i][j - 1]
+      } else {
+        obstacleGrid[i][j] = 0
+      }
+    }
+  }
+  return obstacleGrid[row - 1][col - 1]
+};
+
+
+
+//322. Coin Change
+//dp 最值型
+/** 
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  //example：coins=[2,5,7],amount=27
+  //DP status dp[x] = 拼出x最少需要多少枚硬币
+  //DP Array
+
+  let dp = []
+  let n = coins.length
+
+  //initialization
+  dp[0] = 0
+
+  let i, j
+  for (i = 1; i <= amount; ++i) {
+    dp[i] = Infinity
+    for (j = 0; j < n; ++j) {
+      if (i >= coins[j]) {
+        dp[i] = Math.min(dp[i - coins[j]] + 1, dp[i])
+      }
+    }
+  }
+
+  if (dp[amount] === Infinity) {
+    dp[amount] = -1
+  }
+  return dp[amount]
+};
+
+/** 
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  let l = coins.length
+}
+
+//55. Jump Game
+//(1)dp可行性型
+/**
+ * @param {number[]} nums
+ * @return {boolean}
+ */
+//dp[j]表示青蛙能不能跳到石头j
+var canJump = function (nums) {
+  let n = nums.length
+  let dp = []
+
+  //initialization
+  dp[0] = true
+
+  //对于dp数组中的每一项
+  for (var j = 1; j < n; ++j) {
+    dp[j] = false;
+    //previous stone i
+    //last jump is from i to j
+    for (var i = 0; i < j; ++i) {
+      if (dp[i] && i + nums[i] >= j) {
+        dp[j] = true;
+        break;
+      }
+    }
+  }
+  return dp[n - 1]
+};
+
+//152. Maximum Product Subarray
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function (nums) {
+  let l = nums.length
+  let dpMax = new Array(l + 1)//正数组
+  let dpMin = new Array(l + 1)//负数组
+
+  // dp_max[i] 指的是以第 i 个数结尾的 乘积最大 的连续子序列
+  // dp_min[i] 指的是以第 i 个数结尾的 乘积最小 的连续子序列
+
+  let max = -Infinity
+
+  dpMin[0] = 1
+  dpMax[0] = 1
+
+  for (let i = 1; i <= nums.length; ++i) {
+    // 如果数组的数是负数，那么会导致 max 变成 min，min 变成 max
+    // 故需要交换dp 
+    if (nums[i - 1] < 0) {
+      let temp = dpMax[i - 1]
+      dpMax[i - 1] = dpMin[i - 1]
+      dpMin[i - 1] = temp
+    }
+    dpMin[i] = Math.min(nums[i - 1], dpMin[i - 1] * nums[i - 1])
+    dpMax[i] = Math.max(nums[i - 1], dpMax[i - 1] * nums[i - 1])
+    max = Math.max(max, dpMax[i])
+  }
+  return max
+};
+
+
+//dp myself
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var maxProduct = function (nums) {
+  let l = nums.length
+  if (l == 1) { return nums[0] }
+  let dpMax = new Array(l)//正数组
+  let dpMin = new Array(l)//负数组
+
+  dpMin[0] = nums[0]
+  dpMax[0] = nums[0]
+  let max = nums[0]
+
+  for (let i = 1; i < l; ++i) {
+    let a = nums[i]
+    let b = dpMin[i - 1] * nums[i]
+    let c = dpMax[i - 1] * nums[i]
+    dpMax[i] = Math.max(a, b, c)
+    dpMin[i] = Math.min(a, b, c)
+    max = Math.max(max, dpMax[i])
+  }
+
+  return max
+};
+
+
+//198. House Robber
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var rob = function (nums) {
+  let l = nums.length
+  if (l == 0) { return 0 }
+  if (l == 1) { return nums[0] }
+  if (l == 2) { return Math.max(nums[0], nums[1]) }
+  //l>=3
+  let dp = new Array(l)
+  //dp[i]表示至i得到的钱数
+
+  //initialization
+  dp[0] = nums[0]
+  dp[1] = Math.max(nums[0], nums[1])
+  for (let i = 2; i < l; ++i) {
+    dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
+  }
+
+  return dp[l - 1]
+};
+
+
+//300. Longest Increasing Subsequence
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function (nums) {
+  let l = nums.length
+  if (l == 0 || l == 1) { return l }
+  //l>=2
+  let dp = new Array(l)
+  //initialization
+  dp[0] = 1
+  for (let i = 1; i < l; ++i) {
+
+  }
+};
+
+//回溯算法
+//1222. Queens That Can Attack the King
+/**
+ * @param {number[][]} queens
+ * @param {number[]} king
+ * @return {number[][]}
+ */
+var queensAttacktheKing = function (queens, king) {
+
+};
+
+
+// 51. N-Queens
+/**
+ * @param {number} n
+ * @return {string[][]}
+ */
+var solveNQueens = function (n) {
+
+};
+
+
