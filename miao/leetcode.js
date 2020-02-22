@@ -1762,6 +1762,52 @@ var minMoves2 = function (nums) {
   }
   return moves
 };
+
+
+var minMoves2 = function (nums) {
+  let l = nums.length
+  if (l == 1) { return 0 }
+  if (l == 2) { return Math.abs(nums[0] - nums[1]) }
+  let medianIdx = parseInt(l / 2)
+  let m = qSortMedian(nums)
+  let res = 0
+  for (let i = 0; i < l; i++) {
+    res += Math.abs(nums[i] - m)
+  }
+  return res
+
+  //qSort
+  function qSortMedian(nums, start = 0, end = nums.length - 1) {
+    if (start == end) { return nums[start] }
+    let pivotIdx = Math.floor(Math.random() * (end - start) + 1) + start
+    let pivot = nums[pivotIdx]
+
+    swap(nums, pivotIdx, end)
+
+    let i = start
+    for (let j = start; j < end; j++) {
+      if (pivot > nums[j]) {
+        swap(nums, i++, j)
+      }
+    }
+
+    swap(nums, i, end)
+    //i 的位置就是实际的位置
+    if (i == medianIdx) {
+      return nums[i]
+    } else if (i > medianIdx) {
+      return qSortMedian(nums, start, i - 1)
+    } else if (i < medianIdx) {
+      return qSortMedian(nums, i + 1, end)
+    }
+
+    function swap(ary, i, j) {
+      let tmp = ary[i]
+      ary[i] = ary[j]
+      ary[j] = tmp
+    }
+  }
+};
 //43
 var multiply = function (num1, num2) {
   var num1map = []
@@ -2751,69 +2797,47 @@ var getIntersectionNode = function (headA, headB) {
 桶排序
 基数排序
  */
+
 //归并排序(merge sort)
-function mergeSort(ary) {
-  if (ary.length == 0 || ary.length == 1) {
-    return ary
+/**
+ * @param {number[]} nums
+ * @return {number[]}
+ */
+var sortArray = function (nums) {
+
+  if (nums.length == 0 || nums.length == 1) {
+    return nums
   }
 
-  var mid = ary.length >> 1
-  var left = ary.slice(0, mid)
-  var right = ary.slice(mid, ary.length)
+  let mid = nums.length >> 1
+  let left = nums.slice(0, mid)
+  let right = nums.slice(mid, nums.length)
 
-  left = mergeSort(left)
-  right = mergeSort(right)
+  left = sortArray(left)
+  right = sortArray(right)
 
-  var i = 0
-  var j = 0
-  var k = 0
+  let i = 0
+  let j = 0
+  let k = 0
 
   while (i < left.length && j < right.length) {
     if (left[i] <= right[j]) {
-      ary[k] = left[i]
-      i++
+      nums[k++] = left[i++]
     } else {
-      ary[k] = right[j]
-      j++
+      nums[k++] = right[j++]
     }
-    k++
   }
-
   while (i < left.length) {
-    ary[k] = left[i]
-    i++
-    k++
+    nums[k++] = left[i++]
   }
-
   while (j < right.length) {
-    ary[k] = right[j]
-    j++
-    k++
+    nums[k++] = right[j++]
   }
-  return ary
-}
+  return nums
+};
+
+
 //快排
-function quickSort() {
-  var randIdx = Math.random() * ary.length | 0
-  var
-}
-
-function quickSort(A) {
-  var pivotIdx = Math.floor(ary.length * Math.random())
-  let i = -1
-  let j = 0
-  let tmp
-  for (; j < A.length - 1; j++) {
-    if (A[j] < A[pivotIdx]) {
-      i++
-      tmp = A[i]
-      A[i] = A[j]
-      A[j] = tmp
-    }
-  }
-}
-
-//交换ary数组的第i和j项
 function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
   if (end - start < 1) {
     return ary
@@ -2839,50 +2863,97 @@ function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包�
     return ary
   }
 }
-
-
-
-
-
-//merge sort 自己写
-var sortArray = function (nums) {
-
-  if (nums.length == 0 || nums.length == 1) {
-    return nums
-  }
-
-  let mid = nums.length >> 1
-  let left = nums.slice(0, mid)
-  let right = nums.slice(mid, nums.length)
-
-  left = sortArray(left)
-  right = sortArray(right)
-
-  let i = 0
-  let j = 0
-  let k = 0
-
-  while (i < left.length && j < right.length) {
-    if (left[i] <= right[j]) {
-      nums[k] = left[i]
-      i++
-    } else {
-      nums[k] = right[j]
-      j++
+//利用快排分割思想
+//414. Third Maximum Number
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var thirdMax = function (nums) {
+  nums = qSort(nums)
+  let l = nums.length, count = 0;
+  let min = Infinity
+  for (let i = l - 1; i >= 0; i--) {
+    if (nums[i] < min) {
+      min = nums[i]
+      count++
     }
-    k++
+    if (count == 3) {
+      return nums[i]
+    }
   }
-  while (i < left.length) {
-    nums[k] = left[i]
-    i++
-    k++
+  return nums[l - 1]
+
+  function qSort(ary, start = 0, end = ary.length - 1) {
+    if (end - start < 1) { return ary }
+    let l = ary.length
+    let pivotIdx = Math.floor(Math.random() * (end - start + 1)) + start
+    let pivot = ary[pivotIdx]
+
+    swap(ary, pivotIdx, end)
+
+    let i = start
+    for (let j = start; j < end; j++) {
+      if (pivot > ary[j]) {
+        swap(ary, i++, j)
+      }
+    }
+
+    swap(ary, i, end)
+    qSort(ary, start, i - 1)
+    qSort(ary, i + 1, end)
+    return ary
+
+    function swap(ary, i, j) {
+      let tmp = ary[i]
+      ary[i] = ary[j]
+      ary[j] = tmp
+    }
   }
-  while (j < right.length) {
-    nums[k] = right[j]
-    j++
-    k++
+};
+
+
+//215. Kth Largest Element in an Array
+/**
+ * @param {number[]} nums
+ * @param {number} k
+ * @return {number}
+ */
+var findKthLargest = function (nums, k) {
+  let l = nums.length
+  if (l == 1) { return nums[0] }
+  return qSortIdx(nums, l - k)
+
+  function qSortIdx(nums, targetIdx, start = 0, end = nums.length - 1) {
+    if (start == end) { return nums[start] }
+    let pivotIdx = Math.floor(Math.random() * (end - start) + 1) + start
+    let pivot = nums[pivotIdx]
+
+    swap(nums, pivotIdx, end)
+
+    let i = start
+    for (let j = start; j < end; j++) {
+      if (pivot > nums[j]) {
+        swap(nums, i++, j)
+      }
+    }
+
+    swap(nums, i, end)
+    //i 的位置就是实际的位置
+    if (i == targetIdx) {
+      return nums[i]
+    } else if (i > targetIdx) {
+      return qSortIdx(nums, targetIdx, start, i - 1)
+    } else if (i < targetIdx) {
+      return qSortIdx(nums, targetIdx, i + 1, end)
+    }
+
+    function swap(ary, i, j) {
+      let tmp = ary[i]
+      ary[i] = ary[j]
+      ary[j] = tmp
+    }
   }
-  return nums
 };
 
 
