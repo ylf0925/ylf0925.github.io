@@ -2798,7 +2798,22 @@ var getIntersectionNode = function (headA, headB) {
 基数排序
  */
 
+
+//插入排序(Insertion sort)
+//in-place 
+//T:
+//S:
+
+
+
+
+
+
+
 //归并排序(merge sort)
+//out-place
+//T : O(N*lgN)
+//S : O(N)
 /**
  * @param {number[]} nums
  * @return {number[]}
@@ -2837,7 +2852,10 @@ var sortArray = function (nums) {
 };
 
 
-//快排
+//快排(quickSort)
+//in-place 
+//T: (N*lgN)
+//S: (lgN)
 function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
   if (end - start < 1) {
     return ary
@@ -2863,6 +2881,8 @@ function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包�
     return ary
   }
 }
+
+
 //利用快排分割思想
 //414. Third Maximum Number
 /**
@@ -2958,6 +2978,7 @@ var findKthLargest = function (nums, k) {
 
 
 //动态规划专题
+//dynamic programming
 //62 Unique Path  
 /* 假如一个5x3的格子，那么一共存在>>>>vv步， */
 var uniquePaths = function (m, n) {
@@ -2972,6 +2993,7 @@ var uniquePaths = function (m, n) {
   }
   return a / b
 };
+
 //(1)DP  计数型
 /**
  * @param {number} m
