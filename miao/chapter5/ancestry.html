@@ -1,0 +1,28 @@
+<script src="ancestry.js">
+</script>
+<script>
+  var ancestry = JSON.parse(ANCESTRY_FILE)
+  console.log(ancestry.length)
+
+  function filter(ary, test) {
+    var passed = []
+    for (var i = 0; i < ary.length; i++) {
+      if (test(ary[i], i, ary)) {
+        passed.push(ary[i])
+      }
+    }
+    return passed
+  }
+
+  filter(ancestry, function (person, idx
+  ) { return idx % 5 == 0 })
+
+
+  function map(ary, mapper) {
+    let result = []
+    for (let i = 0; i < ary.length; i++) {
+      result.push(mapper(ary[i], i, ary))
+    }
+    return result
+  }
+</script>

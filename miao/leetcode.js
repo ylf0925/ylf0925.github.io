@@ -1428,6 +1428,7 @@ var searchMatrix = function (matrix, target) {
     return false
   }
 };
+
 //171
 var titleToNumber = function (s) {
   let l = s.length
@@ -1700,6 +1701,35 @@ var longestCommonPrefix = function (strs) {
     return strs[0]
   }
 };
+
+
+
+//48. Rotate Image
+//Medium
+/**
+ * @param {number[][]} matrix
+ * @return {void} Do not return anything, modify matrix in-place instead.
+ */
+const rotate = function (matrix) {
+  let l = matrix.length;
+  if (l > 1) {
+    let isEven, isOdd
+    if (parseInt((l >> 1) % 2 == 0)) {
+      isEven = true
+    } else { isOdd = true }
+  }
+
+
+  function rotateSingle(matrix, row, col) {
+    let temp
+    temp = matrix[row][col]
+    matrix[row][col] = matrix[l - 1 - row][col]
+    matrix[l - 1 - row][col] = matrix[l - 1 - row][l - 1 - col]
+    matrix[l - 1 - row][l - 1 - col] = matrix[row][l - 1 - col]
+    matrix[row][l - 1 - col] = temp
+  }
+};
+
 
 
 //441
@@ -2805,9 +2835,36 @@ var getIntersectionNode = function (headA, headB) {
 //S:
 
 
+//选择排序
+//in-place 
+//T:O(N**2)
+//S:O(1)
+/**
+ * @param {number[]} nums
+ * @return {number[]} 
+ */
+function selectSort(nums) {
+  let l = nums.length
+  let minIdx, min;
+  if (l == 0) { return nums }
+  for (let j = 0; j < l; j++) {
+    min = Infinity
+    for (let i = j; i < l; i++) {
+      if (nums[i] < min) {
+        min = nums[i]
+        minIdx = i
+      }
+    }
+    swapTwo(nums, j, minIdx)
+  }
+  return nums
 
-
-
+  function swapTwo(ary, i, j) {
+    let tmp = ary[i]
+    ary[i] = ary[j]
+    ary[j] = tmp
+  }
+}
 
 
 //归并排序(merge sort)
@@ -2932,7 +2989,7 @@ var thirdMax = function (nums) {
   }
 };
 
-
+//利用快排分割思想
 //215. Kth Largest Element in an Array
 /**
  * @param {number[]} nums
@@ -3213,14 +3270,12 @@ var rob = function (nums) {
   //l>=3
   let dp = new Array(l)
   //dp[i]表示至i得到的钱数
-
   //initialization
   dp[0] = nums[0]
   dp[1] = Math.max(nums[0], nums[1])
   for (let i = 2; i < l; ++i) {
     dp[i] = Math.max(dp[i - 2] + nums[i], dp[i - 1])
   }
-
   return dp[l - 1]
 };
 
