@@ -1213,56 +1213,74 @@ var isAnagram = function (s, t) {
   return true
 };
 
+
 //240. Search a 2D Matrix II
+//try D&C 
 /**
  * @param {number[][]} matrix
  * @param {number} target
  * @return {boolean}
  */
-var searchMatrix = function (matrix, target) {//按对角线二分查找
-  let row = matrix.length
-  if (row == 0) {
-    return false
-  }
-  let col = matrix[0].length
-  if (col == 0) {
-    return false
-  }
-  if (matrix[0][0] > target || matrix[row - 1][col - 1] < target) {
-    return false
-  }
-  //exceptions excluded
-  //target in range 
-  let i = 0//row pivot
-  let j = 0//col pivot 
-  let upIdx = Math.min(row, col) - 1
-  let downIdx = 0
-  let diaIdx
-  while (upIdx - downIdx > 1) {
-    diaIdx = (downIdx + upIdx) >> 1
-    if (matrix[diaIdx][diaIdx] == target) {
-      return true
-    }
-    if (matrix[diaIdx][diaIdx] < target) {
-      downIdx = diaIdx
-    }
-    if (matrix[diaIdx][diaIdx] > target) {
-      upIdx = diaIdx
+var searchMatrix = function (matrix, target) {
+  if (matrix.length == 0 || matrix[0].length == 0) { return false }
+  let left = 0, up = 0, right = matrix[0].length - 1, down = matrix.length - 1;
+  let lengthIdx = matrix[0].length - 1, heightIdx = matrix.length - 1
+  return search2D(left, up, right, down, target)
+
+  function search2D(left, up, right, down, target) {
+    if (up > heightIdx || left > lengthIdx) { return false }
+    if (matrix[up][left] > target) { return false }
+    if (matrix[down][right] < target) { return false }
+
+    let horiMid = parseInt(left + (right - left) / 2)
+    let vertMid = parseInt(up + (down - up) / 2)
+    let pivot = matrix[vertMid][horiMid]
+
+    if (pivot == target) { return true }
+    if (pivot > target) {
+      return search2D(left, up, horiMid, vertMid, target)
+        || search2D(left, vertMid + 1, horiMid, down, target)
+        || search2D(horiMid + 1, up, right, vertMid, target)
+    } else {
+      return search2D(left, vertMid + 1, horiMid, down, target)
+        || search2D(horiMid + 1, vertMid + 1, right, down, target)
+        || search2D(horiMid + 1, up, right, vertMid, target)
     }
   }
-  if (matrix[downIdx][downIdx] == target || matrix[upIdx][upIdx] == target) {
-    return true
-  }
-  //target NOT in diagonal, try D&C
-  //问题1：如何传入右上，左下，使之作为矩阵
-  //问题2：一次递归后，不为方阵如何处理
-  [upIdx][col - 1]
-  //target index 
 }
 
 
 
+//(2)答案DC逐行扫描
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+var searchMatrix = function (matrix, target) {
+  if (matrix.length == 0 || matrix[0].length == 0) {
+    return false
+  }
 
+  return searchRec(0, 0, matrix[0].length - 1, matrix.length - 1, target)
+
+  function searchRec(left, up, right, down, target) {
+    if (left > right || up > down) { return false }
+    else if (target < matrix[up][left] || target > matrix[down][right]) { return false }
+
+    let mid = parseInt(left + (right - left) / 2)
+    let row = up
+    while (row <= down && matrix[row][mid] <= target) {
+      if (matrix[row][mid] == target) {
+        return true
+      }
+      row++
+    }
+    return searchRec(left, row, mid - 1, down, target) || searchRec(mid + 1, up, right, row - 1, target);
+  }
+}
+
+debugger; searchMatrix([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 13)
 //415
 var addStrings = function (num1, num2) {
   let sum = ""
@@ -1712,21 +1730,23 @@ var longestCommonPrefix = function (strs) {
  */
 const rotate = function (matrix) {
   let l = matrix.length;
-  if (l > 1) {
-    let isEven, isOdd
-    if (parseInt((l >> 1) % 2 == 0)) {
-      isEven = true
-    } else { isOdd = true }
+  let halfLength = parseInt(l >> 1)
+  let rowStop, colStop;
+  if (l % 2 == 0) { rowStop = colStop = halfLength - 1 }
+  else { rowStop = halfLength - 1; colStop = halfLength }
+
+  for (let i = 0; i <= rowStop; i++) {
+    for (let j = 0; j <= colStop; j++) {
+      rotateSingle(matrix, i, j)
+    }
   }
 
-
   function rotateSingle(matrix, row, col) {
-    let temp
-    temp = matrix[row][col]
-    matrix[row][col] = matrix[l - 1 - row][col]
-    matrix[l - 1 - row][col] = matrix[l - 1 - row][l - 1 - col]
-    matrix[l - 1 - row][l - 1 - col] = matrix[row][l - 1 - col]
-    matrix[row][l - 1 - col] = temp
+    let temp = matrix[row][col]
+    matrix[row][col] = matrix[l - 1 - col][row]
+    matrix[l - 1 - col][row] = matrix[l - 1 - row][l - 1 - col]
+    matrix[l - 1 - row][l - 1 - col] = matrix[col][l - 1 - row]
+    matrix[col][l - 1 - row] = temp
   }
 };
 
@@ -3296,6 +3316,24 @@ var lengthOfLIS = function (nums) {
 
   }
 };
+
+
+//70. Climbing Stairs
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function (n) {
+  let dp = []
+  while (dp[i] < 10) {
+
+
+  }
+  dp[i] = dp[i - 1] + 1
+  dp[i] = dp[i - 2] + 2
+};
+
+
 
 //回溯算法
 //1222. Queens That Can Attack the King

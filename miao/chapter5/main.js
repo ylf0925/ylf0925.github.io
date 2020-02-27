@@ -41,8 +41,8 @@ function repeat(times, body) {
     body(i)
 }
 
-repeat(3, function (n) {
-  unless(n % 2, function () {
+repeat(3, n => {
+  unless(n % 2, () => {
     console.log(n, 'is even')
   })
 })
@@ -102,6 +102,7 @@ fun.name//函数名字
 不支持运算 
 不可以注释
 不能出现tab
+没有undefined，只有null
 不能出现多余的符号比如（，）
  */
 {
@@ -188,3 +189,24 @@ function map(ary, mapper) {
   }
   return result
 }
+
+function transWrapping(f) {
+  return function () {
+    return f.apply(null, arguments)
+  }
+}
+
+//
+function is19c(p) {
+  return p.born > 1800 && p.born < 1900
+}
+
+function age(it) {
+  return it.died - it.born
+}
+
+function sum(ary) {
+
+}
+
+ancestry.filter(is19c).map(age)

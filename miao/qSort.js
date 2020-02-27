@@ -29,4 +29,34 @@ const qSort = function (nums, start = 0, end = nums.length - 1) {
     ary[i] = ary[j]
     ary[j] = tmp
   }
-} 
+}
+
+/**
+ * @param {number[]} ary
+ * @return {number[]}
+ */
+function mergeSort(ary) {
+  let l = ary.length
+  if (l > 1) {
+    let m = l >> 1
+    let left = ary.slice(0, m)
+    let right = ary.slice(m, l)
+    mergeSort(left)
+    mergeSort(ary)
+    merge(ary, m)
+  }
+
+  function merge(ary, m) {
+    let i = 0, j = m + 1
+    let tmp = []
+    for (let k = 0; k < ary.length; k++) {
+      if (j > n) { tmp[k] = ary[i++] }
+      else if (i > m) { tmp[k] = ary[j++] }
+      else if (ary[i] < ary[j]) { tmp[k] = ary[i++] }
+      else { tmp[k] = ary[j++] }
+    }
+    for (let k = 0; k < ary.length; k++) {
+      ary[k] = tmp[k]
+    }
+  }
+}
