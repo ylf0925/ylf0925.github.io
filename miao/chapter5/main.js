@@ -2,6 +2,15 @@
 chapter 5
 高阶函数 
 */
+debugger; function hello() {
+  while (true) {
+    for (var i = 0; i < 10; i++) {
+      if (i = 5) { return 10 }
+    }
+  }
+}
+
+
 
 function logEach(array) {
   for (var i = 0; i < array.length; i++) {
@@ -196,7 +205,6 @@ function transWrapping(f) {
   }
 }
 
-//
 function is19c(p) {
   return p.born > 1800 && p.born < 1900
 }

@@ -6,12 +6,19 @@
 
 
   function reduce(ary, initialVal, reducer) {
-    for (let i = 0; i < ary.length; i++) {
+    let i = 0
+    if (initialVal == undefined) {
+      initialVal = ary[0]
+      i = 1
+    }
+    for (; i < ary.length; i++) {
       initialVal = reducer(initialVal, ary[i])
     }
     return initialVal
   }
-  /* function filter(ary, test) {
+
+
+  function filter(ary, test) {
     var passed = []
     for (var i = 0; i < ary.length; i++) {
       if (test(ary[i], i, ary)) {
@@ -19,13 +26,13 @@
       }
     }
     return passed
-  } */
+  }
 
-  /* filter(ancestry, function (person, idx
-  ) { return idx % 5 == 0 }) */
+  filter(ancestry, function (person, idx
+  ) { return idx % 5 == 0 })
 
 
-  /* function map(ary, mapper) {
+  function map(ary, mapper) {
     let result = []
     for (let i = 0; i < ary.length; i++) {
       result.push(mapper(ary[i], i, ary))
@@ -39,9 +46,9 @@
 
   function age(key) {
     return key.died - key.born
-  } */
+  }
 
 
-  /* let w = ancestry.filter(is19c) */
-  /* ancestry.filter(is19c).map(age) */
+  let w = ancestry.filter(is19c)
+  ancestry.filter(is19c).map(age)
 </script>

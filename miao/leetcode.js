@@ -1215,7 +1215,8 @@ var isAnagram = function (s, t) {
 
 
 //240. Search a 2D Matrix II
-//try D&C 
+//复杂度如何分析？？
+//D&C 
 /**
  * @param {number[][]} matrix
  * @param {number} target
@@ -1250,8 +1251,40 @@ var searchMatrix = function (matrix, target) {
 }
 
 
+//优化D&C
+//!!!!!!!!!!CAN NOT AC!!!!!!!!!!!!
+var searchMatrix = function (matrix, target) {
+  if (matrix == null || matrix.length == 0 || matrix[0].length == 0) { return false }
+  let left = 0, up = 0, right = matrix[0].length - 1, down = matrix.length - 1;
+  //let lengthIdx = matrix[0].length - 1, heightIdx = matrix.length - 1
+  if (matrix[up][left] > target || matrix[down][right] < target) { return false }
 
-//(2)答案DC逐行扫描
+  return search2D(left, up, right, down, target)
+
+  function search2D(left, up, right, down, target) {
+    if (up > down || left > right) { return false }
+
+    let vertMid = parseInt((up + down) / 2)
+    //horizontally binary search for the last element which smaller than target
+    let horiRes = searchSingleLine(matrix[vertMid], target, left, right)
+    let pivot = matrix[vertMid][horiRes]
+    if (pivot == target) { return true }
+    return search2D(horiRes + 1, up, right, vertMid - 1, target)
+      || search2D(left, vertMid + 1, horiRes, down, target)
+
+
+    function searchSingleLine(ary, target, start, end) {
+      let mid = parseInt((start + end) / 2)
+      if (ary[mid] == target || start > end) { return mid }
+      else if (ary[mid] > target) {
+        return searchSingleLine(ary, target, start, mid - 1)
+      } else { return searchSingleLine(ary, target, mid + 1, end) }
+    }
+  }
+}
+
+
+//答案DC逐行扫描
 /**
  * @param {number[][]} matrix
  * @param {number} target
@@ -1280,7 +1313,14 @@ var searchMatrix = function (matrix, target) {
   }
 }
 
+//答案蛇皮走位法
+//这谁能想到？？？
+//左下开始，比target小，row-- 比taget大，col++
+
+
 debugger; searchMatrix([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 13)
+
+
 //415
 var addStrings = function (num1, num2) {
   let sum = ""
@@ -1356,6 +1396,31 @@ var containsDuplicate = function (nums) {
   }
   return false
 }
+
+
+//896. Monotonic Array
+/**
+ * @param {number[]} A
+ * @return {boolean}
+ */
+var isMonotonic = function (A) {
+  let flag = 0; //increasing - 1; decreasing -2
+  if (A.length <= 1) return true;
+
+  for (let i = 1; i < A.length; i++) {
+    if (A[i] > A[i - 1]) {
+      if (flag === 2) return false;
+      flag = 1;
+    } else if (A[i] < A[i - 1]) {
+      if (flag === 1) return false;
+      flag = 2;
+    }
+  }
+
+  return true;
+};
+
+
 //219
 var containsNearbyDuplicate = function (nums, k) {
   let i = 0
