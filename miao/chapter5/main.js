@@ -218,3 +218,53 @@ function sum(ary) {
 }
 
 ancestry.filter(is19c).map(age)
+
+
+
+
+
+
+
+
+function filter(ary, test) {
+  var passed = []
+  for (var i = 0; i < ary.length; i++) {
+    if (test(ary[i], i, ary)) {
+      passed.push(ary[i])
+    }
+  }
+  return passed
+}
+
+filter(ancestry, function (person, idx
+) { return idx % 5 == 0 })
+
+
+function map(ary, mapper) {
+  let result = []
+  for (let i = 0; i < ary.length; i++) {
+    result.push(mapper(ary[i], i, ary))
+  }
+  return result
+}
+
+function is19c(p) {
+  return p.born > 1800 && p.born < 1900
+}
+
+function age(key) {
+  return key.died - key.born
+}
+
+
+let w = ancestry.filter(is19c)
+ancestry.filter(is19c).map(age)
+
+function max() {
+  var max = -Infinity
+  for (var i = 0; i < arguments.length; i++)
+    if (arguments[i] > max) {
+      max = arguments[i]
+    }
+  return max
+} 
