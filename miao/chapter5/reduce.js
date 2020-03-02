@@ -8,4 +8,6 @@ function reduce(ary, initialVal, reducer) {
 reduce(ary, 0, (a, b) => a + b)
 reduce(ary, 1, (a, b) => a * b)
 
+
+
 reduce(ancestry, { born: Infinity }, (dp, p) => { return p.born < dp.born ? p : dp })

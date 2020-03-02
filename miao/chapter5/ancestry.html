@@ -4,7 +4,7 @@
   var ancestry = JSON.parse(ANCESTRY_FILE)
   console.log(ancestry.length)
 
-  function reduce(ary, reducer, initialVal = ary[0]) {
+  function reduce1(ary, reducer, initialVal = ary[0]) {
     let i = 0
     if (arguments.length == 2) {
       i = 1
@@ -15,7 +15,12 @@
     return initialVal
   }
 
-  reduce(ancestry, (dp, p) => { return p.born < dp.born ? p : dp }, ary[10])
+  function keyBy(ary, key) {
+    reduce1(ary, (result, item) => {
+      result[item[key]] = item
+    }, {})
+    return result
+  }
 
-
+  byName = keyBy(ancestry, 'name') 
 </script>

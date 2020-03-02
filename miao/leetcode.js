@@ -1965,8 +1965,57 @@ var multiply = function (num1, num2) {
   return result
 };
 
+//54. Spiral Matrix
+/**
+ * @param {number[][]} matrix
+ * @return {number[]}
+ */
+var spiralOrder = function (matrix) {
+  let row = matrix.length
+  if (row == 0) { return matrix }
+  let col = matrix[0].length
+  if (col == 0) { return matrix }
 
-
+  let res = []
+  //these are index
+  let top = 0, right = col - 1, down = row - 1, left = 0;
+  pushCycle(matrix, top, right, down, left)
+  function pushCycle(mtx, t, r, d, l) {
+    if (t > d || l > r) {
+      return
+    }
+    for (let i = l; i <= r; i++) {
+      if (mtx[t][i]) {
+        res.push(mtx[t][i])
+        mtx[t][i] = false
+      }
+    }
+    if (t + 1 > d) { return }
+    for (let j = t + 1; j <= d; j++) {
+      if (mtx[j][r] !== false) {
+        res.push(mtx[j][r])
+        mtx[j][r] = false
+      }
+    }
+    if (r - 1 < l) { return }
+    for (let k = r - 1; k >= l; k--) {
+      if (mtx[d][k] !== false) {
+        res.push(mtx[d][k])
+        mtx[d][k] = false
+      }
+    }
+    if (d - 1 < t) { return }
+    for (let w = d - 1; w >= t + 1; w--) {
+      if (mtx[w][l] !== false) {
+        res.push(mtx[w][l])
+        mtx[w][l] = false
+      }
+    }
+    pushCycle(mtx, t + 1, r - 1, d - 1, l + 1)
+  }
+  return res
+};
+debugger; spiralOrder([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]])
 //167 
 var twoSum = function (numbers, target) {
   let i = 0
@@ -1981,6 +2030,44 @@ var twoSum = function (numbers, target) {
     j = i + 1
   }
 };
+
+
+//59. Spiral Matrix II
+/**
+ * @param {number} n
+ * @return {number[][]}
+ */
+var generateMatrix = function (n) {
+  if (n == 0) { return [] }
+  if (n == 1) { return [[1]] }
+  //n>=2
+  let count = 0, mtx = new Array(n);
+  for (let r = 0; r < n; r++) {
+    mtx[r] = new Array(n)
+  }
+  fillCycle(mtx)
+  function fillCycle(matrix, top = 0, right = n - 1, down = n - 1, left = 0) {
+    if (left > right || top > down) { return }
+    for (let i = left; i <= right; i++) {
+      matrix[top][i] = ++count
+    }
+    if (top + 1 > down) { return }
+    for (let j = top + 1; j <= down; j++) {
+      matrix[j][right] = ++count
+    }
+    if (right - 1 < left) { return }
+    for (let k = right - 1; k >= left; k--) {
+      matrix[down][k] = ++count
+    }
+    if (down - 1 < top) { return }
+    for (let w = down - 1; w >= top + 1; w--) {
+      matrix[w][left] = ++count
+    }
+    fillCycle(matrix, top + 1, right - 1, down - 1, left + 1)
+  }
+  return mtx
+};
+
 
 //Map法，空间(map)换时间(减少一个for循环)
 var twoSum = function (numbers, target) {
@@ -2131,6 +2218,8 @@ function rand() {
   }
   return rand()
 }
+
+
 
 
 //链表专题
@@ -2715,7 +2804,6 @@ var deleteDuplicates = function (head) {
 }
 
 //142. Linked List Cycle II
-
 //(1)Hash map approach
 //Time complexity O(n)
 //Space complexity O(n)
@@ -2749,6 +2837,8 @@ var detectCycle = function (head) {
 
 
 //floyd algorithm
+//快指针走两步，慢指针走一步，直到相遇
+//相遇后新指针从start出发，若成环两指针再次相遇，此时为环的入口
 //Time complexity O(n)
 //Space complexity O(1)
 
@@ -2781,6 +2871,7 @@ var detectCycle = function (head) {
   }
   return slow
 };
+
 //141. Linked List Cycle
 /**
  * Definition for singly-linked list.
@@ -2898,6 +2989,38 @@ var getIntersectionNode = function (headA, headB) {
   return pointerA
 };
 
+
+//61. Rotate List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @param {number} k
+ * @return {ListNode}
+ */
+var rotateRight = function (head, k) {
+  if (head == null || head.next == null) { return head }
+  //l >= 2
+  let prev = new ListNode(-1)
+  prev.next = head
+  let end = head, breakPoint = head;
+  let count = 1
+  while (end.next !== null) { end = end.next; count++ }
+  end.next = head
+  //成环了 
+  let breakIdx = count - (k % count) + 1
+  for (let recount = 1; recount < breakIdx; recount++) {
+    breakPoint = breakPoint.next
+    prev = prev.next
+  }
+  prev.next = null
+  return breakPoint
+};
 
 //Sorting
 /* 
@@ -3159,6 +3282,7 @@ var uniquePaths = function (m, n) {
   }
   return dpMatrix[m - 1][n - 1]
 };
+
 
 
 
