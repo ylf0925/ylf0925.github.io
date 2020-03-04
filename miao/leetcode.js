@@ -2223,7 +2223,7 @@ function rand() {
 
 
 //链表专题
-
+//使用对象实现
 function arrayToList(ary) {
   if (ary.length == 0) {
     return null
@@ -2998,6 +2998,8 @@ var getIntersectionNode = function (headA, headB) {
  *     this.next = null;
  * }
  */
+//Time complexity(O(N))
+//Space complexity(O(1)) ,no extra space needed
 /**
  * @param {ListNode} head
  * @param {number} k
@@ -3546,3 +3548,91 @@ var solveNQueens = function (n) {
 };
 
 
+//二叉树专题
+
+/* 完全二叉树
+满二叉树
+
+若为完全二叉树
+节点N->层数
+Math.floor(lg(N))+1
+
+层数N->节点
+2**(N-1)~2**(N)-1
+
+若为满二叉树
+层数N->节点
+2**(N)-1
+
+使用对象实现
+使用数组实现 
+*/
+
+
+
+
+//若为完全二叉树，下标为i的子节点的下标分别任2i+1和2i+2
+
+//将根节点在数组rootPos位置的一个由数组表达的二叉树
+//转换为二叉链表表达的树
+function ary2tree(ary, rootPos = 0) {
+  if (ary[rootPos] == null) { return null }
+  let left = ary2tree(ary, rootPos * 2 + 1)
+  let right = ary2tree(ary, rootPos * 2 + 2)
+  let root = {
+    val: ary[rootPos],
+    left: left,
+    right: right,
+  }
+  return root
+}
+
+//二叉链表表达的树放回数组
+//根节点放在pos位置
+function tree2ary(root, pos = 0, result = []) {
+  if (root) {
+    result[pos] = root.val
+    tree2ary(root.left, pos * 2 + 1, result)
+    tree2ary(root.right, pos * 2 + 2, result)
+  }
+  return result
+}
+tree2ary(root)
+
+{
+  val: 1,
+    left: {
+    val: 2,
+      left: null,
+      right: null
+  },
+  right: {
+    val: 3,
+      left: {
+        val: 4,
+          left: null,
+          right: null
+    },
+      right: {
+        val: 5,
+          left: null,
+          right: null
+    }
+  }
+}
+
+
+
+function lcary2tree(ary) {
+  if (ary.length == 0) { return null }
+  let root = {
+    val: ary[0],
+    left: null,
+    right: null
+  }
+  for (let i = 0; i < ary.length; i++) {
+    root.left={
+      val
+    }
+  }
+} 
