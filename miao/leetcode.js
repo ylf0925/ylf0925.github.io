@@ -840,6 +840,24 @@ var longestCommonPrefix = function (strs) {
   }
 };
 
+//172. Factorial Trailing Zeroes
+//因子中2的个数一定大于5
+//要看n中的分解一共有多少个5
+//每隔5个数字就有一个5 n/5 拿到间距为5的每个5
+//每隔25个数字有二个5 n/25 拿到间距为5的剩余的一个5
+//每隔125个数字有三个5 n/125 ...
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var trailingZeroes = function(n) {
+  let numZeroes = 0;
+  for (let i = 5; i <= n; i *= 5) {
+      numZeroes += Math.floor(n / i);
+  }
+  return numZeroes;
+};
+
 //704. Binary Search
 var search = function (nums, target) {
   let upIdx = nums.length - 1
@@ -2927,6 +2945,68 @@ var middleNode = function (head) {
   return slow
 };
 
+//148. Sort List
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+
+var sortList = function (head) {
+  if (head == null || head.next == null) { return head }//exception excluded
+  // node length >= 2 
+  let mid = findBeforeMiddle(head)
+  let right = mid.next
+  mid.next = null
+  let left = head
+
+  left = sortList(left)
+  right = sortList(right)
+
+  return mergeTwoLists(left, right)
+
+
+  function mergeTwoLists(l1, l2) {
+    var dummy = new ListNode(-1)
+    var l = dummy
+
+    while (l1 && l2) {
+      if (l1.val > l2.val) {
+        l.next = l2
+        l2 = l2.next
+      } else {
+        l.next = l1
+        l1 = l1.next
+      }
+      l = l.next
+    }
+
+    l.next = l1 || l2
+    return dummy.next
+  };
+
+  function findBeforeMiddle(head) {
+    if (head == null || head.next == null) { return head }
+    //length >=2
+    let slow = head
+    let fast = head
+    while (true) {
+      if (fast.next !== null) { fast = fast.next }
+      if (fast.next !== null) { fast = fast.next }
+      if (fast.next !== null) { slow = slow.next }
+      if (fast.next == null)  { break }
+    }
+    return slow
+  }
+}; 
+
+
 //160. Intersection of Two Linked Lists
 //(1) hash table
 //Time complexcity O(m+n)
@@ -3599,6 +3679,11 @@ function tree2ary(root, pos = 0, result = []) {
 }
 tree2ary(root)
 
+
+
+
+//leetcode表示法 condensedTree
+//null
 {
   val: 1,
     left: {
@@ -3626,13 +3711,122 @@ tree2ary(root)
 function lcary2tree(ary) {
   if (ary.length == 0) { return null }
   let root = {
-    val: ary[0],
-    left: null,
-    right: null
+    val: ary[0], left: null, right: null
   }
-  for (let i = 0; i < ary.length; i++) {
-    root.left={
-      val
+  //nodes 是一个queue
+  let queue = [root]
+  for (let i = 1; i < ary.length; i++) {
+    let curr = queue.shift()
+    if (ary[i] != null) {
+      let node = {
+        val: ary[i], left: null, right: null
+      }
+      curr.left = node
+      queue.push(node)
+    } else {
+      curr.left = null
+    }
+
+    i++
+    if (i >= ary.length) { break }
+
+    if (ary[i] != null) {
+      let node = {
+        val: ary[i], left: null, right: null
+      }
+      curr.right = node
+      queue.push(node) 
+    } else {
+      curr.right = null
     }
   }
+  return root
 } 
+
+debugger;lcary2tree([1,2,3,null,4,null,5,6,7,null,8,null,9,10])
+
+
+function lctree2ary(root){
+  if (root){
+    let result = []
+    let nodes = [root]
+    while(nodes.length){
+      let curr = nodes.shift()
+      if(curr){
+        result.push(curr.val)
+        nodes.push(curr.left,curr.right)
+      } else {
+        result.push(null)
+      }
+    }
+    return result
+  }
+  return []
+}
+
+function lctree2ary(root) {
+  if (root) {
+    let result = [root.val]
+    let nodes = [root]
+    while (nodes.length) {
+      let curr = nodes.shift()
+      if (curr.left) {
+        result.push(curr.left.val)
+        nodes.push(curr.left)
+      } else { result.push(null) }
+      if (curr.right) {
+        result.push(curr.right.val)
+        nodes.push(curr.right)
+      } else { result.push(null) }
+    }
+    while(result[result.length-1]===null) {result.pop()}
+    return result
+  }
+  return []
+}
+
+
+
+
+
+//my transform
+function condensedA2T(ary) {
+  let queue = [], l = ary.length, curr;
+  if (l == 0) { return null }
+  let root = {
+    val: ary[0],
+    left: null,
+    right: null,
+  }
+  queue.push(root)
+  for (let i = 1; i < l; i++) {
+    curr = queue.shift()
+    if (ary[i] != null) {
+      curr.left = {
+        val: ary[i],
+        left: null,
+        right: null,
+      }
+      queue.push(curr.left)
+    }
+
+    i++
+
+    if (ary[i] != null) {
+      curr.right = {
+        val: ary[i],
+        left: null,
+        right: null,
+      }
+      queue.push(curr.right)
+    }
+  }
+  return root
+}
+
+function mytree2ary(root,res=[]){
+  if(root = null){return res}
+  res.push(root.val)
+  let l = root.left
+  let r = root.right
+}

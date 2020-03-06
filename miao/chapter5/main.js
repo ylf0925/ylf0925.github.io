@@ -405,7 +405,6 @@ function reduceAncestor(startName, combine, default1, default0, target) {
       shared(person.father), shared(person.mother)
     )
   }
-
 }
 
 function reduceAncestors(person, f, defaultValue) {
