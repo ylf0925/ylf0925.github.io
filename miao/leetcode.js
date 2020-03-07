@@ -696,6 +696,8 @@ function myPow(x, n) {
 }
 
 
+0b11111111111111111111111111111111111111111111111111111 
+
 // 1
 var twoSum = function (nums, target) {
   let l = nums.length
@@ -3824,9 +3826,35 @@ function condensedA2T(ary) {
   return root
 }
 
-function mytree2ary(root,res=[]){
-  if(root = null){return res}
+
+function mytree2ary(root, res = []) {
+  if (root == null) { return res }
+  let queue = []
+  queue.push(root)
   res.push(root.val)
-  let l = root.left
-  let r = root.right
+
+  while (queue.length != 0) {
+    let curr = queue.shift()
+    if (curr.left !== null) {
+      queue.push(curr.left)
+      res.push(curr.left.val)
+    }
+    else { res.push(null) }
+    if (curr.right !== null) {
+      queue.push(curr.right)
+      res.push(curr.right.val)
+    }
+    else { res.push(null) }
+  }
+
+  while (res[res.length - 1] === null) { res.pop() }
+  return res
+
 }
+
+
+function TreeNode(val){
+  this.val = val;
+  this.left = this.right = null;
+}
+
