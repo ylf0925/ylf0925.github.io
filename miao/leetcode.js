@@ -1985,6 +1985,16 @@ var multiply = function (num1, num2) {
   return result
 };
 
+
+//6. ZigZag Conversion
+/**
+ * @param {string} s
+ * @param {number} numRows
+ * @return {string}
+ */
+var convert = function(s, numRows) {
+    
+};
 //54. Spiral Matrix
 /**
  * @param {number[][]} matrix
@@ -2036,20 +2046,9 @@ var spiralOrder = function (matrix) {
   return res
 };
 debugger; spiralOrder([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]])
-//167 
-var twoSum = function (numbers, target) {
-  let i = 0
-  let j = 1
-  while (i <= numbers.length - 2) {
-    for (; j < numbers.length; j++) {
-      if (numbers[i] + numbers[j] == target) {
-        return [i + 1, j + 1]
-      }
-    }
-    i++
-    j = i + 1
-  }
-};
+
+
+
 
 
 //59. Spiral Matrix II
@@ -2088,6 +2087,20 @@ var generateMatrix = function (n) {
   return mtx
 };
 
+//167 
+var twoSum = function (numbers, target) {
+  let i = 0
+  let j = 1
+  while (i <= numbers.length - 2) {
+    for (; j < numbers.length; j++) {
+      if (numbers[i] + numbers[j] == target) {
+        return [i + 1, j + 1]
+      }
+    }
+    i++
+    j = i + 1
+  }
+};
 
 //Map法，空间(map)换时间(减少一个for循环)
 var twoSum = function (numbers, target) {
@@ -3838,18 +3851,15 @@ function mytree2ary(root, res = []) {
     if (curr.left !== null) {
       queue.push(curr.left)
       res.push(curr.left.val)
-    }
-    else { res.push(null) }
+    } else { res.push(null) }
     if (curr.right !== null) {
       queue.push(curr.right)
       res.push(curr.right.val)
-    }
-    else { res.push(null) }
+    } else { res.push(null) }
   }
 
   while (res[res.length - 1] === null) { res.pop() }
   return res
-
 }
 
 
@@ -3858,3 +3868,30 @@ function TreeNode(val){
   this.left = this.right = null;
 }
 
+
+function preOrderTraverse(root, action) {
+  //前序
+  if (root) {
+    action(root.val)
+    preOrderTraverse(root.left, action)
+    preOrderTraverse(root.right, action)
+  }
+}
+
+function inOrderTraverse(root, action) {
+  //中序
+  if (root) {
+    inOrderTraverse(root.left, action)
+    action(root.val)
+    inOrderTraverse(root.right, action)
+  }
+}
+
+function postOrderTraverse(root, action) {
+  //后序
+  if (root) {
+    postOrderTraverse(root.left, action)
+    postOrderTraverse(root.right, action)
+    action(root.val)
+  }
+}
