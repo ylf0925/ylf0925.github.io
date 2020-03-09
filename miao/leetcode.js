@@ -696,7 +696,7 @@ function myPow(x, n) {
 }
 
 
-0b11111111111111111111111111111111111111111111111111111 
+0b11111111111111111111111111111111111111111111111111111
 
 // 1
 var twoSum = function (nums, target) {
@@ -852,10 +852,10 @@ var longestCommonPrefix = function (strs) {
  * @param {number} n
  * @return {number}
  */
-var trailingZeroes = function(n) {
+var trailingZeroes = function (n) {
   let numZeroes = 0;
   for (let i = 5; i <= n; i *= 5) {
-      numZeroes += Math.floor(n / i);
+    numZeroes += Math.floor(n / i);
   }
   return numZeroes;
 };
@@ -1992,8 +1992,8 @@ var multiply = function (num1, num2) {
  * @param {number} numRows
  * @return {string}
  */
-var convert = function(s, numRows) {
-    
+var convert = function (s, numRows) {
+
 };
 //54. Spiral Matrix
 /**
@@ -3015,11 +3015,11 @@ var sortList = function (head) {
       if (fast.next !== null) { fast = fast.next }
       if (fast.next !== null) { fast = fast.next }
       if (fast.next !== null) { slow = slow.next }
-      if (fast.next == null)  { break }
+      if (fast.next == null) { break }
     }
     return slow
   }
-}; 
+};
 
 
 //160. Intersection of Two Linked Lists
@@ -3704,18 +3704,18 @@ tree2ary(root)
     left: {
     val: 2,
       left: null,
-      right: null
+        right: null
   },
   right: {
     val: 3,
       left: {
-        val: 4,
-          left: null,
+      val: 4,
+        left: null,
           right: null
     },
-      right: {
-        val: 5,
-          left: null,
+    right: {
+      val: 5,
+        left: null,
           right: null
     }
   }
@@ -3750,26 +3750,26 @@ function lcary2tree(ary) {
         val: ary[i], left: null, right: null
       }
       curr.right = node
-      queue.push(node) 
+      queue.push(node)
     } else {
       curr.right = null
     }
   }
   return root
-} 
+}
 
-debugger;lcary2tree([1,2,3,null,4,null,5,6,7,null,8,null,9,10])
+debugger; lcary2tree([1, 2, 3, null, 4, null, 5, 6, 7, null, 8, null, 9, 10])
 
 
-function lctree2ary(root){
-  if (root){
+function lctree2ary(root) {
+  if (root) {
     let result = []
     let nodes = [root]
-    while(nodes.length){
+    while (nodes.length) {
       let curr = nodes.shift()
-      if(curr){
+      if (curr) {
         result.push(curr.val)
-        nodes.push(curr.left,curr.right)
+        nodes.push(curr.left, curr.right)
       } else {
         result.push(null)
       }
@@ -3794,7 +3794,7 @@ function lctree2ary(root) {
         nodes.push(curr.right)
       } else { result.push(null) }
     }
-    while(result[result.length-1]===null) {result.pop()}
+    while (result[result.length - 1] === null) { result.pop() }
     return result
   }
   return []
@@ -3863,7 +3863,7 @@ function mytree2ary(root, res = []) {
 }
 
 
-function TreeNode(val){
+function TreeNode(val) {
   this.val = val;
   this.left = this.right = null;
 }
@@ -3895,3 +3895,212 @@ function postOrderTraverse(root, action) {
     action(root.val)
   }
 }
+//144. Binary Tree Preorder Traversal
+//(1)recusively
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function (root) {
+  let res = []
+  preT(root)
+  return res
+  function preT(root) {
+    if (root) {
+      res.push(root.val)
+      preT(root.left)
+      preT(root.right)
+    } else { return }
+  }
+};
+
+//(2)iteratively
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var preorderTraversal = function (root) {
+  if (!root) { return [] }
+
+  let stack = [], res = [], curr;
+  stack.push(root)
+  while (stack.length != 0) {
+    curr = stack.pop()
+    if (curr) {
+      res.push(curr.val)
+      if (curr.right) stack.push(curr.right)
+      if (curr.left) stack.push(curr.left)
+    }
+  }
+  return res
+};
+
+
+//589. N-ary Tree Preorder Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
+var preorder = function (root) {
+  let res = []
+  if (!root) return []
+  
+};
+
+
+//100. Same Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} p
+ * @param {TreeNode} q
+ * @return {boolean}
+ */
+var isSameTree = function (p, q) {
+  // q x  p x
+  if (p == null && q == null) {
+    return true
+  }
+  // q o  p x
+  // q x  p o
+  if (p == null || q == null) {
+    return false
+  }
+  // q o p o
+  if (p.val == q.val) {
+    return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
+  } else { return false }
+};
+
+//104. Maximum Depth of Binary Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxDepth = function (root) {
+  if (root) {
+    return 1 + Math.max(maxDepth(root.left)
+      , maxDepth(root.right))
+  }
+  return 0
+};
+
+//111. Minimum Depth of Binary Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var minDepth = function (root) {
+  if (!root) { return 0 }
+  if (!root.left && !root.right) { return 1 }
+  if (!root.left) { return 1 + minDepth(root.right) }
+  if (!root.right) { return 1 + minDepth(root.left) }
+  return 1 + Math.min(minDepth(root.right), minDepth(root.left))
+};
+
+
+//226. Invert Binary Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {TreeNode}
+ */
+var invertTree = function (root) {
+  if (root) {
+    let l = invertTree(root.left)
+    let r = invertTree(root.right)
+    root.left = r
+    root.right = l
+    return root
+  }
+  return root
+};
+
+//617. Merge Two Binary Trees
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} t1
+ * @param {TreeNode} t2
+ * @return {TreeNode}
+ */
+var mergeTrees = function (t1, t2) {
+  //t1 x t2 x
+  if (t1 == null && t2 == null) { return null }
+  //t1 x t2 o
+  //t1 o t2 x
+  if (t1 == null) { return t2 }
+  if (t2 == null) { return t1 }
+  //t1 o t2 o
+  if (t1 !== null && t2 !== null) {
+    let root = new TreeNode(t1.val + t2.val)
+    root.left = mergeTrees(t1.left, t2.left)
+    root.right = mergeTrees(t1.right, t2.right)
+    return root
+  }
+};
+
+//112. Path Sum
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} sum
+ * @return {boolean}
+ */
+var hasPathSum = function (root, sum) {
+  if (!root) { return false }
+  if (!root.left && !root.right) { return root.val == sum }
+  return hasPathSum(root.left, sum - root.val) ||
+    hasPathSum(root.right, sum - root.val)
+};
+
