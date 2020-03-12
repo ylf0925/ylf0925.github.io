@@ -1,4 +1,3 @@
-
 // 461
 var hammingDistance = function (x, y) {
   let digit_x
@@ -146,7 +145,7 @@ var distributeCandies = function (candies) {//重点是在一看有多少种糖�
 };
 
 
-//67 
+//67
 /**
  * @param {string} a
  * @param {string} b
@@ -201,7 +200,6 @@ var addBinary = function (a, b) {
 };
 
 
-
 //867
 //组装法
 var transpose = function (A) {
@@ -225,7 +223,7 @@ var transpose = function (A) {
 var transpose = function (A) {
   let m = A.length//row
   let n = A[0].length//col
-  let tran = Array(n)//此时tran是一个array了 
+  let tran = Array(n)//此时tran是一个array了
   for (let i = 0; i < n; i++) {
     tran[i] = Array(m)//里面的每一项再变成数组
   }
@@ -249,7 +247,7 @@ var addDigits = function (num) {
     return num % 9
   }
 }
-//58 
+//58
 var lengthOfLastWord = function (s) {
   let l = s.length - 1
   let count = 0
@@ -333,6 +331,7 @@ const isValid = function (s) {
     }
   }
   return true
+
   function inPair(x, y) {
     if ((x === "(") && (y === ")")) {
       return true
@@ -396,7 +395,9 @@ const isValid = function (s) {
         stack.push("]")
         break
       default:
-        if (s[i] != stack.pop()) { return false }
+        if (s[i] != stack.pop()) {
+          return false
+        }
     }
   }
   return stack.length == 0
@@ -431,15 +432,13 @@ var reverseBits = function (nums) {
   return sum >>> 0
 };
 
-/* 
+/*
 11111111111111111111111111111110        1
 00000000000000000000000000000001
  */
 
 
-
-
-// 283 
+// 283
 var moveZeroes = function (nums) {
   let l = nums.length
   let iterator = l
@@ -452,7 +451,8 @@ var moveZeroes = function (nums) {
         nums[i] = nums[i + 1]
         nums[i + 1] = top
       }
-    };
+    }
+    ;
     iterator--
   }
   return nums
@@ -575,7 +575,7 @@ var groupAnagrams = function (strs) {
   }
 };
 // 50
-// 二进制法 
+// 二进制法
 // (1)数组存储二进制指数，并反向遍历。
 
 function myPow(x, n) {
@@ -605,6 +605,7 @@ function myPow(x, n) {
     return result
   }
 }
+
 // (2) 指定一个超大的数，进行位运算，得到指数二进制形式开头的第一个 1
 function myPow(x, n) {
   let number = 0b01000000000000000000000000000000 //32bits
@@ -619,6 +620,7 @@ function myPow(x, n) {
   }
   return result
 }
+
 // (3) 将指数转换为二进制法
 function myPow(x, n) {
   let sign = 1
@@ -642,6 +644,7 @@ function myPow(x, n) {
     return result
   }
 }
+
 // 对半重乘法
 function myPow(x, n) {
   let sign = 1
@@ -671,6 +674,7 @@ function myPow(x, n) {
     return result
   }
 }
+
 // Recusion 递归法
 function myPow(x, n) {
   let t
@@ -680,6 +684,7 @@ function myPow(x, n) {
   } else {
     return 1 / Pow(x, -n)
   }
+
   function Pow(x, n) {
     if (n == 0) {
       return 1
@@ -861,6 +866,7 @@ var trailingZeroes = function (n) {
 };
 
 //704. Binary Search
+
 var search = function (nums, target) {
   let upIdx = nums.length - 1
   let downIdx = 0
@@ -913,6 +919,7 @@ var minimumTotal = function (triangle) {
     }
     return triangle[row][col] + Math.min(findMin(row + 1, col), findMin(row + 1, col + 1))
   }
+
   return findMin(0, 0)
 };
 
@@ -933,13 +940,13 @@ var minimumTotal = function (triangle) {
 }
 
 
-// 709 
+// 709
 ASCII
-/* 
+/*
 65   A
 90   Z
 97   a
-122  z 
+122  z
 */
 
 var toLowerCase = function (str) {
@@ -967,6 +974,7 @@ var countBits = function (num) {
   for (let i = 0; i <= num; i++) {
     ary.push(bits(i))
   }
+
   function bits(n) {
     count = 0
     while (n > 0) {
@@ -975,6 +983,7 @@ var countBits = function (num) {
     }
     return count
   }
+
   return ary
 };
 
@@ -1040,12 +1049,11 @@ var generate = function (numRows) {
   let stored = [[1], [1, 1]]
   if (numRows == 0) {
     return []
-  }
-  else if (numRows == 1) {
+  } else if (numRows == 1) {
     return [[1]]
   } else if (numRows == 2) {
     return [[1], [1, 1]]
-  } else {//n>=3 
+  } else {//n>=3
     for (let j = 3; j <= numRows; j++) {
       ary = Array(j)
       ary[0] = 1
@@ -1117,7 +1125,7 @@ var maxProfit = function (prices) {
   }
   return maxProfit
 };
-//53 
+//53
 var maxSubArray = function (nums) {
   let j = 0
   let i
@@ -1142,7 +1150,6 @@ var maxSubArray = function (nums) {
   }
   return max
 };
-
 
 
 //88. Merge Sorted Array
@@ -1236,28 +1243,38 @@ var isAnagram = function (s, t) {
 
 //240. Search a 2D Matrix II
 //复杂度如何分析？？
-//D&C 
+//D&C
 /**
  * @param {number[][]} matrix
  * @param {number} target
  * @return {boolean}
  */
 var searchMatrix = function (matrix, target) {
-  if (matrix.length == 0 || matrix[0].length == 0) { return false }
+  if (matrix.length == 0 || matrix[0].length == 0) {
+    return false
+  }
   let left = 0, up = 0, right = matrix[0].length - 1, down = matrix.length - 1;
   let lengthIdx = matrix[0].length - 1, heightIdx = matrix.length - 1
   return search2D(left, up, right, down, target)
 
   function search2D(left, up, right, down, target) {
-    if (up > heightIdx || left > lengthIdx) { return false }
-    if (matrix[up][left] > target) { return false }
-    if (matrix[down][right] < target) { return false }
+    if (up > heightIdx || left > lengthIdx) {
+      return false
+    }
+    if (matrix[up][left] > target) {
+      return false
+    }
+    if (matrix[down][right] < target) {
+      return false
+    }
 
     let horiMid = parseInt(left + (right - left) / 2)
     let vertMid = parseInt(up + (down - up) / 2)
     let pivot = matrix[vertMid][horiMid]
 
-    if (pivot == target) { return true }
+    if (pivot == target) {
+      return true
+    }
     if (pivot > target) {
       return search2D(left, up, horiMid, vertMid, target)
         || search2D(left, vertMid + 1, horiMid, down, target)
@@ -1274,31 +1291,42 @@ var searchMatrix = function (matrix, target) {
 //优化D&C
 //!!!!!!!!!!CAN NOT AC!!!!!!!!!!!!
 var searchMatrix = function (matrix, target) {
-  if (matrix == null || matrix.length == 0 || matrix[0].length == 0) { return false }
+  if (matrix == null || matrix.length == 0 || matrix[0].length == 0) {
+    return false
+  }
   let left = 0, up = 0, right = matrix[0].length - 1, down = matrix.length - 1;
   //let lengthIdx = matrix[0].length - 1, heightIdx = matrix.length - 1
-  if (matrix[up][left] > target || matrix[down][right] < target) { return false }
+  if (matrix[up][left] > target || matrix[down][right] < target) {
+    return false
+  }
 
   return search2D(left, up, right, down, target)
 
   function search2D(left, up, right, down, target) {
-    if (up > down || left > right) { return false }
+    if (up > down || left > right) {
+      return false
+    }
 
     let vertMid = parseInt((up + down) / 2)
     //horizontally binary search for the last element which smaller than target
     let horiRes = searchSingleLine(matrix[vertMid], target, left, right)
     let pivot = matrix[vertMid][horiRes]
-    if (pivot == target) { return true }
+    if (pivot == target) {
+      return true
+    }
     return search2D(horiRes + 1, up, right, vertMid - 1, target)
       || search2D(left, vertMid + 1, horiRes, down, target)
 
 
     function searchSingleLine(ary, target, start, end) {
       let mid = parseInt((start + end) / 2)
-      if (ary[mid] == target || start > end) { return mid }
-      else if (ary[mid] > target) {
+      if (ary[mid] == target || start > end) {
+        return mid
+      } else if (ary[mid] > target) {
         return searchSingleLine(ary, target, start, mid - 1)
-      } else { return searchSingleLine(ary, target, mid + 1, end) }
+      } else {
+        return searchSingleLine(ary, target, mid + 1, end)
+      }
     }
   }
 }
@@ -1318,8 +1346,11 @@ var searchMatrix = function (matrix, target) {
   return searchRec(0, 0, matrix[0].length - 1, matrix.length - 1, target)
 
   function searchRec(left, up, right, down, target) {
-    if (left > right || up > down) { return false }
-    else if (target < matrix[up][left] || target > matrix[down][right]) { return false }
+    if (left > right || up > down) {
+      return false
+    } else if (target < matrix[up][left] || target > matrix[down][right]) {
+      return false
+    }
 
     let mid = parseInt(left + (right - left) / 2)
     let row = up
@@ -1338,7 +1369,8 @@ var searchMatrix = function (matrix, target) {
 //左下开始，比target小，row-- 比taget大，col++
 
 
-debugger; searchMatrix([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 13)
+debugger;
+searchMatrix([[1, 4, 7, 11, 15], [2, 5, 8, 12, 19], [3, 6, 9, 16, 22], [10, 13, 14, 17, 24], [18, 21, 23, 26, 30]], 13)
 
 
 //415
@@ -1367,6 +1399,7 @@ var addStrings = function (num1, num2) {
     }
   }
   return sum
+
   function Zeropad(x, y) {
     var sum = x
     for (let w = 0; w < y; w++) {
@@ -1410,7 +1443,8 @@ var containsDuplicate = function (nums) {
       if (nums[i] === nums[j]) {
         return true
       }
-    };
+    }
+    ;
     i++
     j = i + 1
   }
@@ -1455,7 +1489,8 @@ var containsNearbyDuplicate = function (nums, k) {
       if (min > delta) {
         min = delta
       }
-    };
+    }
+    ;
     i++
     j = i + 1
   }
@@ -1609,7 +1644,6 @@ var rotate = function (nums, k) {
 };
 
 
-
 /**
  * @param {number[]} nums
  * @param {number} k
@@ -1711,7 +1745,7 @@ var sortArrayByParity = function (A) {
   return A
 };
 
-//453 
+//453
 var minMoves = function (nums) {
   let min = nums[0]
   let max = nums[0]
@@ -1782,13 +1816,12 @@ var longestCommonPrefix = function (strs) {
     return ""
   } else if (strs.length == 1) {
     return strs[0]
-  }
-  else {
+  } else {
     let j = 0
     let i = 0
     let prefix = ""
     while (i <= strs[0].length) {
-      j = 0 //数组中第一项 
+      j = 0 //数组中第一项
       prefix += strs[j][i]
       for (; j < strs.length; j++) {
         if (prefix == "") {
@@ -1806,7 +1839,6 @@ var longestCommonPrefix = function (strs) {
 };
 
 
-
 //48. Rotate Image
 //Medium
 /**
@@ -1817,8 +1849,12 @@ const rotate = function (matrix) {
   let l = matrix.length;
   let halfLength = parseInt(l >> 1)
   let rowStop, colStop;
-  if (l % 2 == 0) { rowStop = colStop = halfLength - 1 }
-  else { rowStop = halfLength - 1; colStop = halfLength }
+  if (l % 2 == 0) {
+    rowStop = colStop = halfLength - 1
+  } else {
+    rowStop = halfLength - 1;
+    colStop = halfLength
+  }
 
   for (let i = 0; i <= rowStop; i++) {
     for (let j = 0; j <= colStop; j++) {
@@ -1834,7 +1870,6 @@ const rotate = function (matrix) {
     matrix[col][l - 1 - row] = temp
   }
 };
-
 
 
 //441
@@ -1901,8 +1936,12 @@ var minMoves2 = function (nums) {
 
 var minMoves2 = function (nums) {
   let l = nums.length
-  if (l == 1) { return 0 }
-  if (l == 2) { return Math.abs(nums[0] - nums[1]) }
+  if (l == 1) {
+    return 0
+  }
+  if (l == 2) {
+    return Math.abs(nums[0] - nums[1])
+  }
   let medianIdx = parseInt(l / 2)
   let m = qSortMedian(nums)
   let res = 0
@@ -1913,7 +1952,9 @@ var minMoves2 = function (nums) {
 
   //qSort
   function qSortMedian(nums, start = 0, end = nums.length - 1) {
-    if (start == end) { return nums[start] }
+    if (start == end) {
+      return nums[start]
+    }
     let pivotIdx = Math.floor(Math.random() * (end - start) + 1) + start
     let pivot = nums[pivotIdx]
 
@@ -1952,7 +1993,7 @@ var multiply = function (num1, num2) {
     t = addStrings(t, num1)//1～9乘以nums1的结果
   }
   var result = '0'
-  for (var i = num2.length - 1, z = 0; i >= 0; i-- , z++) {
+  for (var i = num2.length - 1, z = 0; i >= 0; i--, z++) {
     var digit = num2[i]
     var a = num1map[digit] + (num1map[digit] == '0' ? '' : '0'.repeat(z))
     result = addStrings(result, a)
@@ -2002,14 +2043,19 @@ var convert = function (s, numRows) {
  */
 var spiralOrder = function (matrix) {
   let row = matrix.length
-  if (row == 0) { return matrix }
+  if (row == 0) {
+    return matrix
+  }
   let col = matrix[0].length
-  if (col == 0) { return matrix }
+  if (col == 0) {
+    return matrix
+  }
 
   let res = []
   //these are index
   let top = 0, right = col - 1, down = row - 1, left = 0;
   pushCycle(matrix, top, right, down, left)
+
   function pushCycle(mtx, t, r, d, l) {
     if (t > d || l > r) {
       return
@@ -2020,21 +2066,27 @@ var spiralOrder = function (matrix) {
         mtx[t][i] = false
       }
     }
-    if (t + 1 > d) { return }
+    if (t + 1 > d) {
+      return
+    }
     for (let j = t + 1; j <= d; j++) {
       if (mtx[j][r] !== false) {
         res.push(mtx[j][r])
         mtx[j][r] = false
       }
     }
-    if (r - 1 < l) { return }
+    if (r - 1 < l) {
+      return
+    }
     for (let k = r - 1; k >= l; k--) {
       if (mtx[d][k] !== false) {
         res.push(mtx[d][k])
         mtx[d][k] = false
       }
     }
-    if (d - 1 < t) { return }
+    if (d - 1 < t) {
+      return
+    }
     for (let w = d - 1; w >= t + 1; w--) {
       if (mtx[w][l] !== false) {
         res.push(mtx[w][l])
@@ -2043,12 +2095,11 @@ var spiralOrder = function (matrix) {
     }
     pushCycle(mtx, t + 1, r - 1, d - 1, l + 1)
   }
+
   return res
 };
-debugger; spiralOrder([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]])
-
-
-
+debugger;
+spiralOrder([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], [16, 17, 18, 19, 20], [21, 22, 23, 24, 25]])
 
 
 //59. Spiral Matrix II
@@ -2057,37 +2108,51 @@ debugger; spiralOrder([[1, 2, 3, 4, 5], [6, 7, 8, 9, 10], [11, 12, 13, 14, 15], 
  * @return {number[][]}
  */
 var generateMatrix = function (n) {
-  if (n == 0) { return [] }
-  if (n == 1) { return [[1]] }
+  if (n == 0) {
+    return []
+  }
+  if (n == 1) {
+    return [[1]]
+  }
   //n>=2
   let count = 0, mtx = new Array(n);
   for (let r = 0; r < n; r++) {
     mtx[r] = new Array(n)
   }
   fillCycle(mtx)
+
   function fillCycle(matrix, top = 0, right = n - 1, down = n - 1, left = 0) {
-    if (left > right || top > down) { return }
+    if (left > right || top > down) {
+      return
+    }
     for (let i = left; i <= right; i++) {
       matrix[top][i] = ++count
     }
-    if (top + 1 > down) { return }
+    if (top + 1 > down) {
+      return
+    }
     for (let j = top + 1; j <= down; j++) {
       matrix[j][right] = ++count
     }
-    if (right - 1 < left) { return }
+    if (right - 1 < left) {
+      return
+    }
     for (let k = right - 1; k >= left; k--) {
       matrix[down][k] = ++count
     }
-    if (down - 1 < top) { return }
+    if (down - 1 < top) {
+      return
+    }
     for (let w = down - 1; w >= top + 1; w--) {
       matrix[w][left] = ++count
     }
     fillCycle(matrix, top + 1, right - 1, down - 1, left + 1)
   }
+
   return mtx
 };
 
-//167 
+//167
 var twoSum = function (numbers, target) {
   let i = 0
   let j = 1
@@ -2216,26 +2281,30 @@ var findRestaurant = function (list1, list2) {
   let map = {}
   let mapSum = {}
   let result = []
-  let list1.length = l1
-  let list2.length = l2
-  let min = Infinity
-  for (let i = 0; i < l1; ++i) {
-    map[list1[i]] = i
-  }
-  for (let i = 0; i < l2; ++i) {
-    if (list2[i] in map) {
-      mapSum[list2[i]] = i + map[list1[i]]
-      if (min >= (i + map[list1[i]])) {
-        min = i + map[list1[i]]
-      }
+  let list1
+.
+  length = l1
+let list2
+.
+length = l2
+let min = Infinity
+for (let i = 0; i < l1; ++i) {
+  map[list1[i]] = i
+}
+for (let i = 0; i < l2; ++i) {
+  if (list2[i] in map) {
+    mapSum[list2[i]] = i + map[list1[i]]
+    if (min >= (i + map[list1[i]])) {
+      min = i + map[list1[i]]
     }
   }
-  for (key in mapSum) {
-    if (mapSum[key] == min) {
-      result.push(mapSum[key])
-    }
+}
+for (key in mapSum) {
+  if (mapSum[key] == min) {
+    result.push(mapSum[key])
   }
-  return result
+}
+return result
 };
 
 //不均匀硬币，生成概率为0.5的
@@ -2251,8 +2320,6 @@ function rand() {
   }
   return rand()
 }
-
-
 
 
 //链表专题
@@ -2281,10 +2348,10 @@ function arrayToList2(ary) {
   if (ary.length == 0) {
     return null
   }
-  var dummy = {} // dummy与空对象绑定 
-  var prev = dummy //prev 与dummy绑定 
+  var dummy = {} // dummy与空对象绑定
+  var prev = dummy //prev 与dummy绑定
   for (var i = 0; i < ary.length; i++) {
-    var node = {//生成节点 
+    var node = {//生成节点
       val: ary[i],
       next: null,
     }
@@ -2329,33 +2396,55 @@ function arrayToList4(ary, start = 0) {
 }
 
 
-
 {
   val: 1,
-    next: {
+    next
+:
+  {
     val: 2,
-      next: {
+      next
+  :
+    {
       val: 3,
-        next: {
+        next
+    :
+      {
         val: 4,
-          next: {
+          next
+      :
+        {
           val: 5,
-            next: null,
-          };
-      };
-    };
-  };
-};
+            next
+        :
+          null,
+        }
+        ;
+      }
+      ;
+    }
+    ;
+  }
+  ;
+}
+;
 
 {
   val: 1,
-    next: {
+    next
+:
+  {
     val: 2,
-      next: {
+      next
+  :
+    {
       val: 3,
-        next: {
+        next
+    :
+      {
         val: 4,
-          next: null
+          next
+      :
+        null
       }
     }
   }
@@ -2363,16 +2452,20 @@ function arrayToList4(ary, start = 0) {
 
 {
   val: 1,
-    next: {
+    next
+:
+  {
     val: 2,
-      next: {
+      next
+  :
+    {
       val: 3,
-        next: null
+        next
+    :
+      null
     }
   }
 }
-
-
 
 
 function ListNode(val) {
@@ -2470,7 +2563,7 @@ function nth2(head, idx) {
   return nth2(head.next, idx - 1)
 }
 
-/* 链表与数组的不同 
+/* 链表与数组的不同
 链表不能随机访问
 数组可以随机访问（可以以任意顺序访问数组中的任意元素）
 链表易增删，难查找
@@ -2594,7 +2687,7 @@ var deleteNode = function (node) {
   node.next = node.next.next
 }
 //21. Merge Two Sorted Lists
-//(1) In-place reordering 
+//(1) In-place reordering
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2659,8 +2752,12 @@ var mergeTwoLists = function (l1, l2) {
 };
 
 
-debugger; mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } } }, { val: 1, next: { val: 3, next: { val: 4, next: null } } })
-//(3) Recursively 
+debugger;
+mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } } }, {
+  val: 1,
+  next: { val: 3, next: { val: 4, next: null } }
+})
+//(3) Recursively
 /**
  * Definition for singly-linked list.
  * function ListNode(val) {
@@ -2669,7 +2766,7 @@ debugger; mergeTwoLists({ val: 1, next: { val: 2, next: { val: 3, next: null } }
  * }
  */
 
-/** 
+/**
  * @param {ListNode} l1
  * @param {ListNode} l2
  * @return {ListNode}
@@ -2762,7 +2859,7 @@ var swapPairs = function (head) {
  * Definition for singly-linked list.
  * function ListNode(val) {
  *     this.val = val;
- *     this.next = null; 
+ *     this.next = null;
  * }
  */
 /**
@@ -2773,7 +2870,7 @@ var deleteDuplicates = function (head) {
   if (!head || !head.next) {
     return head
   }
-  //two node at least 
+  //two node at least
   let a = head
   let b = head.next
   while (b) {
@@ -2891,12 +2988,18 @@ var detectCycle = function (head) {
   let slow = head
   let fast = head
   while (true) {
-    if (fast == null) { return null }
+    if (fast == null) {
+      return null
+    }
     fast = fast.next
-    if (fast == null) { return null }
+    if (fast == null) {
+      return null
+    }
     fast = fast.next
     slow = slow.next
-    if (fast == slow) { break }
+    if (fast == slow) {
+      break
+    }
   }
   while (start !== slow) {
     start = start.next
@@ -2923,10 +3026,14 @@ var hasCycle = function (head) {
   let slow = head
   while (fast !== null) {
     fast = fast.next
-    if (fast == null) { return false }
+    if (fast == null) {
+      return false
+    }
     fast = fast.next
     slow = slow.next
-    if (fast == slow) { return true }
+    if (fast == slow) {
+      return true
+    }
   }
   return false
 };
@@ -2948,8 +3055,10 @@ var hasCycle = function (head) {
  */
 var middleNode = function (head) {
   let fast = head, slow = head;
-  if (head.next == null) { return head }
-  //length >=2  
+  if (head.next == null) {
+    return head
+  }
+  //length >=2
   while (fast.next != null) {
     fast = fast.next
     slow = slow.next
@@ -2974,8 +3083,10 @@ var middleNode = function (head) {
  */
 
 var sortList = function (head) {
-  if (head == null || head.next == null) { return head }//exception excluded
-  // node length >= 2 
+  if (head == null || head.next == null) {
+    return head
+  }//exception excluded
+  // node length >= 2
   let mid = findBeforeMiddle(head)
   let right = mid.next
   mid.next = null
@@ -3007,15 +3118,25 @@ var sortList = function (head) {
   };
 
   function findBeforeMiddle(head) {
-    if (head == null || head.next == null) { return head }
+    if (head == null || head.next == null) {
+      return head
+    }
     //length >=2
     let slow = head
     let fast = head
     while (true) {
-      if (fast.next !== null) { fast = fast.next }
-      if (fast.next !== null) { fast = fast.next }
-      if (fast.next !== null) { slow = slow.next }
-      if (fast.next == null) { break }
+      if (fast.next !== null) {
+        fast = fast.next
+      }
+      if (fast.next !== null) {
+        fast = fast.next
+      }
+      if (fast.next !== null) {
+        slow = slow.next
+      }
+      if (fast.next == null) {
+        break
+      }
     }
     return slow
   }
@@ -3049,10 +3170,14 @@ var getIntersectionNode = function (headA, headB) {
     pointerA = pointerA.next
   }
   while (true) {
-    if (map.has(pointerB)) { return pointerB }
+    if (map.has(pointerB)) {
+      return pointerB
+    }
     if (pointerB !== null) {
       pointerB = pointerB.next
-    } else { return null }
+    } else {
+      return null
+    }
   }
 };
 
@@ -3076,7 +3201,9 @@ var getIntersectionNode = function (headA, headB) {
 var getIntersectionNode = function (headA, headB) {
   let pointerA = headA
   let pointerB = headB
-  if (headA == null || headB == null) { return null }
+  if (headA == null || headB == null) {
+    return null
+  }
   while (pointerA !== pointerB) {
     pointerA = (pointerA == null) ? headB : pointerA.next
     pointerB = (pointerB == null) ? headA : pointerB.next
@@ -3101,15 +3228,20 @@ var getIntersectionNode = function (headA, headB) {
  * @return {ListNode}
  */
 var rotateRight = function (head, k) {
-  if (head == null || head.next == null) { return head }
+  if (head == null || head.next == null) {
+    return head
+  }
   //l >= 2
   let prev = new ListNode(-1)
   prev.next = head
   let end = head, breakPoint = head;
   let count = 1
-  while (end.next !== null) { end = end.next; count++ }
+  while (end.next !== null) {
+    end = end.next;
+    count++
+  }
   end.next = head
-  //成环了 
+  //成环了
   let breakIdx = count - (k % count) + 1
   for (let recount = 1; recount < breakIdx; recount++) {
     breakPoint = breakPoint.next
@@ -3120,7 +3252,7 @@ var rotateRight = function (head, k) {
 };
 
 //Sorting
-/* 
+/*
 冒泡
 选择
 插入
@@ -3133,24 +3265,34 @@ var rotateRight = function (head, k) {
 基数排序
  */
 
-
 //插入排序(Insertion sort)
-//in-place 
-//T:
-//S:
-
+//in-place
+//T: O (n**2)
+//S: O(1)
+let insertSort = function (nums) {
+  let l = nums.length, i;
+  for (let j = 0; j < l; j++) {
+    let curr = nums[j]
+    i = j - 1
+    while (i >= 0 && nums[i] > curr) {
+      nums[i + 1] = nums[i]
+      i--
+    }
+    nums[i + 1] = curr
+  }
+  return nums
+}
 
 //选择排序
-//in-place 
-//T:O(N**2)
-//S:O(1)
+//in-place
+//T : O(N**2)
+//S : O(1)
 /**
  * @param {number[]} nums
- * @return {number[]} 
+ * @return {number[]}
  */
 function selectSort(nums) {
-  let l = nums.length
-  let minIdx, min;
+  let l = nums.length , minIdx, min;
   if (l == 0) { return nums }
   for (let j = 0; j < l; j++) {
     min = Infinity
@@ -3159,17 +3301,22 @@ function selectSort(nums) {
         min = nums[i]
         minIdx = i
       }
-    }
+    } 
     swapTwo(nums, j, minIdx)
   }
   return nums
 
   function swapTwo(ary, i, j) {
-    let tmp = ary[i]
-    ary[i] = ary[j]
-    ary[j] = tmp
+    if (i!==j) {
+      let tmp = ary[i]
+      ary[i] = ary[j]
+      ary[j] = tmp
+    }
+    return ary
   }
 }
+
+
 
 
 //归并排序(merge sort)
@@ -3215,7 +3362,7 @@ var sortArray = function (nums) {
 
 
 //快排(quickSort)
-//in-place 
+//in-place
 //T: (N*lgN)
 //S: (lgN)
 function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
@@ -3236,6 +3383,7 @@ function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包�
   qSort(ary, start, i - 1)
   qSort(ary, i + 1, end)
   return ary
+
   function swap(ary, i, j) {
     var t = ary[i]
     ary[i] = ary[j]
@@ -3267,7 +3415,9 @@ var thirdMax = function (nums) {
   return nums[l - 1]
 
   function qSort(ary, start = 0, end = ary.length - 1) {
-    if (end - start < 1) { return ary }
+    if (end - start < 1) {
+      return ary
+    }
     let l = ary.length
     let pivotIdx = Math.floor(Math.random() * (end - start + 1)) + start
     let pivot = ary[pivotIdx]
@@ -3303,11 +3453,15 @@ var thirdMax = function (nums) {
  */
 var findKthLargest = function (nums, k) {
   let l = nums.length
-  if (l == 1) { return nums[0] }
+  if (l == 1) {
+    return nums[0]
+  }
   return qSortIdx(nums, l - k)
 
   function qSortIdx(nums, targetIdx, start = 0, end = nums.length - 1) {
-    if (start == end) { return nums[start] }
+    if (start == end) {
+      return nums[start]
+    }
     let pivotIdx = Math.floor(Math.random() * (end - start) + 1) + start
     let pivot = nums[pivotIdx]
 
@@ -3341,7 +3495,7 @@ var findKthLargest = function (nums, k) {
 
 //动态规划专题
 //dynamic programming
-//62 Unique Path  
+//62 Unique Path
 /* 假如一个5x3的格子，那么一共存在>>>>vv步， */
 var uniquePaths = function (m, n) {
   let w = m + n - 2
@@ -3379,8 +3533,6 @@ var uniquePaths = function (m, n) {
   }
   return dpMatrix[m - 1][n - 1]
 };
-
-
 
 
 //63. Unique Paths II
@@ -3428,10 +3580,9 @@ var uniquePathsWithObstacles = function (obstacleGrid) {
 };
 
 
-
 //322. Coin Change
 //dp 最值型
-/** 
+/**
  * @param {number[]} coins
  * @param {number} amount
  * @return {number}
@@ -3463,7 +3614,7 @@ var coinChange = function (coins, amount) {
   return dp[amount]
 };
 
-/** 
+/**
  * @param {number[]} coins
  * @param {number} amount
  * @return {number}
@@ -3521,7 +3672,7 @@ var maxProduct = function (nums) {
 
   for (let i = 1; i <= nums.length; ++i) {
     // 如果数组的数是负数，那么会导致 max 变成 min，min 变成 max
-    // 故需要交换dp 
+    // 故需要交换dp
     if (nums[i - 1] < 0) {
       let temp = dpMax[i - 1]
       dpMax[i - 1] = dpMin[i - 1]
@@ -3542,7 +3693,9 @@ var maxProduct = function (nums) {
  */
 var maxProduct = function (nums) {
   let l = nums.length
-  if (l == 1) { return nums[0] }
+  if (l == 1) {
+    return nums[0]
+  }
   let dpMax = new Array(l)//正数组
   let dpMin = new Array(l)//负数组
 
@@ -3570,9 +3723,15 @@ var maxProduct = function (nums) {
  */
 var rob = function (nums) {
   let l = nums.length
-  if (l == 0) { return 0 }
-  if (l == 1) { return nums[0] }
-  if (l == 2) { return Math.max(nums[0], nums[1]) }
+  if (l == 0) {
+    return 0
+  }
+  if (l == 1) {
+    return nums[0]
+  }
+  if (l == 2) {
+    return Math.max(nums[0], nums[1])
+  }
   //l>=3
   let dp = new Array(l)
   //dp[i]表示至i得到的钱数
@@ -3593,7 +3752,9 @@ var rob = function (nums) {
  */
 var lengthOfLIS = function (nums) {
   let l = nums.length
-  if (l == 0 || l == 1) { return l }
+  if (l == 0 || l == 1) {
+    return l
+  }
   //l>=2
   let dp = new Array(l)
   //initialization
@@ -3620,29 +3781,6 @@ var climbStairs = function (n) {
 };
 
 
-
-//回溯算法
-//1222. Queens That Can Attack the King
-/**
- * @param {number[][]} queens
- * @param {number[]} king
- * @return {number[][]}
- */
-var queensAttacktheKing = function (queens, king) {
-
-};
-
-
-// 51. N-Queens
-/**
- * @param {number} n
- * @return {string[][]}
- */
-var solveNQueens = function (n) {
-
-};
-
-
 //二叉树专题
 
 /* 完全二叉树
@@ -3660,10 +3798,8 @@ Math.floor(lg(N))+1
 2**(N)-1
 
 使用对象实现
-使用数组实现 
+使用数组实现
 */
-
-
 
 
 //若为完全二叉树，下标为i的子节点的下标分别任2i+1和2i+2
@@ -3671,7 +3807,9 @@ Math.floor(lg(N))+1
 //将根节点在数组rootPos位置的一个由数组表达的二叉树
 //转换为二叉链表表达的树
 function ary2tree(ary, rootPos = 0) {
-  if (ary[rootPos] == null) { return null }
+  if (ary[rootPos] == null) {
+    return null
+  }
   let left = ary2tree(ary, rootPos * 2 + 1)
   let right = ary2tree(ary, rootPos * 2 + 2)
   let root = {
@@ -3692,39 +3830,57 @@ function tree2ary(root, pos = 0, result = []) {
   }
   return result
 }
+
 tree2ary(root)
-
-
 
 
 //leetcode表示法 condensedTree
 //null
 {
   val: 1,
-    left: {
+    left
+:
+  {
     val: 2,
-      left: null,
-        right: null
-  },
+      left
+  :
+    null,
+      right
+  :
+    null
+  }
+,
   right: {
     val: 3,
-      left: {
+      left
+  :
+    {
       val: 4,
-        left: null,
-          right: null
-    },
+        left
+    :
+      null,
+        right
+    :
+      null
+    }
+  ,
     right: {
       val: 5,
-        left: null,
-          right: null
+        left
+    :
+      null,
+        right
+    :
+      null
     }
   }
 }
 
 
-
 function lcary2tree(ary) {
-  if (ary.length == 0) { return null }
+  if (ary.length == 0) {
+    return null
+  }
   let root = {
     val: ary[0], left: null, right: null
   }
@@ -3743,7 +3899,9 @@ function lcary2tree(ary) {
     }
 
     i++
-    if (i >= ary.length) { break }
+    if (i >= ary.length) {
+      break
+    }
 
     if (ary[i] != null) {
       let node = {
@@ -3758,7 +3916,8 @@ function lcary2tree(ary) {
   return root
 }
 
-debugger; lcary2tree([1, 2, 3, null, 4, null, 5, 6, 7, null, 8, null, 9, 10])
+debugger;
+lcary2tree([1, 2, 3, null, 4, null, 5, 6, 7, null, 8, null, 9, 10])
 
 
 function lctree2ary(root) {
@@ -3788,26 +3947,31 @@ function lctree2ary(root) {
       if (curr.left) {
         result.push(curr.left.val)
         nodes.push(curr.left)
-      } else { result.push(null) }
+      } else {
+        result.push(null)
+      }
       if (curr.right) {
         result.push(curr.right.val)
         nodes.push(curr.right)
-      } else { result.push(null) }
+      } else {
+        result.push(null)
+      }
     }
-    while (result[result.length - 1] === null) { result.pop() }
+    while (result[result.length - 1] === null) {
+      result.pop()
+    }
     return result
   }
   return []
 }
 
 
-
-
-
 //my transform
 function condensedA2T(ary) {
   let queue = [], l = ary.length, curr;
-  if (l == 0) { return null }
+  if (l == 0) {
+    return null
+  }
   let root = {
     val: ary[0],
     left: null,
@@ -3841,7 +4005,9 @@ function condensedA2T(ary) {
 
 
 function mytree2ary(root, res = []) {
-  if (root == null) { return res }
+  if (root == null) {
+    return res
+  }
   let queue = []
   queue.push(root)
   res.push(root.val)
@@ -3851,14 +4017,20 @@ function mytree2ary(root, res = []) {
     if (curr.left !== null) {
       queue.push(curr.left)
       res.push(curr.left.val)
-    } else { res.push(null) }
+    } else {
+      res.push(null)
+    }
     if (curr.right !== null) {
       queue.push(curr.right)
       res.push(curr.right.val)
-    } else { res.push(null) }
+    } else {
+      res.push(null)
+    }
   }
 
-  while (res[res.length - 1] === null) { res.pop() }
+  while (res[res.length - 1] === null) {
+    res.pop()
+  }
   return res
 }
 
@@ -3895,8 +4067,127 @@ function postOrderTraverse(root, action) {
     action(root.val)
   }
 }
+
+//利用树的一些特性
+
+function insertIntoBST(root, val) {
+  if (!root) {
+    return new TreeNode(val)
+  }
+  if (val < root.val) {
+    root.left = insertIntoBST(root.left, val)
+  } else {
+    root.right = insertIntoBST(root.right, val)
+  }
+  return root
+}
+
+//Time complexity O(N*lgN+N) == O(N*lgN)
+//Space complexity O*(N)
+function bstSort(ary) {
+  let root = null;
+  for (let i = 0; i < ary.length; i++) {
+    root = insertIntoBST(root, ary[i])
+  }
+  let k = 0;
+  inOrderTraverse(root, val => {
+    ary[k++] = val
+  })
+  return ary
+}
+
+//start code runner
+ary = [2, 4, 2077, 6, 21, 9, 5, 1]
+let k = bstSort(ary)
+console.log(k)
+
+
+//700. Search in a Binary Search Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+// (1) recursively
+var searchBST = function (root, val) {
+  if (root == null) return null
+  if (root.val == val) return root
+  if (root.val > val) return searchBST(root.left, val)
+  else return searchBST(root.right, val)
+};
+
+//(2) iterativly
+//Time complexity : O(lgN)
+//Space complexity :  O(1)
+var searchBST = function (root, val) {
+  while (root) {
+    if (root.val == val) return root
+    if (root.val > val) root = root.left
+    else root = root.right
+  }
+  return root
+};
+
+
+
+//701. Insert into a Binary Search Tree
+//(1) iteratively
+//Time complexity : O(lgN)
+//Space complexity :  O(1)
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+
+var insertIntoBST = function (root, val) {
+  let curr = root
+  while (curr != null) {
+    if (val > curr.val) {
+      if (curr.right == null) {
+        curr.right = new TreeNode(val)
+        return root
+      } else curr = curr.right
+    } else {
+      if (curr.left == null) {
+        curr.left = new TreeNode(val)
+        return root
+      } else curr = curr.left
+    }
+  }
+};
+
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+//(2) recursively
+//Time complexity : O(lgN)
+//Space complexity : call stack depth O(lgN)
+/**
+ * @param {TreeNode} root
+ * @param {number} val
+ * @return {TreeNode}
+ */
+var insertIntoBST = function (root, val) {
+  if (!root) return new TreeNode(val)
+  if (root.val < val) { root.right = insertIntoBST(root.right, val) }
+  else { root.left = insertIntoBST(root.left, val) }
+  return root
+};
+
 //144. Binary Tree Preorder Traversal
-//(1)recusively
+//(1)recursively
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -3912,12 +4203,13 @@ var preorderTraversal = function (root) {
   let res = []
   preT(root)
   return res
+
   function preT(root) {
     if (root) {
       res.push(root.val)
       preT(root.left)
       preT(root.right)
-    } else { return }
+    }
   }
 };
 
@@ -3928,7 +4220,6 @@ var preorderTraversal = function (root) {
  */
 var preorderTraversal = function (root) {
   if (!root) { return [] }
-
   let stack = [], res = [], curr;
   stack.push(root)
   while (stack.length != 0) {
@@ -3942,8 +4233,102 @@ var preorderTraversal = function (root) {
   return res
 };
 
+//94. Binary Tree Inorder Traversal
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+//(1) recursively
+//Space complexity : depth of call stack O(lgN)
+//Time complexity : O(N)
+var inorderTraversal = function (root) {
+  let res = []
+  inTrav(root)
+  return res
+
+  function inTrav(root) {
+    if (root) {
+      inTrav(root.left)
+      res.push(root.val)
+      inTrav(root.right)
+    }
+  }
+};
+
+//(2) iteratively
+//Time complextity : O(N)
+//Space complextity : O(lgN)
+//利用stack回到原来的节点，这个思路很重要
+var inorderTraversal = function (root) {
+  let res = [], stack = [], curr = root
+  if (!root) { return res }
+  while (curr || stack.length) {
+    while (curr) {
+      stack.push(curr)
+      curr = curr.left
+    }
+    curr = stack.pop()
+    res.push(curr.val)
+    curr = curr.right
+  }
+  return res
+}
+
+//(3) Morris Traversal
+//Time complextity O(N)
+//Space complextity O(1)
+var inorderTraversal = function (root) {
+  let res = [], curr = root, pre;
+  while (curr) { //curr 永远指向最{高}节点
+    if (curr.left == null) {
+      res.push(curr.val)
+      curr = curr.right
+    } else {
+      pre = curr.left
+      while (pre.right) { pre = pre.right }//左子树的最右节点
+      pre.right = curr //该节点右节点指向curr,左子树最右节点接到curr上
+      temp = curr
+      curr = curr.left 
+      temp.left = null //temp的左节点断掉
+    }
+  }
+  return res
+}
+
+//145. Binary Tree Postorder Traversal
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[]}
+ */
+var postorderTraversal = function(root) {
+  let res = []
+  postTrav(root)
+  return res 
+  function postTrav(root){
+    if(root){
+      postTrav(root.left)
+      postTrav(root.right)
+      res.push(root.val)
+    }
+  }
+};
 
 //589. N-ary Tree Preorder Traversal
+//啥意思，没明白?
 /**
  * // Definition for a Node.
  * function Node(val, children) {
@@ -3955,11 +4340,21 @@ var preorderTraversal = function (root) {
  * @param {Node} root
  * @return {number[]}
  */
-var preorder = function (root) {
-  let res = []
-  if (!root) return []
+const preorder = function (root) {
   
 };
+
+let w =
+{
+  val: 1,
+  children: {
+    val: 3,
+    children: { val: 5 },
+    children: { val: 6 },
+  },
+  children: { val: 2 },
+  children: { val: 4 },
+}
 
 
 //100. Same Tree
@@ -3988,8 +4383,34 @@ var isSameTree = function (p, q) {
   // q o p o
   if (p.val == q.val) {
     return isSameTree(p.left, q.left) && isSameTree(p.right, q.right)
-  } else { return false }
+  } else {
+    return false
+  }
 };
+
+//101. Symmetric Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function(root) {
+  if (!root) return true
+  function checkSymmetric(root){
+    root.left
+    root.right
+  }
+};
+
+
+
+
 
 //104. Maximum Depth of Binary Tree
 /**
@@ -4024,10 +4445,18 @@ var maxDepth = function (root) {
  * @return {number}
  */
 var minDepth = function (root) {
-  if (!root) { return 0 }
-  if (!root.left && !root.right) { return 1 }
-  if (!root.left) { return 1 + minDepth(root.right) }
-  if (!root.right) { return 1 + minDepth(root.left) }
+  if (!root) {
+    return 0
+  }
+  if (!root.left && !root.right) {
+    return 1
+  }
+  if (!root.left) {
+    return 1 + minDepth(root.right)
+  }
+  if (!root.right) {
+    return 1 + minDepth(root.left)
+  }
   return 1 + Math.min(minDepth(root.right), minDepth(root.left))
 };
 
@@ -4070,11 +4499,17 @@ var invertTree = function (root) {
  */
 var mergeTrees = function (t1, t2) {
   //t1 x t2 x
-  if (t1 == null && t2 == null) { return null }
+  if (t1 == null && t2 == null) {
+    return null
+  }
   //t1 x t2 o
   //t1 o t2 x
-  if (t1 == null) { return t2 }
-  if (t2 == null) { return t1 }
+  if (t1 == null) {
+    return t2
+  }
+  if (t2 == null) {
+    return t1
+  }
   //t1 o t2 o
   if (t1 !== null && t2 !== null) {
     let root = new TreeNode(t1.val + t2.val)
@@ -4098,9 +4533,48 @@ var mergeTrees = function (t1, t2) {
  * @return {boolean}
  */
 var hasPathSum = function (root, sum) {
-  if (!root) { return false }
-  if (!root.left && !root.right) { return root.val == sum }
+  if (!root) {
+    return false
+  }
+  if (!root.left && !root.right) {
+    return root.val == sum
+  }
   return hasPathSum(root.left, sum - root.val) ||
     hasPathSum(root.right, sum - root.val)
 };
+
+//606. Construct String from Binary Tree
+//(1) recursive
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} t
+ * @return {string}
+ */
+
+let tree2str = function (t) {
+  //4种情况
+  if (t == null) {
+    return ''
+  }
+  if (t.left == null && t.right == null) {
+    return t.val + ""
+  }
+  ;
+  if (t.right == null) {
+    return t.val + "(" + tree2str(t.left) + ")"
+  }
+  return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
+};
+
+//(2)Hash set + stack
+let tree2str = function (t) {
+};
+
+
 
