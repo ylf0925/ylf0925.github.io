@@ -80,11 +80,14 @@ var countPrimes = function (n) {
   return count
 };
 
-//205
+//205  Isomorphic Strings
+/**
+ * @param {string} s
+ * @param {string} t
+ * @return {boolean}
+ */
 var isIsomorphic = function (s, t) {//利用obj的唯一性
-  let map = {}
-  let top
-  let m
+  let map = {}, top;
   for (let i = 0; i < s.length; i++) {
     top = s[i]
     if (top in map) {
@@ -3292,7 +3295,7 @@ let insertSort = function (nums) {
  * @return {number[]}
  */
 function selectSort(nums) {
-  let l = nums.length , minIdx, min;
+  let l = nums.length, minIdx, min;
   if (l == 0) { return nums }
   for (let j = 0; j < l; j++) {
     min = Infinity
@@ -3301,13 +3304,13 @@ function selectSort(nums) {
         min = nums[i]
         minIdx = i
       }
-    } 
+    }
     swapTwo(nums, j, minIdx)
   }
   return nums
 
   function swapTwo(ary, i, j) {
-    if (i!==j) {
+    if (i !== j) {
       let tmp = ary[i]
       ary[i] = ary[j]
       ary[j] = tmp
@@ -4295,7 +4298,7 @@ var inorderTraversal = function (root) {
       while (pre.right) { pre = pre.right }//左子树的最右节点
       pre.right = curr //该节点右节点指向curr,左子树最右节点接到curr上
       temp = curr
-      curr = curr.left 
+      curr = curr.left
       temp.left = null //temp的左节点断掉
     }
   }
@@ -4314,12 +4317,12 @@ var inorderTraversal = function (root) {
  * @param {TreeNode} root
  * @return {number[]}
  */
-var postorderTraversal = function(root) {
+var postorderTraversal = function (root) {
   let res = []
   postTrav(root)
-  return res 
-  function postTrav(root){
-    if(root){
+  return res
+  function postTrav(root) {
+    if (root) {
       postTrav(root.left)
       postTrav(root.right)
       res.push(root.val)
@@ -4341,7 +4344,7 @@ var postorderTraversal = function(root) {
  * @return {number[]}
  */
 const preorder = function (root) {
-  
+
 };
 
 let w =
@@ -4400,15 +4403,18 @@ var isSameTree = function (p, q) {
  * @param {TreeNode} root
  * @return {boolean}
  */
-var isSymmetric = function(root) {
+var isSymmetric = function (root) {
   if (!root) return true
-  function checkSymmetric(root){
-    root.left
-    root.right
+  else return isMirror(root, root)
+
+  function isMirror(t1, t2){
+    if (t1 == null && t2 == null) return true
+    if (t1 == null || t2 == null) return false
+    return (t1.val == t2.val)
+      && isMirror(t1.right, t2.left)
+      && isMirror(t1.left, t2.right)
   }
-};
-
-
+}
 
 
 
