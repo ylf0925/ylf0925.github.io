@@ -3968,7 +3968,6 @@ function lctree2ary(root) {
   return []
 }
 
-
 //my transform
 function condensedA2T(ary) {
   let queue = [], l = ary.length, curr;
@@ -4005,7 +4004,6 @@ function condensedA2T(ary) {
   }
   return root
 }
-
 
 function mytree2ary(root, res = []) {
   if (root == null) {
@@ -4287,6 +4285,7 @@ var inorderTraversal = function (root) {
 //(3) Morris Traversal
 //Time complextity O(N)
 //Space complextity O(1)
+//想不出来，看懂都费劲
 var inorderTraversal = function (root) {
   let res = [], curr = root, pre;
   while (curr) { //curr 永远指向最{高}节点
@@ -4609,8 +4608,69 @@ let tree2str = function (t) {
   return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
 };
 
+//102. Binary Tree Level Order Traversal
+//(1)BFS recusively 妙啊！
+//Time complexity : O(N)
+//Space complexity : O(H)
+//H is the height of binary tree -> roughly lgN
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+let levelOrder = function (root) {
+  let levels = []
+  //levels 里面放的是*数组*
+  if (!root) return levels
+  helperBFS(root, 0)
+  return levels
+  
+  function helperBFS(node, depth){
+    if(!node) return;
+    if(levels.length === depth) levels.push([])
+    levels[depth].push(node.val)
+    //一个重要的思想是当levels里面的depth == levels数组长度时，push数值
+    helperBFS(node.left,depth + 1 )
+    helperBFS(node.right,depth + 1 )
+  }
 
-//多叉树
+}; 
+let root = condensedA2T([1,2,3,null,null,4,5])
+debugger;levelOrder(root)
+
+//(2)BFS Iterative 
+//妙啊！
+//Time complexity : O(N)
+//Space complexity : O(H)
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+let levelOrder = function(root) {
+  if (!root) return [];
+  let levels = [], queue = [root];
+  let level = -1, levelLength = 0, curr = null;
+  while (queue.length) {
+      levelLength = queue.length
+      levels.push([])
+      level++;
+      for (let i = 0; i < levelLength; i++) {
+          curr = queue.shift();
+          levels[level].push(curr.val);
+          if (curr.left) queue.push(curr.left);
+          if (curr.right) queue.push(curr.right);
+      }
+  }
+  return levels;
+};
+
+//多叉树 
 //559. Maximum Depth of N-ary Tree
 /**
  * // Definition for a Node.
