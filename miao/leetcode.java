@@ -17,7 +17,6 @@ public class Solution {
       } while (start != current);
     }
   }
-
 }
 
   // 141. Linked List Cycle

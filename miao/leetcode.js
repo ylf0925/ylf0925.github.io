@@ -4330,36 +4330,6 @@ var postorderTraversal = function (root) {
   }
 };
 
-//589. N-ary Tree Preorder Traversal
-//啥意思，没明白?
-/**
- * // Definition for a Node.
- * function Node(val, children) {
- *    this.val = val;
- *    this.children = children;
- * };
- */
-/**
- * @param {Node} root
- * @return {number[]}
- */
-const preorder = function (root) {
-
-};
-
-let w =
-{
-  val: 1,
-  children: {
-    val: 3,
-    children: { val: 5 },
-    children: { val: 6 },
-  },
-  children: { val: 2 },
-  children: { val: 4 },
-}
-
-
 //100. Same Tree
 /**
  * Definition for a binary tree node.
@@ -4392,6 +4362,9 @@ var isSameTree = function (p, q) {
 };
 
 //101. Symmetric Tree
+//(1)recusively
+//Time complexity : O(N)
+//Space complexity : O(lgN)
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -4405,16 +4378,75 @@ var isSameTree = function (p, q) {
  */
 var isSymmetric = function (root) {
   if (!root) return true
-  else return isMirror(root, root)
+  else return isMirror(root.left, root.right)
 
-  function isMirror(t1, t2){
+  function isMirror(t1, t2) {
     if (t1 == null && t2 == null) return true
     if (t1 == null || t2 == null) return false
-    return (t1.val == t2.val)
+    return ((t1.val == t2.val)
       && isMirror(t1.right, t2.left)
-      && isMirror(t1.left, t2.right)
+      && isMirror(t1.left, t2.right))
   }
 }
+
+//(2)iteratively
+//遍历两遍，效率低
+/**
+ * @param {TreeNode} root
+ * @return {boolean}
+ */
+var isSymmetric = function (root) {
+  if (!root) return true;
+  const stack1 = [], stack2 = [];
+  let curr1 = root, curr2 = root;
+  while ((curr1 && curr2) || (stack1.length && stack2.length)) {
+    while (curr1) {
+      stack1.push(curr1);
+      curr1 = curr1.left;
+    }
+    while (curr2) {
+      stack2.push(curr2);
+      curr2 = curr2.right;
+    }
+    curr1 = stack1.pop(), curr2 = stack2.pop();
+    if ((curr1.val !== curr2.val) || (stack1.length !== stack2.length)) {
+      return false;
+    }
+    curr1 = curr1.right, curr2 = curr2.left;
+  }
+  return true;
+}
+
+//106. Construct Binary Tree from Inorder and Postorder Traversal
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {number[]} inorder
+ * @param {number[]} postorder
+ * @return {TreeNode}
+ */
+var buildTree = function (inorder, postorder) {
+  if (inorder.length == 0) return null
+  let l = inorder.length, rootVal = postorder[l - 1];
+  let rootPos = inorder.indexOf(rootVal)
+
+  let leftInorder = inorder.slice(0, rootPos)
+  let rightInorder = inorder.slice(rootPos + 1)
+
+  let leftPostorder = postorder.slice(0, leftInorder.length)
+  let rightPostorder = postorder.slice(leftInorder.length, l - 1)
+
+  let root = new TreeNode(rootVal)
+  root.left = buildTree(leftInorder, leftPostorder)
+  root.right = buildTree(rightInorder, rightPostorder)
+
+  return root
+};
 
 
 
@@ -4571,16 +4603,118 @@ let tree2str = function (t) {
   if (t.left == null && t.right == null) {
     return t.val + ""
   }
-  ;
   if (t.right == null) {
     return t.val + "(" + tree2str(t.left) + ")"
   }
   return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
 };
 
-//(2)Hash set + stack
-let tree2str = function (t) {
+
+//多叉树
+//559. Maximum Depth of N-ary Tree
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number}
+ */
+
+
+var maxDepth = function (root) {
+  if (!root) return 0
+  else return countDepth(root)
+
+  function countDepth(node) {
+    if (!node.children) { return 0 }
+    if (!node.children.length) { return 1 }
+    return Math.max(...node.children.map(countDepth)) + 1
+  }
+};
+
+//589. N-ary Tree Preorder Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val, children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
+var preorder = function (root) {
+  let res = []
+  helperPreTrav(root)
+  return res
+
+    function helperPreTrav(node){
+      if (node) {
+        res.push(node.val)
+        if (node.children.length) node.children.map(helperPreTrav)
+      }
+    }
 };
 
 
+//590. N-ary Tree Postorder Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[]}
+ */
+var postorder = function(root) {
+  let res = []
+  helperPostTrav(root)
+  return res
+
+    function helperPostTrav(node){
+      if (node) {
+        if (node.children.length) node.children.map(helperPostTrav)
+        res.push(node.val)
+      }
+    }
+};
+
+
+//429. N-ary Tree Level Order Traversal
+/**
+ * // Definition for a Node.
+ * function Node(val,children) {
+ *    this.val = val;
+ *    this.children = children;
+ * };
+ */
+/**
+ * @param {Node} root
+ * @return {number[][]}
+ */
+var levelOrder = function(root) {
+    
+};
+
+
+let root = {
+  val: 1,
+  children: [
+    {
+      val: 3,
+      children: [{ val: 5, children: [], }, { val: 6, children: [], }],
+    },
+    { val: 2, children: [], },
+    { val: 4, children: [], },
+  ],
+}
+debugger;
 
