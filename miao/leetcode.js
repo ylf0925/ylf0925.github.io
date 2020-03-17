@@ -4612,7 +4612,7 @@ let tree2str = function (t) {
 //(1)BFS recusively 妙啊！
 //Time complexity : O(N)
 //Space complexity : O(H)
-//H is the height of binary tree -> roughly lgN
+//H is the height of binary tree -> roughly lgN if it is balanced binary tr
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -4625,24 +4625,25 @@ let tree2str = function (t) {
  * @return {number[][]}
  */
 let levelOrder = function (root) {
-  let levels = []
-  //levels 里面放的是*数组*
-  if (!root) return levels
+  let res = []
+  //res 里面放的是*数组*
+  if (!root) return res
   helperBFS(root, 0)
-  return levels
-  
-  function helperBFS(node, depth){
-    if(!node) return;
-    if(levels.length === depth) levels.push([])
-    levels[depth].push(node.val)
-    //一个重要的思想是当levels里面的depth == levels数组长度时，push数值
-    helperBFS(node.left,depth + 1 )
-    helperBFS(node.right,depth + 1 )
+  return res
+
+  function helperBFS(node, depth) {
+    if (!node) return;
+    if (res.length === depth) res.push([])
+    res[depth].push(node.val)
+    //一个重要的思想是当res里面的depth == res数组长度时，push数值
+    helperBFS(node.left, depth + 1)
+    helperBFS(node.right, depth + 1)
   }
 
-}; 
-let root = condensedA2T([1,2,3,null,null,4,5])
-debugger;levelOrder(root)
+};
+
+let root = condensedA2T([1, 2, 3, null, null, 4, 5])
+debugger; levelOrder(root)
 
 //(2)BFS Iterative 
 //妙啊！
@@ -4652,23 +4653,82 @@ debugger;levelOrder(root)
  * @param {TreeNode} root
  * @return {number[][]}
  */
-let levelOrder = function(root) {
+let levelOrder = function (root) {
   if (!root) return [];
-  let levels = [], queue = [root];
-  let level = -1, levelLength = 0, curr = null;
+  let res = [], queue = [root];
+  let depth = -1, queLength = 0, curr = null;
   while (queue.length) {
-      levelLength = queue.length
-      levels.push([])
-      level++;
-      for (let i = 0; i < levelLength; i++) {
-          curr = queue.shift();
-          levels[level].push(curr.val);
-          if (curr.left) queue.push(curr.left);
-          if (curr.right) queue.push(curr.right);
-      }
+    queLength = queue.length
+    res.push([])
+    depth++;
+    for (let i = 0; i < queLength; i++) {
+      //上一次队列的里所有元素都要push到res里
+      curr = queue.shift();
+      res[depth].push(curr.val);
+      if (curr.left) queue.push(curr.left);
+      if (curr.right) queue.push(curr.right);
+    }
   }
-  return levels;
+  return res;
 };
+
+//404. Sum of Left Leaves
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var sumOfLeftLeaves = function (root) {
+  if (root) {
+    if (isLeafNode(root.left)) {
+      return root.left.val + sumOfLeftLeaves(root.right)
+    } else {
+      return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)
+    }
+  } else return 0
+  
+  function isLeafNode(node) {
+    return node && (!node.left && !node.right)
+  }
+};
+
+var sumOfLeftLeaves = function (root, side) {
+  if (root) {
+    if (isLeafNode(root) && side == "l") {
+      return root.val + sumOfLeftLeaves(root.right, "r")
+    } else {
+      return sumOfLeftLeaves(root.left, "l") + sumOfLeftLeaves(root.right, "r")
+    }
+  } else return 0
+   
+  function isLeafNode(node) {
+    return node && (!node.left && !node.right)
+  }
+};
+
+
+//B站面试题
+/**
+ * @param {String} num
+ * @return {String}
+ */
+//"1234" -> "4321"
+function transform(n, isOuterMost = true) {
+  if (n == 0) {
+    if (isOuterMost) return "0"
+    else return ""
+  }
+  let digit = n % 10
+  let rest = (n - digit) / 10
+  return "" + digit + transform(rest, false)
+}
+
 
 //多叉树 
 //559. Maximum Depth of N-ary Tree
@@ -4713,12 +4773,12 @@ var preorder = function (root) {
   helperPreTrav(root)
   return res
 
-    function helperPreTrav(node){
-      if (node) {
-        res.push(node.val)
-        if (node.children.length) node.children.map(helperPreTrav)
-      }
+  function helperPreTrav(node) {
+    if (node) {
+      res.push(node.val)
+      if (node.children.length) node.children.map(helperPreTrav)
     }
+  }
 };
 
 
@@ -4734,17 +4794,17 @@ var preorder = function (root) {
  * @param {Node} root
  * @return {number[]}
  */
-var postorder = function(root) {
+var postorder = function (root) {
   let res = []
   helperPostTrav(root)
   return res
 
-    function helperPostTrav(node){
-      if (node) {
-        if (node.children.length) node.children.map(helperPostTrav)
-        res.push(node.val)
-      }
+  function helperPostTrav(node) {
+    if (node) {
+      if (node.children.length) node.children.map(helperPostTrav)
+      res.push(node.val)
     }
+  }
 };
 
 
@@ -4760,8 +4820,8 @@ var postorder = function(root) {
  * @param {Node} root
  * @return {number[][]}
  */
-var levelOrder = function(root) {
-    
+var levelOrder = function (root) {
+
 };
 
 
