@@ -4712,6 +4712,59 @@ var sumOfLeftLeaves = function (root, side) {
   }
 };
 
+//297. Serialize and Deserialize Binary Tree
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+
+/**
+ * Encodes a tree to a single string.
+ *
+ * @param {TreeNode} root
+ * @return {string}
+ */
+var serialize = function (root) {
+  if (!root) return "[]"
+  //root不为空
+  return tree2ary(root)
+  function tree2ary(root) {
+    let res = [root.val], queue = [root], curr = null;
+    while (queue.length) {
+      curr = queue.shift()
+      if (curr.left) {
+        res.push(curr.left.val)
+        queue.push(curr.left)
+      } else res.push(null)
+      if (curr.right) {
+        res.push(curr.right.val)
+        queue.push(curr.right)
+      } else res.push(null)
+    }
+    while (res[res.length - 1] === null) {
+      res.pop()
+    }
+    return "[" + res + "]"
+  }
+};
+
+/**
+ * Decodes your encoded data to tree.
+ *
+ * @param {string} data
+ * @return {TreeNode}
+ */
+var deserialize = function(data) {
+    
+};
+
+/**
+ * Your functions will be called as such:
+ * deserialize(serialize(root));
+ */
 
 //B站面试题
 /**
