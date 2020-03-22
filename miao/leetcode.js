@@ -3268,6 +3268,10 @@ var rotateRight = function (head, k) {
 基数排序
  */
 
+
+Array(100).fill(0).map(it => Math.random() * 100 | 0)
+
+
 //插入排序(Insertion sort)
 //in-place
 //T: O (n**2)
@@ -3319,9 +3323,6 @@ function selectSort(nums) {
   }
 }
 
-
-
-
 //归并排序(merge sort)
 //out-place
 //T : O(N*lgN)
@@ -3363,31 +3364,31 @@ var sortArray = function (nums) {
   return nums
 };
 
-
+//所有元素都相同得数组来说，退化为N**2,调用栈会达到N
 //快排(quickSort)
 //in-place
 //T: (N*lgN)
 //S: (lgN)
 function qSort(ary, start = 0, end = ary.length - 1) {//start 跟 end 都是包含的
-  if (end - start < 1) {
-    return ary
-  }
-
+  if (end - start < 1) { return ary }
   var pivotIdx = Math.floor(Math.random() * (end - start + 1)) + start
   var pivot = ary[pivotIdx]
   swap(ary, pivotIdx, end)
   var i = start
+
   for (var j = start; j < end; j++) {
     if (ary[j] < pivot) {
       swap(ary, i++, j)
     }
   }
+
   swap(ary, i, end)
   qSort(ary, start, i - 1)
   qSort(ary, i + 1, end)
   return ary
 
   function swap(ary, i, j) {
+    if (ary[i] == ary[j]) return
     var t = ary[i]
     ary[i] = ary[j]
     ary[j] = t
@@ -3482,6 +3483,7 @@ var findKthLargest = function (nums, k) {
     if (i == targetIdx) {
       return nums[i]
     } else if (i > targetIdx) {
+      0
       return qSortIdx(nums, targetIdx, start, i - 1)
     } else if (i < targetIdx) {
       return qSortIdx(nums, targetIdx, i + 1, end)
@@ -3495,9 +3497,151 @@ var findKthLargest = function (nums, k) {
   }
 };
 
+//169. Majority Element
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var majorityElement = function (nums) {
+  let l = nums.length
+  if (l == 0) return null;
+  if (l == 1) return nums[0]
+  return qSortIdx(nums, parseInt((l - 1) / 2))
+
+  function qSortIdx(nums, targetIdx, start = 0, end = nums.length - 1) {
+    if (start == end) {
+      return nums[start]
+    }
+    let pivotIdx = Math.floor(Math.random() * (end - start) + 1) + start
+    let pivot = nums[pivotIdx]
+
+    swap(nums, pivotIdx, end)
+
+    let i = start, j = start
+    for (; j < end; j++) {
+      if (pivot > nums[j]) {
+        swap(nums, i++, j)
+      }
+    }
+
+    swap(nums, i, end)
+    //i 的位置就是实际的位置
+    if (i == targetIdx) {
+      return nums[i]
+    } else if (i > targetIdx) {
+      return qSortIdx(nums, targetIdx, start, i - 1)
+    } else if (i < targetIdx) {
+      return qSortIdx(nums, targetIdx, i + 1, end)
+    }
+
+    function swap(ary, i, j) {
+      if (i != j) {
+        let tmp = ary[i]
+        ary[i] = ary[j]
+        ary[j] = tmp
+      }
+    }
+  }
+};
+
+
 
 //动态规划专题
 //dynamic programming
+//509. Fibonacci Number
+/**
+ * @param {number} N
+ * @return {number}
+ */
+var fib = function(N) {
+  let dp = new Array( N + 1 );
+  dp[0] = 0;
+  dp[1] = dp[2] = 1;
+  //dp base case
+  for (let j = 3; j <= N; j++){
+    dp[j] = dp[j - 1] + dp[j - 2]
+  }
+  return dp[N]
+};
+
+//只需要记录3个状态
+var fib = function(N) {
+  if (N == 0) { return 0; }
+  if (N == 2 || N == 1) { return 1;}
+  
+  let state1 = 1;
+  let state2 = 1;
+  let state3 ;
+  
+  for (let j = 3; j <= N; j++){
+    state3 = state1 + state2;
+    state1 = state2
+    state2 = state3
+  }
+  return state3
+};
+//516. Longest Palindromic Subsequence 这题很难
+/**
+ * @param {string} s
+ * @return {number}
+ */
+var longestPalindromeSubseq = function (s) {
+  let length = s.length;
+
+  // dp[i][j]表示的是从s[i]至s[j]之间的最长回文子序列的长度
+  let dp = new Array(length);
+  for (let i = 0; i < length; i++) {
+    dp[i] = new Array(length).fill(0);
+  }
+
+  for (let i = length - 1; i >= 0; i--) {
+    // 每一个字符都是一个回文字符串，因此对于dp[i][i]设置为1
+    dp[i][i] = 1;
+    for (let j = i + 1; j < length; j++) {
+      // 状态转移方程为:
+      // 当s[i]等于s[j]时，dp[i][j] = dp[i-1][j+1] + 2;
+      // 当s[i]不等于s[j]时，dp[i][j] = max(dp[i-1][j], dp[i][j+1])
+      if (s[i] === s[j]) {
+        dp[i][j] = dp[i + 1][j - 1] + 2;
+      } else {
+        dp[i][j] = Math.max(dp[i + 1][j], dp[i][j - 1])
+      }
+    }
+  }
+  return dp[0][length - 1];
+};
+
+//300. Longest Increasing Subsequence
+//(1) dp
+/**
+ * @param {number[]} nums
+ * @return {number}
+ */
+var lengthOfLIS = function (nums) {
+  let l = nums.length;
+  if (l == 0) { return 0; }
+  let dp = new Array(l);
+  dp[0] = 1;
+  //dp[i] 为以 nums[i] 为结尾的LIS长度
+  let maxans = 1;
+  for (let i = 1; i < dp.length; i++) {
+    let maxval = 0;
+    for (let j = 0; j < i; j++) {
+      if (nums[i] > nums[j]) {
+        maxval = Math.max(maxval, dp[j]);
+      }
+    }
+    dp[i] = maxval + 1;
+    maxans = Math.max(maxans, dp[i]);
+  }
+  return maxans;
+};
+
+//(2) Greedy + DC 
+//放弃治疗了
+
+
+
 //62 Unique Path
 /* 假如一个5x3的格子，那么一共存在>>>>vv步， */
 var uniquePaths = function (m, n) {
@@ -3623,7 +3767,8 @@ var coinChange = function (coins, amount) {
  * @return {number}
  */
 var coinChange = function (coins, amount) {
-  let l = coins.length
+  let l = coins.length;
+  
 }
 
 //55. Jump Game
@@ -4069,7 +4214,23 @@ function postOrderTraverse(root, action) {
   }
 }
 
-//利用树的一些特性
+//利用BST的一些特性
+//Time complexity O(N*lgN+N) == O(N*lgN)
+//Space complexity O(N)
+//遍历数组每一项并将其插入树中
+
+function bstSort(ary) {
+  let root = null;
+  for (let i = 0; i < ary.length; i++) {
+    root = insertIntoBST(root, ary[i])
+  }
+  let k = 0;
+
+  inOrderTraverse(root, val => {
+    ary[k++] = val
+  })
+  return ary
+}
 
 function insertIntoBST(root, val) {
   if (!root) {
@@ -4081,20 +4242,6 @@ function insertIntoBST(root, val) {
     root.right = insertIntoBST(root.right, val)
   }
   return root
-}
-
-//Time complexity O(N*lgN+N) == O(N*lgN)
-//Space complexity O*(N)
-function bstSort(ary) {
-  let root = null;
-  for (let i = 0; i < ary.length; i++) {
-    root = insertIntoBST(root, ary[i])
-  }
-  let k = 0;
-  inOrderTraverse(root, val => {
-    ary[k++] = val
-  })
-  return ary
 }
 
 //start code runner
@@ -4123,6 +4270,7 @@ var searchBST = function (root, val) {
   if (root.val > val) return searchBST(root.left, val)
   else return searchBST(root.right, val)
 };
+
 
 //(2) iterativly
 //Time complexity : O(lgN)
@@ -4469,6 +4617,19 @@ var maxDepth = function (root) {
   return 0
 };
 
+var maxDepth = function (root) {
+  if (!root) return 0
+  let max = 0
+  traverse(root, 0)
+  function traverse(root, depth) {
+    if (root) {
+      if (depth > max) max = depth
+      traverse(root.left, depth + 1)
+      traverse(root.right, depth + 1)
+    }
+  }
+  return max + 1
+};
 //111. Minimum Depth of Binary Tree
 /**
  * Definition for a binary tree node.
@@ -4481,20 +4642,32 @@ var maxDepth = function (root) {
  * @param {TreeNode} root
  * @return {number}
  */
+//(1)traverse all nodes
 var minDepth = function (root) {
-  if (!root) {
-    return 0
-  }
-  if (!root.left && !root.right) {
-    return 1
-  }
-  if (!root.left) {
-    return 1 + minDepth(root.right)
-  }
-  if (!root.right) {
-    return 1 + minDepth(root.left)
-  }
+  if (!root) { return 0 }
+  if (!root.left && !root.right) { return 1 }
+  if (!root.left) { return 1 + minDepth(root.right) }
+  if (!root.right) { return 1 + minDepth(root.left) }
+  //Both left and right subtree exist!!
   return 1 + Math.min(minDepth(root.right), minDepth(root.left))
+};
+
+
+//(2)BFS
+var minDepth = function (root) {
+  if (!root) return 0
+  let queue = [root], curr = null, depth = 0;
+  while (queue.length) {
+    depth++
+    let queLength = queue.length
+    //dump current queue
+    for (let j = 0; j < queLength; j++) {
+      curr = queue.shift()
+      if (!curr.left && !curr.right) return depth
+      if (curr.left) queue.push(curr.left)
+      if (curr.right) queue.push(curr.right)
+    }
+  }
 };
 
 
@@ -4692,7 +4865,7 @@ var sumOfLeftLeaves = function (root) {
       return sumOfLeftLeaves(root.left) + sumOfLeftLeaves(root.right)
     }
   } else return 0
-  
+
   function isLeafNode(node) {
     return node && (!node.left && !node.right)
   }
@@ -4706,11 +4879,86 @@ var sumOfLeftLeaves = function (root, side) {
       return sumOfLeftLeaves(root.left, "l") + sumOfLeftLeaves(root.right, "r")
     }
   } else return 0
-   
+
   function isLeafNode(node) {
     return node && (!node.left && !node.right)
   }
 };
+
+//450. Delete Node in a BST
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+var deleteNode = function (root, key) {
+  if (!root) return null
+
+  if (key < root.val) {
+    root.left = deleteNode(root.left, val)
+    return root
+  }
+
+  if (key > root.val) {
+    root.right = deleteNode(root.right, val)
+    return root
+  }
+
+  if (key == root.val) {
+    if (!root.left && !root.right) return null
+    if (!root.left) return root.right
+    if (!root.right) return root.left
+    let leftMaxNode = getMaxNode(root.left)
+    root.val = leftMaxNode.val
+    root.left = deleteNode(root.left, leftMaxNode.val)
+    return root
+  }
+
+  function getMaxNode(root) {
+    while (root.right) root = root.right
+    return root
+  }
+};
+
+
+//Time complexity : O(H)
+//Space complexity : O(H)
+/**
+ * @param {TreeNode} root
+ * @param {number} key
+ * @return {TreeNode}
+ */
+const deleteNode = (root, key) => {
+  if (!root) return null
+  return helper(root, key)
+  function helper(node, key) {
+    if (node) {
+      if (node.val < key) { node.right = helper(node.right, key) }
+      if (node.val > key) { node.left = helper(node.left, key) }
+      if (node.val == key) {
+        if (!node.left && !node.right) { return null }
+        if (!node.left) { return node.right }
+        if (!node.right) { return node.left }
+        //both subtree exsit
+        //rotate tree 
+        let leftSub = node.left
+        node = node.right
+        let leftMost = node
+        while (leftMost.left) { leftMost = leftMost.left }
+        leftMost.left = leftSub
+      }
+      return node
+    }
+  }
+}
+
 
 //297. Serialize and Deserialize Binary Tree
 /**
@@ -4721,6 +4969,7 @@ var sumOfLeftLeaves = function (root, side) {
  * }
  */
 
+
 /**
  * Encodes a tree to a single string.
  *
@@ -4728,11 +4977,11 @@ var sumOfLeftLeaves = function (root, side) {
  * @return {string}
  */
 var serialize = function (root) {
-  if (!root) return "[]"
+  if (!root) return ""
   //root不为空
   return tree2ary(root)
   function tree2ary(root) {
-    let res = [root.val], queue = [root], curr = null;
+    let res = [root.val], queue = [root], curr = null, str = "";
     while (queue.length) {
       curr = queue.shift()
       if (curr.left) {
@@ -4747,7 +4996,16 @@ var serialize = function (root) {
     while (res[res.length - 1] === null) {
       res.pop()
     }
-    return "[" + res + "]"
+    for (let j = 0; j < res.length; j++) {
+      if (j !== res.length - 1) {
+        if (res[j] === null) str += "null" + ","
+        else str += String(res[j]) + ","
+      } else {
+        if (res[j] === null) str += "null"
+        else str += String(res[j])
+      }
+    }
+    return str
   }
 };
 
@@ -4757,8 +5015,29 @@ var serialize = function (root) {
  * @param {string} data
  * @return {TreeNode}
  */
-var deserialize = function(data) {
-    
+var deserialize = function (data) {
+  if (data == "") return null
+  str = data.split(",")
+  let root = new TreeNode(parseInt(str[0])), queue = [root], curr = null;
+  let l = data.length
+
+  for (let j = 1; j < l; j++) {
+    curr = queue.shift()
+    if (!isNaN(str[j])) {
+      curr.left = new TreeNode(parseInt(str[j]))
+      queue.push(curr.left)
+    }
+
+    j++
+
+    if (str[j] == undefined) break
+    if (!isNaN(str[j])) {
+      curr.right = new TreeNode(parseInt(str[j]))
+      queue.push(curr.right)
+    }
+  }
+
+  return root
 };
 
 /**
@@ -4782,6 +5061,26 @@ function transform(n, isOuterMost = true) {
   return "" + digit + transform(rest, false)
 }
 
+//124. Binary Tree Maximum Path Sum
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+var maxPathSum = function(root) {
+  let res = -Infinity;
+  if (root == null) { return 0;}
+  let left = Math.max(0, maxPathSum(root.leftleft));
+  let right = Math.max(0, maxPathSum(root.right));
+  res = Math.max(res, left + right + root.val)
+  return Math.max(left, right) + root.val
+};
 
 //多叉树 
 //559. Maximum Depth of N-ary Tree
@@ -4796,7 +5095,6 @@ function transform(n, isOuterMost = true) {
  * @param {Node} root
  * @return {number}
  */
-
 
 var maxDepth = function (root) {
   if (!root) return 0
