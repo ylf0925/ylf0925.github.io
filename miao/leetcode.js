@@ -3761,14 +3761,113 @@ var coinChange = function (coins, amount) {
   return dp[amount]
 };
 
+//brute force 
 /**
  * @param {number[]} coins
  * @param {number} amount
  * @return {number}
  */
 var coinChange = function (coins, amount) {
-  let l = coins.length;
+  //dp（n） 为凑出n面值所需要的最少硬币数
+  const dp = (n) => {
+    //base case 
+    if (n == 0) { return 0; }
+    if (n < 0) { return -1; }
+    let res = Infinity
+    for(let j = 0; j < coins.length; j++){
+      let coin = coins[j];
+      subProb = dp(n - coin);
+      if (subProb == -1) { continue }
+      res = Math.min(res, 1 + subProb)
+    }
+    return res === Infinity ? -1 : res;
+  }
+
+  return dp (amount)
+}
+
+
+// memo
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  //dp（n） 为凑出n面值所需要的最少硬币数
+  let memo = {};
+  const dp = (n) => {
+    //base case 
+    if (n in memo) { return memo[n]; }
+    if (n == 0) { return 0; }
+    if (n < 0) { return -1; }
+    let res = Infinity;
+    for(let j = 0; j < coins.length; j++){
+      let coin = coins[j];
+      subProb = dp(n - coin);
+      if (subProb == -1) { continue; }
+      res = Math.min(res, 1 + subProb);
+    }
+    memo[n] = (res === Infinity ? -1 : res);
+    return memo[n];
+  }
+  return dp (amount);
+}
+
+//DP
+/**
+ * @param {number[]} coins
+ * @param {number} amount
+ * @return {number}
+ */
+var coinChange = function (coins, amount) {
+  //dp（n） 为凑出n面值所需要的最少硬币数
+  let dp = new Array(amount + 1).fill(amount + 1);
+  //base case 
+  dp[0] = 0;
+  for (let i = 0; i < dp.length; i++) {
+    //i为面值
+    for (currCoin of coins) {
+      if (i - currCoin < 0) { continue; }
+      dp[i] = Math.min(dp[i], 1 + dp[i - currCoin]);
+    }
+  }
+  return (dp[amount] == amount + 1) ? -1 : dp[amount];
+}
+
+
+//70. Climbing Stairs
+//(1)DP
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+  let dp = new Array(n + 1);
+  dp[0] = 0; dp[1] = 1; dp[2] = 2;
   
+  //至第i阶有dp[i]种方法
+  for (let i = 3; i <= n; i++){
+    dp[i] = dp[i - 1] + dp[i - 2];
+  }
+  return dp[n]
+}
+
+//(2)DP 只需要记录三种状态
+/**
+ * @param {number} n
+ * @return {number}
+ */
+var climbStairs = function(n) {
+  if (n == 1) { return 1; }
+  if (n == 2) { return 2; }
+  let st1 = 1, st2 = 2; let st3 = 0;
+  for (let j = 3; j <= n; j++) {
+    st3 = st1 + st2;
+    st1 = st2;
+    st2 = st3;
+  }
+  return st3;
 }
 
 //55. Jump Game
@@ -4694,6 +4793,28 @@ var invertTree = function (root) {
   return root
 };
 
+//687. Longest Univalue Path
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
+let longestUnivaluePath = function(root) {
+  if (!root) { return 0; }
+  let max = 0;
+  return helper(root);
+  function helper(node) {
+    if (node) {
+
+    }
+  }
+};
 //617. Merge Two Binary Trees
 /**
  * Definition for a binary tree node.
