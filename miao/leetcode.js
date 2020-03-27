@@ -2789,7 +2789,55 @@ var mergeTwoLists = function (l1, l2) {
   }
 };
 
+//2. Add Two Numbers
+/**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+/**
+ * @param {ListNode} l1
+ * @param {ListNode} l2
+ * @return {ListNode}
+ */
+var addTwoNumbers = function (l1, l2) {
+  if ( !l1 ) { return l2; }
+  if ( !l2 ) { return l1; }
+  let dummyHead = new ListNode(-1);
+  let p = dummyHead;
+  let sum = 0, carry = 0;
+  while (l1 || l2) {
+    l1 === null ? ( l1 = new ListNode(0) ) : l1;
+    l2 === null ? ( l2 = new ListNode(0) ) : l2;
+    sum = l1.val + l2.val + carry;
+    carry = 0;
+    if (sum >= 10) {
+      carry = 1;
+      sum = sum - 10;
+    }
+    p.next = new ListNode(sum);
+    l1 = l1.next;
+    l2 = l2.next;  
+    p = p.next;
+  }
+  if (carry == 1) {
+    p.next = new ListNode(1);
+  }
+  return dummyHead.next
+};
 
+
+ function ListNode(val) {
+     this.val = val;
+     this.next = null;
+ }
+debugger;
+addTwoNumbers({ val: 9, next: { val: 9, next: { val: 9, next: null } } }, {
+  val: 1,
+  next: null,
+})
 //24. Swap Nodes in Pairs
 //(1)loop
 /**
@@ -3738,13 +3786,10 @@ var coinChange = function (coins, amount) {
   //example：coins=[2,5,7],amount=27
   //DP status dp[x] = 拼出x最少需要多少枚硬币
   //DP Array
-
   let dp = []
   let n = coins.length
-
   //initialization
   dp[0] = 0
-
   let i, j
   for (i = 1; i <= amount; ++i) {
     dp[i] = Infinity
@@ -4751,7 +4796,10 @@ var minDepth = function (root) {
   return 1 + Math.min(minDepth(root.right), minDepth(root.left))
 };
 
-
+/**
+ * @param {TreeNode} root
+ * @return {number}
+ */
 //(2)BFS
 var minDepth = function (root) {
   if (!root) return 0
@@ -4806,13 +4854,12 @@ var invertTree = function (root) {
  * @return {number}
  */
 let longestUnivaluePath = function(root) {
-  if (!root) { return 0; }
-  let max = 0;
-  return helper(root);
-  function helper(node) {
-    if (node) {
+  let ans = 0;
+  arrowLength(root);
+  return ans;
 
-    }
+  function arrowLength(node) {
+    if (node == null)
   }
 };
 //617. Merge Two Binary Trees
@@ -4902,11 +4949,61 @@ let tree2str = function (t) {
   return t.val + "(" + tree2str(t.left) + ")(" + tree2str(t.right) + ")";
 };
 
+
+//107. Binary Tree Level Order Traversal II
+/**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+/**
+ * @param {TreeNode} root
+ * @return {number[][]}
+ */
+var levelOrderBottom = function (root) {
+  let ans = [], depth = -1;
+  if (!root) { return ans; }
+  let queue = [root], curr = null, queLength = 0;
+  while (queue.length) {
+    queLength = queue.length;
+    ans.push([]);
+    depth++
+    for (let j = 0 ;j < queLength; j++) {
+      //queLenghth就是这一层节点的个数
+      curr = queue.shift();
+      ans[depth].push(curr.val);
+      if (curr.left) { queue.push(curr.left); }
+      if (curr.right) { queue.push(curr.right); }
+    }
+  }
+  return ans.reverse();
+};
+
+//recursively
+//T:O(N)
+//S:O(H)
+var levelOrderBottom = function (root) {
+  let ans = [];
+  if (!root) { return ans; }
+  helperBFS(root ,0)
+  return ans.reverse();
+
+  function helperBFS (node, depth) {
+   
+    if (depth == ans.length) { ans.push([]); }
+    ans[depth].push(node.val);
+    if (node.left) { helperBFS(node.left, depth + 1); }
+    if (node.right) { helperBFS(node.right, depth + 1); }
+  }
+};
+
 //102. Binary Tree Level Order Traversal
 //(1)BFS recusively 妙啊！
 //Time complexity : O(N)
 //Space complexity : O(H)
-//H is the height of binary tree -> roughly lgN if it is balanced binary tr
+//H is the height of binary tree -> roughly lgN if it is balanced binary tree
 /**
  * Definition for a binary tree node.
  * function TreeNode(val) {
@@ -4927,7 +5024,7 @@ let levelOrder = function (root) {
 
   function helperBFS(node, depth) {
     if (!node) return;
-    if (res.length === depth) res.push([])
+    if (res.length === depth) { res.push([]); }
     res[depth].push(node.val)
     //一个重要的思想是当res里面的depth == res数组长度时，push数值
     helperBFS(node.left, depth + 1)
@@ -5089,8 +5186,6 @@ const deleteNode = (root, key) => {
  *     this.left = this.right = null;
  * }
  */
-
-
 /**
  * Encodes a tree to a single string.
  *
@@ -5157,7 +5252,6 @@ var deserialize = function (data) {
       queue.push(curr.right)
     }
   }
-
   return root
 };
 
@@ -5227,6 +5321,7 @@ var maxDepth = function (root) {
     return Math.max(...node.children.map(countDepth)) + 1
   }
 };
+
 
 //589. N-ary Tree Preorder Traversal
 /**
@@ -5310,3 +5405,16 @@ let root = {
 }
 debugger;
 
+
+
+
+function minus(x){
+  let w = x;
+  helper(w);
+  console.log(w)
+
+  function helper(a){
+    a = a - 10
+
+  }
+}
