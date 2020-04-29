@@ -699,6 +699,9 @@ var maxDepth = function (root) {
   }
   return max + 1
 };
+
+
+
 //111. Minimum Depth of Binary Tree
 /**
  * Definition for a binary tree node.
@@ -707,7 +710,7 @@ var maxDepth = function (root) {
  *     this.left = this.right = null;
  * }
  */
-/**
+/** 
  * @param {TreeNode} root
  * @return {number}
  */
@@ -766,27 +769,6 @@ var invertTree = function (root) {
   return root
 };
 
-//687. Longest Univalue Path
-/**
- * Definition for a binary tree node.
- * function TreeNode(val) {
- *     this.val = val;
- *     this.left = this.right = null;
- * }
- */
-/**
- * @param {TreeNode} root
- * @return {number}
- */
-let longestUnivaluePath = function (root) {
-  let ans = 0;
-  arrowLength(root);
-  return ans;
-
-  function arrowLength(node) {
-    if (node == null)
-  }
-};
 //617. Merge Two Binary Trees
 /**
  * Definition for a binary tree node.
@@ -1041,17 +1023,17 @@ var sumOfLeftLeaves = function (root, side) {
  * @param {number} key
  * @return {TreeNode}
  */
-var deleteNode = function (root, key) {
-  if (!root) return null
+const deleteNode = function (root, key) {
+  if (!root) return null;
 
   if (key < root.val) {
-    root.left = deleteNode(root.left, val)
-    return root
+    root.left = deleteNode(root.left, val);
+    return root;
   }
 
   if (key > root.val) {
-    root.right = deleteNode(root.right, val)
-    return root
+    root.right = deleteNode(root.right, val);
+    return root;
   }
 
   if (key == root.val) {

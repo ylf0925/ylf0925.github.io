@@ -254,27 +254,6 @@ function nth2(head, idx) {
  *     this.next = null;
  * }
  */
-/**
- * @param {ListNode} head
- * @return {ListNode}
- */
-var reverseList = function (head) {
-  if (!head || !head.next) {
-    return head
-  }
-  var a = head.next
-  var b = head.next.next
-  head.next = null
-  while (true) {
-    a.next = head
-    if (b == null) {
-      return a
-    }
-    head = a
-    a = b
-    b = b.next
-  }
-}
 
 
 //(1)recusion
@@ -317,9 +296,9 @@ var reverseList = function (head) {
   if (head == null || head.next == null) {
     return head
   }
-  var a = null
-  var b = head
-  var c = head.next
+  let a = null
+  let b = head
+  let c = head.next
   do {
     b.next = a
     a = b
@@ -335,9 +314,9 @@ var reverseList = function (head) {
   if (head == null || head.next == null) {
     return head
   }
-  var a = null
-  var b = null
-  var c = head
+  let a = null
+  let b = null
+  let c = head
   while (c) {
     a = b
     b = c
