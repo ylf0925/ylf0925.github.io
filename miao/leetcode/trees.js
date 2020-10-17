@@ -116,6 +116,7 @@ function lcary2tree(ary) {
     }
 
     i++
+    
     if (i >= ary.length) {
       break
     }
